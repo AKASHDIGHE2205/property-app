@@ -36,7 +36,7 @@ const Header = () => {
     <>
       {/* <!-- ========== HEADER ========== --> */}
       <header className="sticky top-0 left-0 right-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[48] w-full
-                       bg-white border-b text-sm py-2.5 lg:ps-[260px] dark:bg-gray-900 dark:border-neutral-700">
+                       bg-white border-b text-sm py-2.5 lg:ps-[260px] dark:bg-gray-900 dark:border-gray-700">
         <nav className="px-2 sm:px- flex basis-full items-center w-full mx-auto">
           <div className="me-5 lg:me-0 lg:hidden">
             {/* <!-- Logo --> */}
@@ -75,7 +75,7 @@ const Header = () => {
                 <input
                   type="text"
                   readOnly
-                  className="py-2 ps-10 pe-16 block w-full bg-slate-100 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder:text-neutral-400 dark:focus:ring-neutral-600"
+                  className="py-2 ps-10 pe-16 block w-full bg-slate-100 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder:text-gray-400 dark:focus:ring-gray-600"
                   placeholder="Search"
                 />
                 <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">
@@ -120,7 +120,7 @@ const Header = () => {
 
               <button
                 type="button"
-                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
               >
                 <svg
                   className="shrink-0 size-4"
@@ -142,7 +142,7 @@ const Header = () => {
 
               <button
                 type="button"
-                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
               >
                 <svg
                   className="shrink-0 size-4"
@@ -161,14 +161,14 @@ const Header = () => {
                 <span className="sr-only">Activity</span>
               </button>
 
-              <button type="button" className="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-neutral-200 dark:hover:bg-gray-900 dark:focus:bg-gray-900" data-hs-theme-click-value="dark">
+              <button type="button" className="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:bg-gray-900" data-hs-theme-click-value="dark">
                 <span className="group inline-flex shrink-0 justify-center items-center size-9">
                   <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                   </svg>
                 </span>
               </button>
-              <button type="button" className="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-neutral-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:bg-gray-900" data-hs-theme-click-value="light">
+              <button type="button" className="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:bg-gray-900" data-hs-theme-click-value="light">
                 <span className="group inline-flex shrink-0 justify-center items-center size-9">
                   <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="4"></circle>
@@ -207,13 +207,13 @@ const Header = () => {
 
 
                 <div
-                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-gray-900 dark:border dark:border-neutral-700 dark:divide-neutral-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-gray-900 dark:border dark:border-gray-700 dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="hs-dropdown-account"
                 >
-                  <div className="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-neutral-700">
-                    <p className="text-sm text-gray-500 dark:text-neutral-300">
+                  <div className="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-gray-700">
+                    <p className="text-sm text-gray-500 dark:text-gray-300">
                       Signed in as
                     </p>
                     <p className="text-lg font-medium bg-clip-text bg-gradient-to-l from-blue-600 to-violet-500 text-transparent dark:from-blue-400 dark:to-violet-400">
@@ -225,7 +225,7 @@ const Header = () => {
                     {/* logout */}
                     <Link
                       to="/log-out"
-                      className="flex items-center gap-x-3.5 py-2 px-3 font-semibold rounded-lg text-red-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-800 dark:hover:text-red-500 dark:focus:bg-neutral-700 dark:focus:text-neutral-300">
+                      className="flex items-center gap-x-3.5 py-2 px-3 font-semibold rounded-lg text-red-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-800 dark:hover:text-red-500 dark:focus:bg-gray-700 dark:focus:text-gray-300">
                       <FiLogOut className="text-lg" />Logout
                     </Link>
                   </div>
@@ -240,12 +240,12 @@ const Header = () => {
 
       {/* <!-- ========== MAIN CONTENT ========== --> */}
       {/* <!-- Breadcrumb --> */}
-      <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-gray-900 dark:border-neutral-700">
+      <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-gray-900 dark:border-gray-700">
         <div className="flex items-center py-2">
           {/* <!-- Navigation Toggle --> */}
           <button
             type="button"
-            className="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-neutral-700 dark:text-neutral-200 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+            className="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-gray-200 dark:hover:text-gray-500 dark:focus:text-gray-500"
             aria-haspopup="dialog"
             aria-expanded="false"
             aria-controls="hs-application-sidebar"

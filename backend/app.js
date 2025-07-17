@@ -2,18 +2,20 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
+import dotenv from 'dotenv';
 
 import MasterRoutes from './routes/master/MasterRoutes.js';
 import TransactionRoutes from './routes/transaction/TransactionRoutes.js';
 import authRoutes from './routes/auth/authRoutes.js';
-import streportRoutes from './routes/reports/streportRoutes.js'
+import streportRoutes from './routes/reports/streportRoutes.js';
 
-import PMasterRoutes from './routes/property/master/PMasterRoutes.js'
+import PMasterRoutes from './routes/property/master/PMasterRoutes.js';
 import PTranRoutes from './routes/property/transaction/PTransRoutes.js';
 import PReportRoutes from './routes/property/report/PReportRoutes.js';
+
+dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

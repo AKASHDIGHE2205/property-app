@@ -8,6 +8,7 @@ import moment from "moment";
 import Paginations from "../../../../helper/Pagination";
 import EditEntry from "./EditEntry";
 import { tablebody, tablehead } from "../../../../constant/BaseUrl";
+import { FiSearch } from "react-icons/fi";
 
 interface Entry {
   doc_code: string;
@@ -99,55 +100,23 @@ const EntryView = () => {
   }
 
   return (
-    <div className="h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
+    <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
       <h1 className="flex justify-center items-center text-2xl font-semibold ">Entry Details</h1>
-      <div className="sticky right-0 hidden">
-        <div className="max-w-sm space-y-3">
-          <input
-            type="text"
-            className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100"
-            placeholder="Type your search query here"
-            value={searchTerm}
-            onChange={handleSearch}
-          />
-        </div>
-        <div className="m-2 flex justify-between">
-          <div className="flex flex-row items-center">
-            <div>Select</div>
-            <div className="m-1">
-              <select
-                className="py-3 pe-4 block bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
-                onChange={(e: any) => handleItemsPerPage(e.target.value)} >
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={25}>25</option>
-                <option value={50}>50</option>
-                <option value={100}>100</option>
-              </select>
-            </div>
-            <div>rows</div>
-          </div>
-          <div>
-            <Link
-              to={"/transaction/entries"}
-              type="button"
-              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
-              <IoAddCircleOutline size={18} />
-              Add Entry
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="sticky right-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-        <div className="">
+      <div className="sticky right-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 ">
+        <div className="max-w-sm">
           <label className="text-sm text-gray-700 dark:text-gray-300">Search</label>
-          <input
-            type="text"
-            placeholder="Search by doc no. or file name"
-            value={searchTerm}
-            onChange={handleSearch}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search here"
+              value={searchTerm}
+              onChange={handleSearch}
+              className="w-full pr-10 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 h-4 w-4 pointer-events-none" />
+          </div>
+
         </div>
 
         {/* From Date */}
@@ -177,7 +146,7 @@ const EntryView = () => {
           <label className="text-sm text-gray-700 dark:text-gray-300">Rows per page</label>
           <select
             className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            onChange={(e: any) => handleItemsPerPage(e.target.value)}
             value={itemsPerPage}
           >
             {[5, 10, 25, 50, 100].map((n) => (
@@ -262,7 +231,7 @@ const EntryView = () => {
           </div>
         </div>
         <Paginations currentPage={currentPage} itemPerPage={itemsPerPage} data={data} handlePageChange={handlePageChange} />
-        <EditEntry show={editShow} setShow={setEditShow} data={selectedEntry} fetchData={fetchData} />
+        {editShow && (<EditEntry show={editShow} setShow={setEditShow} data={selectedEntry} fetchData={fetchData} />)}
       </div>
       <div>
       </div>
@@ -271,3 +240,45 @@ const EntryView = () => {
 }
 
 export default EntryView;
+
+{/**
+
+        <div className="sticky right-0 hidden">
+        <div className="max-w-sm space-y-3">
+          <input
+            type="text"
+            className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100"
+            placeholder="Type your search query here"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+        <div className="m-2 flex justify-between">
+          <div className="flex flex-row items-center">
+            <div>Select</div>
+            <div className="m-1">
+              <select
+                className="py-3 pe-4 block bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
+                onChange={(e: any) => handleItemsPerPage(e.target.value)} >
+                <option value={5}>5</option>
+                <option value={10}>10</option>
+                <option value={25}>25</option>
+                <option value={50}>50</option>
+                <option value={100}>100</option>
+              </select>
+            </div>
+            <div>rows</div>
+          </div>
+          <div>
+            <Link
+              to={"/transaction/entries"}
+              type="button"
+              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none">
+              <IoAddCircleOutline size={18} />
+              Add Entry
+            </Link>
+          </div>
+        </div>
+      </div>
+  
+*/}

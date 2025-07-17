@@ -98,10 +98,10 @@ const TranView = () => {
 
   return (
     <>
-      <div className="h-screen w-full m-3 border p-2 rounded-lg" >
+      <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
         <h1 className="flex justify-center items-center text-2xl font-semibold">Transaction Details</h1>
         <div className="flex justify-end items-end gap-2 py-2">
-          {/* Add Entry Button */}
+          {/* Filter Button */}
           <div className="flex items-end justify-end">
             <button
               className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none hidden"
@@ -121,7 +121,6 @@ const TranView = () => {
               Add Entry
             </Link>
           </div>
-
         </div>
         {showFilter && (<div className="sticky right-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
           <div className="">

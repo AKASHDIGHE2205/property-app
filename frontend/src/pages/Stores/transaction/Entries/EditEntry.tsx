@@ -177,7 +177,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
         aria-labelledby="edit-entry-modal-label"
       >
         <div className="flex justify-center items-center mx-2 w-full h-full">
-          <div className="w-full max-w-3xl bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+          <div className="w-full max-w-3xl bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden">
             <div className="flex justify-between items-center  py-3 px-4 border-b border-gray-400 dark:border-gray-700 ">
               <h3 id="edit-entry-modal-label" className="font-bold text-gray-800 dark:text-white">
                 Edit Entry
@@ -203,7 +203,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="date"
                           value={formatDate(input.date)}
                           onChange={handleChange}
-                          className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100"
+                          className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           readOnly />
                       </div>
                       <div>
@@ -215,7 +215,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="entry_code"
                           value={input.entry_code}
                           onChange={handleChange}
-                          className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100  uppercase" readOnly />
+                          className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500" readOnly />
                       </div>
                     </div>
 
@@ -228,7 +228,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                             id="firm"
                             name="firm"
                             value={input.firm}
-                            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                            className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             placeholder="Select firm name" readOnly />
                           <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
                             onClick={() => setShowFirm(true)}
@@ -248,7 +248,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                             id="branch"
                             name="branch"
                             value={input.branch}
-                            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                            className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             placeholder="Select branch name" readOnly />
                           <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
                             onClick={() => setShowBranch(true)}
@@ -268,7 +268,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                             id="location"
                             name="location"
                             value={input.location}
-                            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                            className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             placeholder="Select location" readOnly />
                           <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
                             onClick={() => setShowLocation(true)}>
@@ -289,7 +289,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                               name="year"
                               defaultValue={input.year}
                               onChange={handleChange}
-                              className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600  bg-slate-100 uppercase" placeholder="Type in format(YYYY-YYYY)" />
+                              className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500" placeholder="Type in format(YYYY-YYYY)" />
 
                           </div>
                         </div>
@@ -304,7 +304,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                               name="rackNO"
                               value={input.rackNO}
                               onChange={handleChange}
-                              className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600  bg-slate-100 uppercase"
+                              className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                               placeholder="Enter Rack No." />
                           </div>
                         </div>
@@ -319,7 +319,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="slotNo"
                           value={input.slotNo}
                           onChange={handleChange}
-                          className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600  bg-slate-100"
+                          className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="Enter Slot No."
                         />
                       </div>
@@ -332,7 +332,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="subSlotNo"
                           value={input.subSlotNo}
                           onChange={handleChange}
-                          className="rounded-lg py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600  bg-slate-100"
+                          className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="Enter Sub Slot No."
                         />
                       </div>
@@ -346,7 +346,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                             id="section"
                             name="section"
                             value={input.section}
-                            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                            className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             placeholder="Select section" readOnly />
                           <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
                             onClick={() => setShowSeaction(true)}
@@ -365,7 +365,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                             id="category"
                             name="category"
                             value={input.category}
-                            className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                            className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             placeholder="Select category" readOnly />
                           <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
                             onClick={() => setShowCategory(true)}
@@ -384,7 +384,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="desc"
                           value={input.desc}
                           onChange={handleChange}
-                          className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                          className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="Enter description" />
                       </div>
 
@@ -396,7 +396,7 @@ const EditEntry: FC<Props> = ({ show, setShow, data, fetchData }) => {
                           id="remark"
                           value={input.remark}
                           onChange={handleChange}
-                          className="py-3 px-4 block w-full border-gray-200 shadow-sm rounded-s-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase"
+                          className="rounded-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="Enter remark" />
                       </div>
                     </div>
