@@ -1,6 +1,6 @@
-import { FiLogOut } from "react-icons/fi"
-import { Link } from "react-router-dom"
-import Logo from '../assets/malpani3.png'
+import { FiLogOut } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import Logo from '../assets/malpani3.png';
 import CryptoJS from "crypto-js";
 import { TfiAlignRight } from "react-icons/tfi";
 import { FaRegUser } from "react-icons/fa";

@@ -24,8 +24,9 @@ const DesposedView = lazy(() => import('./pages/Stores/transaction/Despose file/
 const Deposite = lazy(() => import('./pages/Stores/transaction/Despose file/Deposite'));
 const BranchView = lazy(() => import('./pages/Stores/master/Branch/BranchView'));
 const EntryForm = lazy(() => import('./pages/Stores/report/Entry status report/EntryForm'));
-const RecordReportForm = lazy(() => import('./pages/Stores/report/Record Entry report/RecordReportForm'));
-const IssueReportForm1 = lazy(() => import('./pages/Stores/report/issue  register/IssueReportForm'));
+const FirmWiseReport = lazy(() => import('./pages/Stores/report/FirmWiseReports/FirmWiseReport'));
+const BranchWiseReport = lazy(() => import('./pages/Stores/report/BranchWiseReport/BranchWiseReport'));
+const YearWiseReport = lazy(() => import('./pages/Stores/report/YearWiseReport/YearWiseReport'));
 const ConsigneeView = lazy(() => import("./pages/Property/master/consignee/ConsigneeView"))
 const ConsignerView = lazy(() => import("./pages/Property/master/consigner/ConsignerView"));
 const PLocationView = lazy(() => import("./pages/Property/master/location/PLocationView"));
@@ -89,8 +90,9 @@ function MainApp() {
 
             {/*Store  Report Routes */}
             <Route path="report/entry-status-report" element={<EntryForm />} />
-            <Route path="report/record-entry-report" element={<RecordReportForm />} />
-            <Route path="report/issue-report" element={<IssueReportForm1 />} />
+            <Route path="report/firm-report" element={<FirmWiseReport />} />
+            <Route path="report/branch-report" element={<BranchWiseReport />} />
+            <Route path="report/yearly-report" element={<YearWiseReport />} />
 
             {/*Property Master Routes */}
             <Route path="property/master/consignee" element={<ConsigneeView />} />

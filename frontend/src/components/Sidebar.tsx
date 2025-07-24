@@ -1,18 +1,19 @@
-import { FaBuildingCircleArrowRight, FaSwatchbook } from "react-icons/fa6";
+import { FaBuildingCircleArrowRight, FaCodeBranch, FaSwatchbook } from "react-icons/fa6";
 import { VscFileSubmodule } from "react-icons/vsc";
 import { BiSolidReport } from "react-icons/bi";
-import { FaIdCard, FaFileAlt } from "react-icons/fa";
+import { FaFileAlt } from "react-icons/fa";
 import { GrTransaction } from "react-icons/gr";;
 import { MdLeaderboard } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/malpani3.png';
 import { HiOfficeBuilding, HiLocationMarker, HiClipboardList, HiTag } from "react-icons/hi";
-import { RiBook2Line } from "react-icons/ri";
+import { RiBuilding2Fill } from "react-icons/ri";
 import { TbCalculator, TbFileSymlink } from "react-icons/tb";
 import { useEffect } from "react";
 import { BsBuildings, BsCalendar2Week } from "react-icons/bs";
 import { LuFileText, LuInbox, LuMapPinCheck, LuMapPinned, LuSend } from "react-icons/lu";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { SlCalender } from "react-icons/sl";
 
 const Sidebar = () => {
 
@@ -328,21 +329,29 @@ const Sidebar = () => {
                               <NavLink
                                 className={({ isActive }) => `w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
                             ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"}`}
-                                to="/report/entry-status-report" >
-                                <FaIdCard /> Entry Status Report
+                                to="/report/branch-report" >
+                                <FaCodeBranch size={18} /> Branch Wise Report
                               </NavLink>
                             </li>
                             <li>
                               <NavLink
                                 className={({ isActive }) => `w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
                             ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"} `}
-                                to="/report/record-entry-report">
-                                <RiBook2Line /> Record Entry Report
+                                to="/report/firm-report">
+                                <RiBuilding2Fill size={18} /> Firm Wise Report
                               </NavLink>
                             </li>
                             <li>
                               <NavLink
                                 className={({ isActive }) => `w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
+                            ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"} `}
+                                to="report/yearly-report">
+                                <SlCalender size={18} /> Year Wise Report
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className={({ isActive }) => `hidden w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
                              ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"}`}
                                 to="/report/issue-report">
                                 <TbCalculator size={20} /> Issue Register

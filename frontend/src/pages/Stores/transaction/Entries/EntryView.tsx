@@ -242,7 +242,6 @@ const EntryView = () => {
 export default EntryView;
 
 {/**
-
         <div className="sticky right-0 hidden">
         <div className="max-w-sm space-y-3">
           <input
@@ -280,5 +279,4 @@ export default EntryView;
           </div>
         </div>
       </div>
-  
 */}
