@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { tablehead } from "../../../../constant/BaseUrl";
 import { yearWiseReports } from "../../../../services/Stores/report/reportApis";
 import { useRef } from "react";
+import toast from "react-hot-toast";
 
 
 interface FirmReportEntry {
@@ -28,6 +29,11 @@ const YearWiseReport = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    if (!year) {
+      toast.error("Please fill required field!");
+      setLoading(false);
+      return;
+    }
     try {
       const response = await yearWiseReports({ year });
       if (response) {
@@ -138,9 +144,8 @@ const YearWiseReport = () => {
   }
 
   return (
-    <div className="w-full sm:max-w-6xl mx-auto my-4 p-4 border rounded-xl dark:border-gray-700 bg-white dark:bg-gray-900">
+    <div className="relative w-full min-h-screen sm:max-w-6xl my-2 mx-2 border rounded-xl dark:border-gray-700 p-2">
       <h1 className="text-2xl font-semibold text-center mb-6">Year Wise Report</h1>
-
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -165,14 +170,14 @@ const YearWiseReport = () => {
           <button
             type="submit"
             disabled={showTable}
-            className="inline-flex items-center px-6 py-2 text-sm font-medium rounded-md bg-green-600 text-white hover:bg-green-700 disabled:bg-green-400"
+            className="inline-flex items-center px-6 py-3 text-sm font-medium rounded-md bg-green-600 text-white hover:bg-green-700 disabled:bg-green-400"
           >
             {loading ? "Loading..." : "Browse Report"}
           </button>
           <button
             type="button"
             onClick={handleCancel}
-            className="inline-flex items-center px-6 py-2 text-sm font-medium rounded-md bg-gray-500 text-white hover:bg-gray-600"
+            className="inline-flex items-center px-6 py-3 text-sm font-medium rounded-md bg-gray-500 text-white hover:bg-gray-600"
           >
             Cancel
           </button>
@@ -182,7 +187,7 @@ const YearWiseReport = () => {
       {/* Table */}
       {showTable && (
         <div className="mt-6">
-          <div ref={printRef} className="overflow-x-auto border dark:border-gray-700 rounded-md">
+          <div ref={printRef} className="overflow-x-auto border dark:border-gray-700 rounded-md p-1">
             <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
               <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
                 <tr>
@@ -190,9 +195,9 @@ const YearWiseReport = () => {
                   <th className={tablehead}>Inward Date</th>
                   <th className={tablehead}>Particular</th>
                   <th className={tablehead}>Firm Name</th>
-                  <th className={tablehead}>Branch Name</th>
+                  <th className={tablehead} hidden>Branch Name</th>
                   <th className={tablehead}>Year</th>
-                  <th className={tablehead}>C.No.</th>
+                  <th className={tablehead}>Cub.No.</th>
                   <th className={tablehead}>Slot No.</th>
                   <th className={tablehead}>Desc</th>
                   <th className={tablehead}>Remark</th>
@@ -210,7 +215,7 @@ const YearWiseReport = () => {
                       <td className="px-4 py-2">{new Date(row.date).toLocaleDateString()}</td>
                       <td className="px-4 py-2">{""}</td>
                       <td className="px-4 py-2">{row.firm_name}</td>
-                      <td className="px-4 py-2">{row.branch_name}</td>
+                      <td className="px-4 py-2 hidden">{row.branch_name}</td>
                       <td className="px-4 py-2">{row.year}</td>
                       <td className="px-4 py-2">{row.cub_code}</td>
                       <td className="px-4 py-2">{row.s_code}</td>

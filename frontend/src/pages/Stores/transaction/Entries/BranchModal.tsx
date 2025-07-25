@@ -74,7 +74,7 @@ const BranchModal: FC<Props> = ({ show, setShow }) => {
             />
           </div>
           <div className="px-4 max-h-[70vh] overflow-y-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="sticky top-0 bg-gray-50 dark:bg-gray-900">
                 <tr>
                   <th className="px-2 py-3 text-start text-xs font-medium text-gray-500 uppercase">firm Code</th>
@@ -89,7 +89,7 @@ const BranchModal: FC<Props> = ({ show, setShow }) => {
                   </tr>)
                   : (<>
                     {currentItems?.map((item: any) => (
-                      <tr key={item.id} className="hover:bg-gray-100 dark:hover:bg-neutral-700">
+                      <tr key={item.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                         <td className="px-2 py-3">{item.id}</td>
                         <td className="px-2 py-3 uppercase">{item.name}</td>
                         <td className="px-2 py-3 text-end">

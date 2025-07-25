@@ -123,3 +123,26 @@ export const deletePTransaction = async (id: any) => {
     toast.error(error?.response?.data?.message || "Network Error.");
   }
 };
+
+export const newPropertyTransaction = async (formData: any) => {
+  try {
+    const response = await axios.post(`${BaseUrl}/new-property-tran`, formData);
+    if (response.status === 200) {
+      toast.success(response.data.message);
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+export const getAllTRansactions1 = async (data: any) => {
+  try {
+    const response = await axios.post(`${BaseUrl}/getTransactionData1`, data);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+    return null;
+  }
+};

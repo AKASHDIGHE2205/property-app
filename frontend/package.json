@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "aos": "^2.3.4",
     "axios": "^1.8.1",
+    "browser-image-compression": "^2.0.2",
     "crypto-js": "^4.2.0",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",

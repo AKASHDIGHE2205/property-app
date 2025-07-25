@@ -63,9 +63,9 @@ router.post("/branch-wise-report", (req, res) => {
     FROM st_tran AS a
     LEFT JOIN st_firm AS b ON a.firm_code = b.id
     LEFT JOIN st_branch AS c ON a.branch_code = c.id
-    WHERE a.year LIKE ? AND a.branch_code = ?`;
+    WHERE a.year = ? AND a.branch_code = ?`;
 
-  db.query(sql, [`%${year}%`, branch_code], (err, results) => {
+  db.query(sql, [year, branch_code], (err, results) => {
     if (err) {
       console.error("Error fetching branch-wise report:", err);
       return res.status(500).json({ message: 'Internal Server Error' });
@@ -97,9 +97,9 @@ router.post("/firm-wise-report", (req, res) => {
     FROM st_tran AS a
     LEFT JOIN st_firm AS b ON a.firm_code = b.id
     LEFT JOIN st_branch AS c ON a.branch_code = c.id
-    WHERE a.year LIKE ? AND a.firm_code = ?`;
+    WHERE a.year = ? AND a.firm_code = ?`;
 
-  db.query(sql, [`%${year}%`, firm_code], (err, results) => {
+  db.query(sql, [year, firm_code], (err, results) => {
     if (err) {
       console.error("Error fetching firm-wise report:", err);
       return res.status(500).json({ message: 'Internal Server Error' });
@@ -131,8 +131,8 @@ router.post("/year-wise-report", (req, res) => {
                 FROM st_tran AS a
                 LEFT JOIN st_firm AS b ON a.firm_code = b.id
                 LEFT JOIN st_branch AS c ON a.branch_code = c.id
-                WHERE a.year LIKE ?`;
-  db.query(sql, [`%${year}%`], (err, results) => {
+                WHERE a.year = ?`;
+  db.query(sql, [year], (err, results) => {
     if (err) {
       console.error("Error fetching year-wise report:", err);
       return res.status(500).json({ message: 'Internal Server Error' });

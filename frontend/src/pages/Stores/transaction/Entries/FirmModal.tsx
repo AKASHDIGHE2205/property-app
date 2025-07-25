@@ -51,7 +51,7 @@ const FirmMidal: FC<props> = ({ show, setShow }) => {
     >
       <div className="flex justify-center items-center min-h-screen m-2">
         <div className="w-full max-w-lg bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
-          <div className="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+          <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
             <h3 id="firm-modal-label" className="font-bold text-gray-800 dark:text-white">
               Select Firm
             </h3>
@@ -72,7 +72,7 @@ const FirmMidal: FC<props> = ({ show, setShow }) => {
             />
           </div>
           <div className="px-4 max-h-[70vh] overflow-y-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
               <thead className="sticky top-0 bg-gray-50 dark:bg-gray-900">
                 <tr>
                   <th className="px-2 py-3 text-start text-xs font-medium text-gray-500 uppercase">firm Code</th>
@@ -87,7 +87,7 @@ const FirmMidal: FC<props> = ({ show, setShow }) => {
                   </tr>)
                   : (<>
                     {currentItems?.map((item: any) => (
-                      <tr key={item.id} className="hover:bg-gray-100 dark:hover:bg-neutral-700">
+                      <tr key={item.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                         <td className="px-2 py-3">{item.id}</td>
                         <td className="px-2 py-3 uppercase">{item.name}</td>
                         <td className="px-2 py-3 text-end">
@@ -109,10 +109,10 @@ const FirmMidal: FC<props> = ({ show, setShow }) => {
               </tbody>
             </table>
           </div>
-          <div className="flex justify-end items-center py-3 px-4 border-t dark:border-neutral-700">
+          <div className="flex justify-end items-center py-3 px-4 border-t dark:border-gray-700">
             <button
               type="button"
-              className="py-3 px-4 bg-gray-200 text-gray-800 dark:bg-neutral-700 dark:text-white rounded-lg"
+              className="py-3 px-4 bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-white rounded-lg"
               onClick={() => setShow(false)}
             >
               Close

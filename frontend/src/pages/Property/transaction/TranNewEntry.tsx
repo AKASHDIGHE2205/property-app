@@ -3,7 +3,10 @@ import { RiMenuAddFill } from "react-icons/ri";
 import { tablehead } from "../../../constant/BaseUrl";
 import { MdDeleteForever } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { getActiveConsignee, getActiveConsigner, getActiveDocuments, getActiveLoc } from "../../../services/Property/transaction/pTranApis";
+
+import { getActiveConsignee, getActiveDocuments, getActiveLoc, newPropertyTransaction } from "../../../services/Property/transaction/pTranApis";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface Survey {
   consignee: string;
@@ -24,11 +27,6 @@ interface LocData {
 interface DocData {
   id: number
   name: string
-}
-interface ConsginorData {
-  id: number
-  name: string
-  status: string
 }
 interface ConsigneeData {
   id: number
@@ -54,7 +52,7 @@ const TranNewEntry = () => {
   const [docData, setDocData] = useState([]);
   const [locData, setLocData] = useState([]);
   const [consigneeData, setConsigneeData] = useState([]);
-  const [consginorData, setConsginorData] = useState([]);
+  const navigate = useNavigate();
 
   const [surRows, setSurRows] = useState([{
     consignee: "",
@@ -83,21 +81,6 @@ const TranNewEntry = () => {
     fetchLoc();
   }, []);
 
-  //Consignor Api
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getActiveConsigner();
-        if (response) {
-          setConsginorData(response);
-        }
-      } catch (error) {
-        console.log(error);
-
-      }
-    }
-    fetchData();
-  }, []);
 
   //Consignee Api
   useEffect(() => {
@@ -172,16 +155,48 @@ const TranNewEntry = () => {
     }));
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const formData = new FormData();
-
     formData.append('inputs', JSON.stringify(inputs));
     formData.append('surRows', JSON.stringify(surRows));
     formData.append('rows', JSON.stringify(rows));
-
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
+    // Append files with unique field names
+    rows.forEach((row: any, index: number) => {
+      if (row.docAttach instanceof File) {
+        formData.append(`file-${index}`, row.docAttach); // 👈 actual file sent
+      }
+    });
+    if (!inputs.category || !inputs.consignor || !inputs.cstNo || !inputs.docDate || !inputs.fileName || !inputs.fraFees || !inputs.location || !inputs.purDate || !inputs.purVal || !inputs.regFees || !inputs.type) {
+      toast.error(" Please fill all required fields!");
+      return;
     }
+    try {
+      const responce = await newPropertyTransaction(formData);
+      if (responce) {
+        setInputs({
+          docDate: "",
+          fileName: "",
+          location: "",
+          consignor: "",
+          category: "",
+          type: "",
+          cstNo: 0,
+          purDate: "",
+          purVal: 0,
+          regFees: 0,
+          fraFees: 0,
+          remark: "",
+        });
+        setRows([]);
+        setSurRows([]);
+        navigate("/property/transaction/tran-view");
+      }
+
+    } catch (error) {
+      console.error(error);
+
+    }
+
   }
 
   const handleCancel = () => {
@@ -296,18 +311,14 @@ const TranNewEntry = () => {
                   <label htmlFor="consignor" className="block mb-2 dark:text-white">
                     Consignor <span className="text-red-600 font-bold">*</span>
                   </label>
-                  <select
-                    className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                  <textarea
                     id="consignor"
                     name="consignor"
-                    value={inputs?.consignor}
+                    defaultValue={inputs.consignor}
                     onChange={handleInputChange}
-                  >
-                    <option value="">Select Consignor</option>
-                    {consginorData?.map((item: ConsginorData) => (
-                      <option key={item?.id} value={item?.id}>{item?.name}</option>
-                    ))}
-                  </select>
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    rows={1}
+                  />
                 </div>
                 <div className="hidden">
                   <label
@@ -626,8 +637,13 @@ const TranNewEntry = () => {
                           <input
                             type="file"
                             name="docAttach"
-                            value={item?.docAttach}
-                            onChange={(e) => handleDocInputChange(e, index)}
+
+                            onChange={(e: any) => {
+                              const file = e.target.files[0];
+                              const updated = [...rows];
+                              updated[index].docAttach = file;
+                              setRows(updated);
+                            }}
                             className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           />
                         </td>

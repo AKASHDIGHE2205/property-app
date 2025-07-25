@@ -36,6 +36,7 @@ const FirmWiseReport = () => {
 
     if (!year || !firmID) {
       toast.error("Please fill all the required fields!");
+      setLoading(false);
       return;
     }
     const body = {
@@ -48,19 +49,20 @@ const FirmWiseReport = () => {
       if (response) {
         setData(response);
         setShowTable(true);
-        setLoading(false)
         setYear("")
         dispatch(handleFirm({ id: 0, name: "" }));
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <>
-      <div className="relative items-center w-full sm:max-w-6xl my-2 mx-2 border rounded-xl dark:border-gray-700">
-        <div className="flex flex-col p-4 sm:p-6 lg:p-5 justify-center">
+      <div className="relative w-full min-h-screen sm:max-w-6xl my-2 mx-2 border rounded-xl dark:border-gray-700">
+        <div className="flex flex-col p-2 sm:p-6 lg:p-5 justify-center sticky top-0">
           <h1 className="mb-4 text-2xl font-semibold flex justify-center">Firm Wise Report</h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -107,7 +109,7 @@ const FirmWiseReport = () => {
                 className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:bg-green-700 disabled:bg-green-500 disabled:cursor-not-allowed"
                 disabled={showTable}
               >
-                Browse Report
+                {loading ? "Loading..." : "Browse Report"}
               </button>
               <button
                 type="button"
@@ -122,58 +124,53 @@ const FirmWiseReport = () => {
 
         {/* Table view */}
         {showTable &&
-
-          <div className="h-screen w-full p-2 rounded-lg">
-            <div className="flex-grow overflow-auto">
-              <div className="border dark:border-gray-700 rounded-md p-2">
-                <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-                  <table className="w-full border-collapse text-sm text-left text-gray-700 dark:text-gray-300">
-                    <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
-                      <tr>
-                        <th scope="col" className={tablehead}>Doc No.</th>
-                        <th scope="col" className={tablehead}>Inward Date</th>
-                        <th scope="col" className={tablehead}>Particular</th>
-                        <th scope="col" className={tablehead}>Firm Name</th>
-                        <th scope="col" className={tablehead}>Firm Name</th>
-                        <th scope="col" className={tablehead}>Year</th>
-                        <th scope="col" className={tablehead}>Cupboard No.</th>
-                        <th scope="col" className={tablehead}>Slot No.</th>
-                        <th scope="col" className={tablehead}>Remark</th>
+          <div className="mt-2">
+            <div className="overflow-x-auto border dark:border-gray-700 rounded-md p-2">
+              <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
+                  <tr>
+                    <th scope="col" className={tablehead}>Doc No.</th>
+                    <th scope="col" className={tablehead}>Inward Date</th>
+                    <th scope="col" className={tablehead}>Particular</th>
+                    <th scope="col" className={tablehead}>Firm Name</th>
+                    <th scope="col" className={tablehead} hidden>Branch Name</th>
+                    <th scope="col" className={tablehead}>Year</th>
+                    <th scope="col" className={`${tablehead} w-5 `}>CUB.NO.</th>
+                    <th scope="col" className={tablehead}>Slot No.</th>
+                    <th scope="col" className={tablehead}>Remark</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {loading ? (
+                    <tr>
+                      <td colSpan={8} className="text-center py-4">
+                        Loading...
+                      </td>
+                    </tr>
+                  ) : data && data.length > 0 ? (
+                    data.map((row: firmData, index) => (
+                      <tr key={index}>
+                        <td className="px-4 py-2 w-1">{row.doc_code}</td>
+                        <td className="px-4 py-2">{new Date(row.date).toLocaleDateString()}</td>
+                        <td className="px-4 py-2">{row.desc}</td>
+                        <td className="px-4 py-2">{row.firm_name}</td>
+                        <td className="px-4 py-2 hidden">{row.branch_name}</td>
+                        <td className="px-4 py-2">{row.year}</td>
+                        <td className="px-4 py-2">{row.cub_code}</td>
+                        <td className="px-4 py-2">{row.s_code}</td>
+                        <td className="px-4 py-2">{row.remark}</td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                      {loading ? (
-                        <tr>
-                          <td colSpan={8} className="text-center py-4">
-                            Loading...
-                          </td>
-                        </tr>
-                      ) : data && data.length > 0 ? (
-                        data.map((row: firmData, index) => (
-                          <tr key={index}>
-                            <td className="px-4 py-2">{row.doc_code}</td>
-                            <td className="px-4 py-2">{new Date(row.date).toLocaleDateString()}</td>
-                            <td className="px-4 py-2">{row.desc}</td>
-                            <td className="px-4 py-2">{row.firm_name}</td>
-                            <td className="px-4 py-2">{row.firm_name}</td>
-                            <td className="px-4 py-2">{row.year}</td>
-                            <td className="px-4 py-2">{row.cub_code}</td>
-                            <td className="px-4 py-2">{row.s_code}</td>
-                            <td className="px-4 py-2">{row.remark}</td>
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td colSpan={8} className="text-center py-4 text-gray-500">
-                            No records found.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={8} className="text-center py-4 text-gray-500">
+                        No records found.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
 
-                  </table>
-                </div>
-              </div>
+              </table>
             </div>
           </div>
         }
