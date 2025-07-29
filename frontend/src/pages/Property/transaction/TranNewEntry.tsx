@@ -3,32 +3,31 @@ import { RiMenuAddFill } from "react-icons/ri";
 import { tablehead } from "../../../constant/BaseUrl";
 import { MdDeleteForever } from "react-icons/md";
 import { useEffect, useState } from "react";
-
 import { getActiveConsignee, getActiveDocuments, getActiveLoc, newPropertyTransaction } from "../../../services/Property/transaction/pTranApis";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-interface Survey {
+export interface Survey {
   consignee: string;
   surveyNo: string;
   area: string;
   sqmtr: string;
 }
-interface Document {
-  docName: string;
+export interface Document {
+  docName: number;
   docDes: string;
   docAttach: string;
 }
-interface LocData {
+export interface LocData {
   id: number
   name: string
   status: string
 }
-interface DocData {
+export interface DocData {
   id: number
   name: string
 }
-interface ConsigneeData {
+export interface ConsigneeData {
   id: number
   name: string
   status: string
@@ -49,8 +48,8 @@ const TranNewEntry = () => {
     fraFees: 0,
     remark: "",
   });
-  const [docData, setDocData] = useState([]);
   const [locData, setLocData] = useState([]);
+  const [docData, setDocData] = useState([]);
   const [consigneeData, setConsigneeData] = useState([]);
   const navigate = useNavigate();
 
@@ -61,7 +60,7 @@ const TranNewEntry = () => {
     sqmtr: "",
   }]);
   const [rows, setRows] = useState([{
-    docName: "",
+    docName: 0,
     docDes: "",
     docAttach: "",
   }]);
@@ -81,7 +80,6 @@ const TranNewEntry = () => {
     fetchLoc();
   }, []);
 
-
   //Consignee Api
   useEffect(() => {
     const fetchData = async () => {
@@ -97,6 +95,7 @@ const TranNewEntry = () => {
     fetchData();
   }, []);
 
+  //Document Api
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -122,7 +121,7 @@ const TranNewEntry = () => {
   };
 
   const addDocRows = () => {
-    setRows([...rows, { docName: "", docDes: "", docAttach: "" }]);
+    setRows([...rows, { docName: 0, docDes: "", docAttach: "" }]);
   };
 
   const RemoveDocRows = () => {
@@ -221,10 +220,11 @@ const TranNewEntry = () => {
       sqmtr: "",
     }]);
     setRows([{
-      docName: "",
+      docName: 0,
       docDes: "",
       docAttach: "",
     }]);
+    navigate("/property/transaction/tran-view");
   }
 
   return (
@@ -325,26 +325,17 @@ const TranNewEntry = () => {
                     htmlFor="consignor"
                     className="block mb-2 dark:text-white"
                   >
-                    Consignor <span className="text-red-600 font-bold">*</span>
+                    Consignee <span className="text-red-600 font-bold">*</span>
                   </label>
                   <select
                     hidden
                     id="consignee"
                     name="consignee"
                     className="hs-select rounded-lg py-3 px-4  w-[15rem] sm:w-full mt-2 bg-slate-100 border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 focus:outline-none "
-                    data-hs-select={`{
-        "placeholder": "Select Consignee...",
-        "toggleTag": "<button type='button' aria-expanded='false'></button>",
-        "toggleClasses": "relative py-3 ps-4 pe-9 w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm",
-        "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-y-auto",
-        "optionClasses": "py-2 px-4 text-sm text-gray-800 hover:bg-gray-100 cursor-pointer"
-      }`}
                   >
                     <option value="">Choose</option>
-                    {consigneeData.map((item: ConsigneeData) => (
-                      <option key={item.id} value={item.id}>
-                        {item.name}
-                      </option>
+                    {consigneeData?.map((item: ConsigneeData) => (
+                      <option key={item?.id} value={item?.id}>{item?.name}</option>
                     ))}
                   </select>
 
@@ -352,7 +343,8 @@ const TranNewEntry = () => {
                     id="consignee"
                     name="consignee"
                     className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
-                    rows={1} />
+                    rows={1}
+                  />
                   <div>
                   </div>
                 </div>
@@ -615,7 +607,7 @@ const TranNewEntry = () => {
                             <option value="">Select Document</option>
                             {docData?.map((item: DocData) => {
                               return (
-                                <option key={item?.id} value={item?.name}>{item?.name}</option>
+                                <option key={item?.id} value={item?.id}>{item?.name}</option>
                               )
                             })}
                           </select>
@@ -637,7 +629,7 @@ const TranNewEntry = () => {
                           <input
                             type="file"
                             name="docAttach"
-
+                            accept=".pdf,image/*"
                             onChange={(e: any) => {
                               const file = e.target.files[0];
                               const updated = [...rows];
@@ -646,12 +638,13 @@ const TranNewEntry = () => {
                             }}
                             className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           />
+                          <p className="text-xs text-[#ff0606] mt-1">
+                            Accepted formats: <strong>PDF</strong> and <strong>image files</strong> (JPG, PNG, etc.)
+                          </p>
                         </td>
                       </tr>
                     ))}
-
                   </tbody>
-
                 </table>
               </div>
 

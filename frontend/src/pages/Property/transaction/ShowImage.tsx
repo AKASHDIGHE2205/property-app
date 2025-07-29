@@ -21,10 +21,8 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
       {showImageModal && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-4 max-w-3xl w-full relative shadow-lg">
-            <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-red-600"
-              onClick={() => setShowImageModal(false)}
-            >
+            <button className="absolute top-2 right-2 text-gray-600 hover:text-red-600"
+              onClick={() => setShowImageModal(false)}>
               <IoMdClose size={24} />
             </button>
 
@@ -38,14 +36,14 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
               <iframe
                 src={fileToShow}
                 title="PDF Viewer"
-                className={`w-full h-[80vh] rounded-md border ${loading ? "hidden" : "block"}`}
+                className={`w-full h-[80vh] m-2 rounded-md border ${loading ? "hidden" : "block"}`}
                 onLoad={() => setLoading(false)}
               />
             ) : (
               <img
                 src={fileToShow}
                 alt="Uploaded document"
-                className={`max-h-[80vh] w-full object-contain rounded-md ${loading ? "hidden" : "block"}`}
+                className={`max-h-[80vh] w-full object-contain m-2 rounded-md ${loading ? "hidden" : "block"}`}
                 onLoad={() => setLoading(false)}
                 onError={() => setLoading(false)}
               />

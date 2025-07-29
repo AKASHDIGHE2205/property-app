@@ -1,0 +1,16 @@
+"Hello, my name is Akash Dighe, and I am a Software Developer from Sangamner.
+ I have completed my B.Sc. in Computer Science and M.Sc. in Computer Science from Savitribai Phule Pune University.
+I have 1.2 years of experience as a Software Developer at Malpani Group,
+ where I have worked extensively with React.js, Node.js, Express.js, and MySQL.
+ During my time at Malpani Group, I contributed to building and maintaining web applications, primarily focusing on the full-stack development process.
+In addition to my experience, I am proficient in JavaScript, React, Node.js, and working with databases like MySQL.
+ I am passionate about creating efficient and scalable applications and always eager to learn and grow in this field.
+I'm excited about this opportunity because I believe my technical background and experience make me a great fit for this role,
+and I am eager to contribute to your team while continuing to enhance my skills in web development."
+
+Key Points Covered:
+Personal Introduction: Name, location, and background.
+Education: B.Sc. and M.Sc. in Computer Science from Savitribai Phule Pune University.
+Professional Experience: 1.2 years at Malpani Group with relevant technologies.
+Skills: Technologies and tools you are proficient in.
+Motivation: Why you're excited about the role.

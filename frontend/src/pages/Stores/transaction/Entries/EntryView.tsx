@@ -8,7 +8,6 @@ import moment from "moment";
 import Paginations from "../../../../helper/Pagination";
 import EditEntry from "./EditEntry";
 import { tablebody, tablehead } from "../../../../constant/BaseUrl";
-import { FiSearch } from "react-icons/fi";
 
 interface Entry {
   doc_code: string;
@@ -42,6 +41,7 @@ const EntryView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [editShow, setEditShow] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState([]);
+  const [showFilter, setShowFilter] = useState(true);
 
   const fetchData = async () => {
     setLoading(true);
@@ -63,7 +63,24 @@ const EntryView = () => {
 
   useEffect(() => {
     fetchData();
-  }, [from, to]);
+  }, []);
+
+  const browseData = async () => {
+    setLoading(true);
+    try {
+      const body = {
+        from_Date: from,
+        to_Date: to
+      }
+      const response = await getAllTranEntries(body);
+      if (response) {
+        setData(response);
+        setLoading(false);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   const handleSearch = (e: any) => {
     setSearchTerm(e.target.value);
@@ -102,59 +119,18 @@ const EntryView = () => {
   return (
     <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
       <h1 className="flex justify-center items-center text-2xl font-semibold ">Entry Details</h1>
-      <div className="sticky right-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 ">
-        <div className="max-w-sm">
-          <label className="text-sm text-gray-700 dark:text-gray-300">Search</label>
-
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search here"
-              value={searchTerm}
-              onChange={handleSearch}
-              className="w-full pr-10 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <FiSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 h-4 w-4 pointer-events-none" />
-          </div>
-
-        </div>
-
-        {/* From Date */}
-        <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300">From Date</label>
-          <input
-            type="date"
-            defaultValue={from}
-            onChange={(e) => setFrom(e.target.value)}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* To Date */}
-        <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300">To Date</label>
-          <input
-            type="date"
-            defaultValue={to}
-            onChange={(e) => setTo(e.target.value)}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Items Per Page */}
-        <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300">Rows per page</label>
-          <select
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onChange={(e: any) => handleItemsPerPage(e.target.value)}
-            value={itemsPerPage}
+      <div className="flex justify-end items-end gap-2 py-2">
+        {/* Filter Button */}
+        <div className="flex items-end justify-end">
+          <button
+            className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none "
+            onClick={() => {
+              setShowFilter(!showFilter);
+            }}
           >
-            {[5, 10, 25, 50, 100].map((n) => (
-              <option key={n} value={n}>{n}</option>
-            ))}
-          </select>
+            {!showFilter ? "Hide Filter" : "Show Filter"}
+          </button>
         </div>
-
         {/* Add Entry Button */}
         <div className="flex items-end justify-end">
           <Link
@@ -165,8 +141,83 @@ const EntryView = () => {
             Add Entry
           </Link>
         </div>
-
       </div>
+      {showFilter && (
+        <div className="sticky right-0 w-full p-4 mb-2 bg-white dark:bg-gray-900 rounded-lg shadow">
+          {/* Row 1: Search, From Date, To Date */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
+            {/* Search */}
+            <div>
+              <label className="text-sm text-gray-700 dark:text-gray-300">
+                Search
+              </label>
+              <input
+                type="text"
+                placeholder="Type your search query here"
+                value={searchTerm}
+                onChange={handleSearch}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* From Date */}
+            <div>
+              <label className="text-sm text-gray-700 dark:text-gray-300">
+                From Date
+              </label>
+              <input
+                type="date"
+                defaultValue={from}
+                onChange={(e) => setFrom(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            {/* To Date */}
+            <div>
+              <label className="text-sm text-gray-700 dark:text-gray-300">
+                To Date
+              </label>
+              <input
+                type="date"
+                defaultValue={to}
+                onChange={(e) => setTo(e.target.value)}
+                className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          {/* Row 2: Browse Button and Items Per Page Selector */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            {/* Browse Button */}
+            <button
+              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-hidden focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none"
+              onClick={browseData}
+            >
+              Browse Data
+            </button>
+
+            {/* Select Items Per Page */}
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-gray-700 dark:text-gray-300">
+                Select
+              </span>
+              <select
+                className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                value={itemsPerPage}
+              >
+                {[5, 10, 25, 50, 100].map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+              <span className="text-sm text-gray-700 dark:text-gray-300">Rows</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="flex-grow overflow-auto">
         <div className="border dark:border-gray-700  rounded-md p-2">

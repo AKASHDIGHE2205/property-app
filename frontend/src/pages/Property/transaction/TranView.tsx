@@ -166,11 +166,11 @@ const TranView = () => {
 
               {/* Select Items Per Page */}
               <div className="flex items-center gap-2">
-                <label className="text-sm text-gray-700 dark:text-gray-300">
-                  Rows per page
-                </label>
+                <span className="text-sm text-gray-700 dark:text-gray-300">
+                  Select
+                </span>
                 <select
-                  className="w-[80px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   onChange={(e) => setItemsPerPage(Number(e.target.value))}
                   value={itemsPerPage}
                 >
@@ -180,6 +180,7 @@ const TranView = () => {
                     </option>
                   ))}
                 </select>
+                <span className="text-sm text-gray-700 dark:text-gray-300">Rows</span>
               </div>
             </div>
           </div>
@@ -248,7 +249,7 @@ const TranView = () => {
                                   <button
                                     type="button"
                                     className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
-                                    onClick={() => handleDelete(item)}
+                                    onClick={() => handleDelete(item.doc_id)}
                                   >
                                     <RiDeleteBin5Line size={20} />
                                   </button>

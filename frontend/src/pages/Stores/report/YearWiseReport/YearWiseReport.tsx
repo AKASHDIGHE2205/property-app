@@ -195,11 +195,10 @@ const YearWiseReport = () => {
                   <th className={tablehead}>Inward Date</th>
                   <th className={tablehead}>Particular</th>
                   <th className={tablehead}>Firm Name</th>
-                  <th className={tablehead} hidden>Branch Name</th>
+                  <th className={tablehead} >Branch Name</th>
                   <th className={tablehead}>Year</th>
                   <th className={tablehead}>Cub.No.</th>
                   <th className={tablehead}>Slot No.</th>
-                  <th className={tablehead}>Desc</th>
                   <th className={tablehead}>Remark</th>
                 </tr>
               </thead>
@@ -211,16 +210,15 @@ const YearWiseReport = () => {
                 ) : data.length > 0 ? (
                   data.map((row, index) => (
                     <tr key={index}>
-                      <td className="px-4 py-2">{row.doc_code}</td>
-                      <td className="px-4 py-2">{new Date(row.date).toLocaleDateString()}</td>
-                      <td className="px-4 py-2">{""}</td>
-                      <td className="px-4 py-2">{row.firm_name}</td>
-                      <td className="px-4 py-2 hidden">{row.branch_name}</td>
-                      <td className="px-4 py-2">{row.year}</td>
-                      <td className="px-4 py-2">{row.cub_code}</td>
-                      <td className="px-4 py-2">{row.s_code}</td>
-                      <td className="px-4 py-2">{row.desc}</td>
-                      <td className="px-4 py-2">{row.remark}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.doc_code}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{new Date(row.date).toLocaleDateString()}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.desc}</td>
+                      <td className="px-4 py-2 whitespace-nowrap font-semibold">{row.firm_name}</td>
+                      <td className="px-4 py-2 whitespace-nowrap font-semibold">{row.branch_name}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.year}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.cub_code}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.s_code}</td>
+                      <td className="px-4 py-2 whitespace-nowrap">{row.remark}</td>
                     </tr>
                   ))
                 ) : (

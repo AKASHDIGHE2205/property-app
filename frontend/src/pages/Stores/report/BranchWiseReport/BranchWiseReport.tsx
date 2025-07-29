@@ -21,7 +21,6 @@ interface branchData {
   branch_code: number;
 }
 
-
 const BranchWiseReport = () => {
   const [data, setData] = useState([]);
   const [showBranch, setShowBranch] = useState(false);
@@ -126,15 +125,15 @@ const BranchWiseReport = () => {
             {/* Make this container horizontally scrollable */}
             <div className="overflow-x-auto">
               {/* Apply border to the scrollable container */}
-              <div className="min-w-[850px] border dark:border-gray-700 rounded-md p-2">
-                <table className="w-full border-collapse text-sm text-left text-gray-700 dark:text-gray-300">
+              <div className="overflow-x-auto border dark:border-gray-700 rounded-md">
+                <table className="table-auto border-collapse text-sm text-left text-gray-700 dark:text-gray-300 w-fit min-w-max">
                   <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0 z-10">
                     <tr>
                       <th scope="col" className={tablehead}>Doc No.</th>
                       <th scope="col" className={tablehead}>Inward Date</th>
                       <th scope="col" className={tablehead}>Particular</th>
                       <th scope="col" className={tablehead}>Firm Name</th>
-                      <th scope="col" className={tablehead} hidden>Branch Name</th>
+                      <th scope="col" className={tablehead}>Branch Name</th>
                       <th scope="col" className={tablehead}>Year</th>
                       <th scope="col" className={tablehead}>cub.No.</th>
                       <th scope="col" className={tablehead}>Slot No.</th>
@@ -151,15 +150,15 @@ const BranchWiseReport = () => {
                     ) : data && data.length > 0 ? (
                       data.map((row: branchData, index) => (
                         <tr key={index}>
-                          <td className="px-4 py-2">{row.doc_code}</td>
-                          <td className="px-4 py-2">{new Date(row.date).toLocaleDateString()}</td>
-                          <td className="px-4 py-2">{row.desc}</td>
-                          <td className="px-4 py-2">{row.firm_name}</td>
-                          <td className="px-4 py-2 hidden">{row.branch_name}</td>
-                          <td className="px-4 py-2">{row.year}</td>
-                          <td className="px-4 py-2">{row.cub_code}</td>
-                          <td className="px-4 py-2">{row.s_code}</td>
-                          <td className="px-4 py-2">{row.remark}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.doc_code}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{new Date(row.date).toLocaleDateString()}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.desc}</td>
+                          <td className="px-4 py-2 whitespace-nowrap font-semibold">{row.firm_name}</td>
+                          <td className="px-4 py-2 whitespace-nowrap font-semibold">{row.branch_name}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.year}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.cub_code}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.s_code}</td>
+                          <td className="px-4 py-2 whitespace-nowrap">{row.remark}</td>
                         </tr>
                       ))
                     ) : (
@@ -172,6 +171,7 @@ const BranchWiseReport = () => {
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
 

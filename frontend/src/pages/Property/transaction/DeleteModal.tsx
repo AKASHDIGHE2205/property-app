@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { deletePTransaction } from "../../../services/Property/transaction/pTranApis";
+import { newDeletePTransaction } from "../../../services/Property/transaction/pTranApis";
 import { VscCheckAll } from "react-icons/vsc";
 
 interface Props {
@@ -12,10 +12,11 @@ interface Props {
 }
 
 const DeleteModal: FC<Props> = ({ show, setShow, fetchData, data }) => {
+  console.log(data);
 
   const handleDelete = async () => {
     try {
-      const status = await deletePTransaction(data.doc_no);
+      const status = await newDeletePTransaction(data);
       if (status === 200) {
         fetchData();
         setShow(false);

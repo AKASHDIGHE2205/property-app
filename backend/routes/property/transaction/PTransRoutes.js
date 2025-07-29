@@ -4,7 +4,8 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-
+import util from "util";
+const query = util.promisify(db.query).bind(db);
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -70,7 +71,9 @@ router.get('/getActiveDocument', (req, res) => {
 });
 
 
-//-------------- Api to get transaction data  ---------------//
+
+
+//-------------- Old Api Transaction Data  ---------------//
 router.post('/getTransactionData', (req, res) => {
   const { from_date, to_date } = req.body;
 
@@ -287,6 +290,9 @@ router.put('/deletePTransaction', (req, res) => {
 });
 
 
+
+
+//-------------- New Api Transaction Data  ---------------//
 router.post('/new-property-tran', upload.any(), (req, res) => {
   try {
     const inputs = JSON.parse(req.body.inputs);
@@ -297,9 +303,8 @@ router.post('/new-property-tran', upload.any(), (req, res) => {
     // 1. Insert into doc_hd
     const docHdSql = `
       INSERT INTO doc_hd 
-        (doc_date, file_name, loc_id, consignee, catg, type, cst_no, pur_date, pur_val, reg_fees, fra_fees, remark)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
+        (doc_date, file_name, loc_id, consignor, catg, type, cst_no, pur_date, pur_val, reg_fees, fra_fees, remark,status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,'A')`;
 
     const docHdValues = [
       inputs.docDate,
@@ -328,8 +333,8 @@ router.post('/new-property-tran', upload.any(), (req, res) => {
       surRows.forEach((row, index) => {
         const surveySql = `
           INSERT INTO doc_survey 
-            (doc_id, doc_date, sr_no, cong_id, sur_no, area, sqmtr)
-          VALUES (?, ?, ?, ?, ?, ?, ?)
+            (doc_id, doc_date, sr_no, cong_id, sur_no, area, balance, sqmtr,status)
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?,'A')
         `;
         const surveyValues = [
           docId,
@@ -337,6 +342,7 @@ router.post('/new-property-tran', upload.any(), (req, res) => {
           index + 1,
           row.consignee,
           row.surveyNo,
+          row.area,
           row.area,
           row.sqmtr
         ];
@@ -358,8 +364,8 @@ router.post('/new-property-tran', upload.any(), (req, res) => {
 
         const docFileSql = `
           INSERT INTO doc_file 
-            (doc_no, date, sr_no, doc_code, doc_desc, doc_path)
-          VALUES (?, ?, ?, ?, ?, ?)
+            (doc_no, date, sr_no, doc_code, doc_desc, doc_path,status)
+          VALUES (?, ?, ?, ?, ?, ?,'A')
         `;
         const docFileValues = [
           docId,
@@ -393,7 +399,7 @@ router.post('/getTransactionData1', (req, res) => {
   const transactionSql = `
                           SELECT doc_id,doc_date,file_name 
                           FROM doc_hd
-                          WHERE doc_date BETWEEN ? AND ?`;
+                          WHERE doc_date BETWEEN ? AND ? AND status = 'A'`;
 
   db.query(transactionSql, [from_date, to_date], (err, transactions) => {
     if (err) {
@@ -404,5 +410,158 @@ router.post('/getTransactionData1', (req, res) => {
   });
 });
 
+router.get("/getPtranData/:id", (req, res) => {
+  const id = req.params.id;
+  const Sql = `
+    SELECT 
+      a.doc_id, a.doc_date, a.file_name, a.consignor, a.catg, a.type, 
+      a.cst_no, a.pur_date, a.pur_val, a.reg_fees, a.fra_fees, a.remark,
+      b.name AS loc_name, a.loc_id,
+
+      c.sr_no AS survey_sr_no, c.cong_id, c.sur_no, c.area, c.sqmtr,
+
+      d.sr_no AS file_sr_no, d.doc_code, e.name AS doc_name, d.doc_desc, d.doc_path
+    FROM doc_hd AS a
+    LEFT JOIN st_ploc AS b ON a.loc_id = b.id
+    LEFT JOIN doc_survey AS c ON a.doc_id = c.doc_id
+    LEFT JOIN doc_file AS d ON a.doc_id = d.doc_no
+    LEFT JOIN st_doc AS e ON d.doc_code = e.id
+    WHERE a.doc_id = ? AND a.status = 'A'
+  `;
+
+  db.query(Sql, [id], (err, results) => {
+    if (err) return res.status(500).json({ message: "DB error" });
+    if (results.length === 0) return res.status(404).json({ message: "No record found" });
+
+    const data = results[0];
+    const response = {
+      doc_id: data.doc_id,
+      doc_date: data.doc_date,
+      file_name: data.file_name,
+      consignor: data.consignor,
+      catg: data.catg,
+      type: data.type,
+      cst_no: data.cst_no,
+      pur_date: data.pur_date,
+      pur_val: data.pur_val,
+      reg_fees: data.reg_fees,
+      fra_fees: data.fra_fees,
+      remark: data.remark,
+      loc_id: data.loc_id,
+      loc_name: data.loc_name,
+      surveys: [],
+      documents: []
+    };
+
+    const surveyMap = new Set();
+    const docMap = new Set();
+
+    results.forEach(row => {
+      // Add unique surveys
+      const surveyKey = `${row.survey_sr_no}-${row.sur_no}-${row.area}`;
+      if (row.sur_no && !surveyMap.has(surveyKey)) {
+        response.surveys.push({
+          sr_no: row.survey_sr_no,
+          cong_id: row.cong_id,
+          sur_no: row.sur_no,
+          area: row.area,
+          sqmtr: row.sqmtr
+        });
+        surveyMap.add(surveyKey);
+      }
+
+      // Add unique documents
+      const docKey = `${row.file_sr_no}-${row.doc_code}-${row.doc_path}`;
+      if (row.doc_code && !docMap.has(docKey)) {
+        response.documents.push({
+          sr_no: row.file_sr_no,
+          doc_code: row.doc_code,
+          doc_name: row.doc_name,
+          doc_desc: row.doc_desc,
+          doc_path: row.doc_path
+        });
+        docMap.add(docKey);
+      }
+    });
+
+    res.status(200).json(response);
+  });
+});
+
+router.put("/updatePTran", async (req, res) => {
+  const { doc_id, doc_date, file_name, loc_id, consignor, catg, type, cst_no, pur_date, pur_val, reg_fees, fra_fees, remark, survData = [], docData = [] } = req.body;
+
+  try {
+    // 1. Update doc_hd
+    const hdSql = `
+      UPDATE doc_hd SET
+        file_name = ?,
+        loc_id = ?,
+        consignor = ?,
+        catg = ?,
+        type = ?,
+        cst_no = ?,
+        pur_date = ?,
+        pur_val = ?,
+        reg_fees = ?,
+        fra_fees = ?,
+        remark = ?
+      WHERE doc_id = ? AND doc_date = ? AND status = 'A'`;
+
+    await query(hdSql, [file_name, loc_id, consignor, catg, type, cst_no, pur_date, pur_val, reg_fees, fra_fees, remark, doc_id, doc_date]);
+
+    // 2. Update doc_file
+    const fileSql = `
+                    UPDATE doc_file
+                    SET doc_code = ?, doc_desc = ?
+                    WHERE doc_no = ? AND date = ? AND status = 'A'`;
+
+    for (const item of docData) {
+      await query(fileSql, [item.docName, item.docDes, doc_id, doc_date]);
+    }
+
+    // 3. Update doc_survey
+    const survSql = `
+                    UPDATE doc_survey
+                    SET cong_id = ?, sur_no = ?, area = ?, sqmtr = ?
+                    WHERE doc_id = ? AND doc_date = ? AND status = 'A'`;
+
+    for (const item of survData) {
+      await query(survSql, [item.consignee, item.surveyNo, item.area, item.sqmtr, doc_id, doc_date]);
+    }
+
+    res.status(200).json({ message: "All records updated successfully!" });
+
+  } catch (err) {
+    console.error("Update failed:", err);
+    res.status(500).json({ message: "Error updating transaction", error: err });
+  }
+});
+
+router.put('/newDeletePTransaction', (req, res) => {
+  const { doc_no } = req.body;
+
+  if (!doc_no) {
+    return res.status(400).json({ message: "Missing required field: Doc No." });
+  }
+
+  const hdSql = `UPDATE doc_hd SET status = ? WHERE doc_id = ? AND status = 'A'`;
+  const fileSql = `UPDATE doc_file SET status = ? WHERE doc_no = ? AND status = 'A'`;
+  const survSql = `UPDATE doc_survey SET status = ? WHERE doc_id = ? AND status = 'A'`;
+
+  db.query(hdSql, ['I', doc_no], (err, result1) => {
+    if (err) return res.status(500).json({ message: "Error updating doc_hd" });
+
+    db.query(fileSql, ['I', doc_no], (err, result2) => {
+      if (err) return res.status(500).json({ message: "Error updating doc_file" });
+
+      db.query(survSql, ['I', doc_no], (err, result3) => {
+        if (err) return res.status(500).json({ message: "Error updating doc_survey" });
+
+        res.status(200).json({ message: "Transaction deleted successfully." });
+      });
+    });
+  });
+});
 
 export default router;

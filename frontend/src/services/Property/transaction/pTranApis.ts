@@ -146,3 +146,40 @@ export const getAllTRansactions1 = async (data: any) => {
     return null;
   }
 };
+
+export const getPtranData = async (data: any) => {
+  try {
+    const response = await axios.get(`${BaseUrl}/getPtranData/${data}`);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+
+export const updatePTran = async (data: any) => {
+  try {
+    const response = await axios.put(`${BaseUrl}/updatePTran`, data);
+    if (response.status === 200) {
+      toast.success(response.data.message);
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+export const newDeletePTransaction = async (id: any) => {
+  try {
+    const response = await axios.put(`${BaseUrl}/newDeletePTransaction`, {
+      doc_no: id,
+    });
+
+    if (response.status === 200) {
+      toast.error(response.data.message);
+      return response.status;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
