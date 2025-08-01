@@ -33,14 +33,14 @@ const BranchWiseReport = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    if (!year || !branchID) {
+    if (!year) {
       toast.error("Please fill all the required fields!");
       setLoading(false);
       return;
     }
     const body = {
       year: year,
-      branch_code: branchID
+      branch_code: branchID ? branchID : "All",
     }
     try {
       const response = await brachWiseReports(body);
@@ -77,7 +77,7 @@ const BranchWiseReport = () => {
               </div>
 
               <div>
-                <label htmlFor="branch" className="block mb-2 dark:text-white">Branch <span className="text-red-600 font-bold">*</span></label>
+                <label htmlFor="branch" className="block mb-2 dark:text-white">Branch</label>
                 <div className="flex rounded-lg shadow-sm">
                   <input
                     type="text"

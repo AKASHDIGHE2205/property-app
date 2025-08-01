@@ -7,6 +7,9 @@ const initialState = {
   consignorId: "",
   consigneeName: "",
   consigneeId: "",
+  propId: "",
+  propDate: "",
+  propName: "",
 };
 export const PTransactionSlice = createSlice({
   name: "PTransaction",
@@ -27,8 +30,18 @@ export const PTransactionSlice = createSlice({
       state.consigneeId = id;
       state.consigneeName = name;
     },
+    handleSaleProperty: (state, actions) => {
+      const { id, name, date } = actions.payload;
+      state.propId = id;
+      state.propName = name;
+      state.propDate = date;
+    },
   },
 });
-export const { handlePLocation, handlePConsignor, handlePConsignee } =
-  PTransactionSlice.actions;
+export const {
+  handlePLocation,
+  handlePConsignor,
+  handlePConsignee,
+  handleSaleProperty,
+} = PTransactionSlice.actions;
 export default PTransactionSlice.reducer;

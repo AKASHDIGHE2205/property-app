@@ -162,7 +162,7 @@ const TranNewEntry = () => {
     // Append files with unique field names
     rows.forEach((row: any, index: number) => {
       if (row.docAttach instanceof File) {
-        formData.append(`file-${index}`, row.docAttach); // 👈 actual file sent
+        formData.append(`file-${index}`, row.docAttach);
       }
     });
     if (!inputs.category || !inputs.consignor || !inputs.cstNo || !inputs.docDate || !inputs.fileName || !inputs.fraFees || !inputs.location || !inputs.purDate || !inputs.purVal || !inputs.regFees || !inputs.type) {

@@ -2,7 +2,7 @@ import { FaBuildingCircleArrowRight, FaCodeBranch, FaSwatchbook } from "react-ic
 import { VscFileSubmodule } from "react-icons/vsc";
 import { BiSolidReport } from "react-icons/bi";
 import { FaFileAlt } from "react-icons/fa";
-import { GrTransaction } from "react-icons/gr";;
+import { GrTransaction } from "react-icons/gr";
 import { MdLeaderboard } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/malpani3.png';
@@ -22,7 +22,6 @@ const Sidebar = () => {
       window.HSStaticMethods.autoInit();
     }
   }, []);
-
 
   return (
 
@@ -351,10 +350,10 @@ const Sidebar = () => {
                             </li>
                             <li>
                               <NavLink
-                                className={({ isActive }) => `hidden w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
+                                className={({ isActive }) => `w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
                              ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"}`}
-                                to="/report/issue-report">
-                                <TbCalculator size={20} /> Issue Register
+                                to="/report/entry-status-report">
+                                <TbCalculator size={20} /> Entry Status Report
                               </NavLink>
                             </li>
                           </ul>
@@ -550,7 +549,16 @@ const Sidebar = () => {
                           ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"}`}
                                 to="/property/transaction/tran-view"
                               ><IoAddCircleOutline size={18} />
-                                Transaction Data Entry
+                                Purchase Entry
+                              </NavLink>
+                            </li>
+                            <li>
+                              <NavLink
+                                className={({ isActive }) => `w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300
+                          ${isActive ? "font-semibold dark:text-blue-700   !text-blue-500" : "hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-200 dark:hover:text-gray-300"}`}
+                                to="/property/sale-view"
+                              ><IoAddCircleOutline size={18} />
+                                Sale Entry
                               </NavLink>
                             </li>
                           </ul>

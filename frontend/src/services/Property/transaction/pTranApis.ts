@@ -183,3 +183,49 @@ export const newDeletePTransaction = async (id: any) => {
     toast.error(error?.response?.data?.message || "Network Error.");
   }
 };
+
+// -------------Sale Property Apis-------------//
+export const getSaleModalData = async () => {
+  try {
+    const response = await axios.get(`${BaseUrl}/getSaleModalData`);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+
+export const getSaleProperty = async (data: any) => {
+  try {
+    const response = await axios.post(`${BaseUrl}/getSaleProperty`, data);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+
+export const newSaleProperty = async (data: any) => {
+  try {
+    const response = await axios.post(`${BaseUrl}/newSaleProperty`, data);
+    if (response.status === 201) {
+      toast.success(response.data.message);
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
+
+export const getAllSaledProp = async (data: any) => {
+  try {
+    const response = await axios.post(`${BaseUrl}/getAllSaledProp`, data);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};

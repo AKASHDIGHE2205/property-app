@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect, useState } from "react";
 import { BaseUrl, tablehead } from "../../../constant/BaseUrl";
-import { MdDeleteForever } from "react-icons/md";
-import { RiMenuAddFill } from "react-icons/ri";
 import { IoMdClose } from "react-icons/io";
 import { getActiveConsignee, getActiveDocuments, getActiveLoc, getPtranData, updatePTran } from "../../../services/Property/transaction/pTranApis";
 import { ConsigneeData, DocData, LocData, Survey, Document } from "./TranNewEntry";
@@ -445,22 +443,6 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                     </table>
                   </div>
 
-                  {/**Button to add Row and Selete Row */}
-                  <div className="flex justify-end gap-2 hidden">
-                    <button
-                      type="button"
-                      className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
-                    >
-                      <RiMenuAddFill />
-                    </button>
-                    <button
-                      type="button"
-                      className="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700"
-                    >
-                      <MdDeleteForever />
-                    </button>
-                  </div>
-
                   {/* Another 4-Column Group */}
                   <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6">
                     <div>
@@ -646,13 +628,13 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   setShowImage(true)
                                   setImage(`${BaseUrl}${item.docAttach}`)
                                 })}
-                                className="text-blue-700 underline font-semibold hidden">View
+                                className="text-blue-700 underline font-semibold ">View
                               </button>
                               <a
                                 href={`${BaseUrl}${item.docAttach}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-700 underline font-semibold"
+                                className="text-blue-700 underline font-semibold hidden"
                               >
                                 View
                               </a>
@@ -665,23 +647,6 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                     </table>
                   </div>
 
-                  {/* Buttons  */}
-                  <div className="flex justify-end gap-2 mt-4 hidden ">
-                    <button
-                      type="button"
-                      className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700"
-
-                    >
-                      <RiMenuAddFill />
-                    </button>
-                    <button
-                      type="button"
-                      className="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700"
-
-                    >
-                      <MdDeleteForever />
-                    </button>
-                  </div>
                 </div>
                 <div className="flex justify-center gap-4 items-center py-3 px-4">
                   <button

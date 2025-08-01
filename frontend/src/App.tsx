@@ -36,6 +36,8 @@ const ProRegLocServ = lazy(() => import("./pages/Property/report/property-regist
 const LocationwiseReport = lazy(() => import("./pages/Property/report/property-locationwise/LocationwiseReport"));
 const ProForm = lazy(() => import("./pages/Property/report/property-register/ProForm"));
 const TranView = lazy(() => import("./pages/Property/transaction/TranView"));
+const SaleProView = lazy(() => import("./pages/Property/transaction/Sale-prop/SaleProView"));
+const SaleNewEntry = lazy(() => import("./pages/Property/transaction/Sale-prop/SaleNewEntry"));
 
 declare global {
   interface Window {
@@ -100,12 +102,19 @@ function MainApp() {
             <Route path="property/master/location" element={<PLocationView />} />
             <Route path="property/master/document" element={<DocumentView />} />
 
-            {/*Property Master Routes */}
+            {/*Property Transaction Routes */}
             <Route path="property/transaction/tran-view" element={<TranView />} />
             <Route path="property/transaction/create" element={<TranNewEntry />} />
+            <Route path="property/sale-view" element={<SaleProView />} />
+            <Route path="property/sale-entry" element={<SaleNewEntry />} />
+
+
+
+            {/*Property Report  Routes */}
             <Route path="property/report/property-register" element={<ProForm />} />
             <Route path="property/report/property-location" element={<LocationwiseReport />} />
             <Route path="property/report/property-location-serv" element={<ProRegLocServ />} />
+
 
           </Route>
 

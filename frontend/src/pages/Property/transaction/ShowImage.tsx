@@ -14,7 +14,8 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
   const [loading, setLoading] = useState(true);
 
   const isPDF = selectedImage?.toLowerCase().endsWith(".pdf");
-  const fileToShow = selectedImage || DEFAULT_IMAGE;
+  const fileToShow = selectedImage?.trim() ? selectedImage : DEFAULT_IMAGE;
+
 
   return (
     <>
@@ -38,6 +39,12 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
                 title="PDF Viewer"
                 className={`w-full h-[80vh] m-2 rounded-md border ${loading ? "hidden" : "block"}`}
                 onLoad={() => setLoading(false)}
+                onError={(e) => {
+                  if (fileToShow !== DEFAULT_IMAGE) {
+                    (e.target as HTMLImageElement).src = DEFAULT_IMAGE;
+                  }
+                  setLoading(false);
+                }}
               />
             ) : (
               <img
@@ -45,8 +52,14 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
                 alt="Uploaded document"
                 className={`max-h-[80vh] w-full object-contain m-2 rounded-md ${loading ? "hidden" : "block"}`}
                 onLoad={() => setLoading(false)}
-                onError={() => setLoading(false)}
+                onError={(e) => {
+                  if (fileToShow !== DEFAULT_IMAGE) {
+                    (e.target as HTMLImageElement).src = DEFAULT_IMAGE;
+                  }
+                  setLoading(false);
+                }}
               />
+
             )}
           </div>
         </div>

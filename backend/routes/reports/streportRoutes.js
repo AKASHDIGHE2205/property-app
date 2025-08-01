@@ -43,11 +43,11 @@ router.get('/getEntryStatus', (req, res) => {
 router.post("/branch-wise-report", (req, res) => {
   const { branch_code, year } = req.body;
 
-  if (!branch_code || !year) {
-    return res.status(400).json({ message: 'PLease fill all required fields!' });
+  if (!year) {
+    return res.status(400).json({ message: 'Please fill all required fields!' });
   }
 
-  const sql = `
+  let sql = `
     SELECT 
       a.doc_code,
       a.date,
@@ -63,9 +63,14 @@ router.post("/branch-wise-report", (req, res) => {
     FROM st_tran AS a
     LEFT JOIN st_firm AS b ON a.firm_code = b.id
     LEFT JOIN st_branch AS c ON a.branch_code = c.id
-    WHERE a.year = ? AND a.branch_code = ?`;
+    WHERE a.year = ?`;
 
-  db.query(sql, [year, branch_code], (err, results) => {
+  // Only add the branch_code condition if it's not "All"
+  if (branch_code !== 'All') {
+    sql += ` AND a.branch_code = ?`;
+  }
+
+  db.query(sql, branch_code !== "All" ? [year, branch_code] : [year], (err, results) => {
     if (err) {
       console.error("Error fetching branch-wise report:", err);
       return res.status(500).json({ message: 'Internal Server Error' });
@@ -77,11 +82,11 @@ router.post("/branch-wise-report", (req, res) => {
 router.post("/firm-wise-report", (req, res) => {
   const { firm_code, year } = req.body;
 
-  if (!firm_code || !year) {
-    return res.status(400).json({ message: 'Please fill all required fields!' });
+  if (!year) {
+    return res.status(400).json({ message: 'Please provide the year!' });
   }
 
-  const sql = `
+  let sql = `
     SELECT 
       a.doc_code,
       a.date,
@@ -97,9 +102,13 @@ router.post("/firm-wise-report", (req, res) => {
     FROM st_tran AS a
     LEFT JOIN st_firm AS b ON a.firm_code = b.id
     LEFT JOIN st_branch AS c ON a.branch_code = c.id
-    WHERE a.year = ? AND a.firm_code = ?`;
+    WHERE a.year = ?`;
 
-  db.query(sql, [year, firm_code], (err, results) => {
+  if (firm_code !== "All") {
+    sql += ` AND a.firm_code = ?`;
+  }
+
+  db.query(sql, firm_code !== "All" ? [year, firm_code] : [year], (err, results) => {
     if (err) {
       console.error("Error fetching firm-wise report:", err);
       return res.status(500).json({ message: 'Internal Server Error' });

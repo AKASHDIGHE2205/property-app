@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import util from "util";
+
 const query = util.promisify(db.query).bind(db);
 const router = express.Router();
 
@@ -343,7 +344,7 @@ router.post('/new-property-tran', upload.any(), (req, res) => {
           row.consignee,
           row.surveyNo,
           row.area,
-          row.area,
+          row.sqmtr,
           row.sqmtr
         ];
 
@@ -563,5 +564,164 @@ router.put('/newDeletePTransaction', (req, res) => {
     });
   });
 });
+
+
+
+
+//-------------- Sale Transaction API --------------//
+router.get('/getSaleModalData', (req, res) => {
+  const sql = `SELECT a.doc_id, a.doc_date, a.file_name
+               FROM doc_hd AS a`;
+  db.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ message: "Error fetching data" });
+    }
+    res.status(200).json(results);
+  });
+
+});
+
+router.post("/getSaleProperty", (req, res) => {
+  const { doc_id, doc_date } = req.body;
+
+  const sql = `
+    SELECT 
+      a.doc_id,
+      a.doc_date,
+      a.consignor,
+      a.cst_no,
+      a.pur_date,
+      a.pur_val,
+      a.reg_fees,
+      a.fra_fees,
+      b.sr_no,
+      b.cong_id,
+      c.name AS consignee_name,
+      b.sur_no,
+      b.area,
+      b.balance,
+      b.sqmtr,
+      b.status
+    FROM doc_hd AS a
+    LEFT JOIN doc_survey AS b ON a.doc_id = b.doc_id AND a.doc_date = b.doc_date
+    LEFT JOIN st_consignee AS c ON b.cong_id = c.id
+    WHERE a.doc_id = ? AND a.doc_date = ?`;
+
+  db.query(sql, [doc_id, doc_date], (err, results) => {
+    if (err) {
+      console.error("DB Error:", err);
+      return res.status(500).json({ message: "Error fetching data" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "No record found" });
+    }
+
+    const { doc_id, doc_date, consignor, cst_no, pur_date, pur_val, reg_fees, fra_fees } = results[0];
+
+    const survey = results
+      .filter(row => row.sr_no !== null)
+      .map(row => ({
+        sr_no: row.sr_no,
+        cong_id: row.cong_id,
+        con_name: row.consignee_name,
+        sur_no: row.sur_no,
+        area: row.area,
+        balance: row.balance,
+        sqmtr: row.sqmtr,
+        status: row.status
+      }));
+
+    const response = { doc_id, doc_date, consignor, cst_no, pur_date, pur_val, reg_fees, fra_fees, survey };
+
+    res.status(200).json(response);
+  });
+});
+
+router.post("/newSaleProperty", (req, res) => {
+  const { doc_id, doc_date, buyer_name, sale_date, sale_value, sale_area, sale_survey, remark } = req.body;
+
+  if (!doc_id || !doc_date || !buyer_name || !sale_date || !sale_value || !sale_area || !sale_survey) {
+    return res.status(400).json({ message: "All required fields must be provided" });
+  }
+
+  const balanceQuery = `
+                        SELECT balance FROM doc_survey
+                        WHERE doc_id = ? AND doc_date = ? AND sur_no = ?
+                      `;
+
+  db.query(balanceQuery, [doc_id, doc_date, sale_survey], (balanceErr, balanceResults) => {
+    if (balanceErr) {
+      console.error("Balance Query Error:", balanceErr);
+      return res.status(500).json({ message: "Failed to retrieve balance" });
+    }
+
+    if (balanceResults.length === 0) {
+      return res.status(404).json({ message: "No property record found for the given survey number." });
+    }
+
+    const currentBalance = balanceResults[0].balance;
+
+    if (sale_area > currentBalance) {
+      return res.status(400).json({ message: `Please check the current area before proceeding.` });
+    }
+
+
+    // Step 2: Insert into saled_prop
+    const insertSql = `
+      INSERT INTO saled_prop 
+      (doc_no, date, sale_date, buyer_name, sale_value, sale_area, sur_no, remark)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+      insertSql,
+      [doc_id, doc_date, sale_date, buyer_name, sale_value, sale_area, sale_survey, remark],
+      (insertErr, insertResults) => {
+        if (insertErr) {
+          console.error("Insert Error:", insertErr);
+          return res.status(500).json({ message: "Error inserting sale property" });
+        }
+
+        // Step 3: Update balance
+        const updateSql = `
+          UPDATE doc_survey
+          SET balance = balance - ?
+          WHERE doc_id = ? AND doc_date = ? AND sur_no = ?
+        `;
+
+        db.query(
+          updateSql,
+          [sale_area, doc_id, doc_date, sale_survey],
+          (updateErr, updateResults) => {
+            if (updateErr) {
+              console.error("Balance Update Error:", updateErr);
+              return res.status(500).json({ message: "Sale inserted, but failed to update balance" });
+            }
+
+            res.status(201).json({ message: "Sale property entry successfully" });
+          }
+        );
+      }
+    );
+  });
+});
+
+router.post("/getAllSaledProp", (req, res) => {
+  const { from_date, to_date } = req.body;
+
+  const sql = `SELECT b.doc_id,b.doc_date,b.file_name,a.sale_date,a.buyer_name,a.sale_area,a.sur_no
+               FROM saled_prop AS a
+               LEFT JOIN doc_hd AS b ON a.doc_no = b.doc_id
+               WHERE a.sale_date BETWEEN ? AND ?`;
+  db.query(sql, [from_date, to_date], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error fetching sale properties" });
+    }
+    res.json(results);
+  });
+});
+
 
 export default router;

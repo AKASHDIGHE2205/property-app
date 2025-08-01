@@ -1,99 +1,90 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { IoAddCircleOutline } from "react-icons/io5";
-import { tablebody, tablehead } from "../../../constant/BaseUrl";
-import { TbEdit } from "react-icons/tb";
-import { Link } from "react-router-dom";
-import { getAllTRansactions1 } from "../../../services/Property/transaction/pTranApis";
-import { useEffect, useState } from "react";
-import Paginations from "../../../helper/Pagination";
-import moment from "moment";
-import EditTransaction from "./EditTransaction";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import DeleteModal from "./DeleteModal";
+import { TbEdit } from "react-icons/tb";
+import { tablebody, tablehead } from "../../../../constant/BaseUrl";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getAllSaledProp } from "../../../../services/Property/transaction/pTranApis";
+import moment from "moment";
+import Paginations from "../../../../helper/Pagination";
 
-interface TranData {
+interface Data {
+  buyer_name: string;
   doc_id: number;
   doc_date: string;
+  sale_date: string;
   file_name: string;
+  sale_area: string;
+  sur_no: string;
 }
 
-const TranView = () => {
-  const [from, setFrom] = useState<string>(() =>
-    moment().subtract(3, "months").startOf("month").format("YYYY-MM-DD")
-  );
-  const [to, setTo] = useState<string>(() => moment().format("YYYY-MM-DD"));
+
+const SaleProView = () => {
+  const [showFilter, setShowFilter] = useState(false);
   const [data, setData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showDelete, setshowDelete] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const [showEdit, setshowEdit] = useState(false);
-  const [selectedTran, setSelectedTran] = useState(0);
-  const [showFilter, setShowFilter] = useState(false);
+  const [fromDate, setFromDate] = useState<string>(() =>
+    moment().subtract(3, "months").startOf("month").format("YYYY-MM-DD")
+  );
+  const [toDate, setToDate] = useState<string>(() => moment().format("YYYY-MM-DD"));
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const browseData = async () => {
-    setLoading(true);
+
+  const fetchData = async () => {
     try {
+      setLoading(true);
       const body = {
-        from_date: from,
-        to_date: to,
-      };
-      const response = await getAllTRansactions1(body);
+        from_date: fromDate,
+        to_date: toDate,
+      }
+      const response = await getAllSaledProp(body);
       if (response) {
         setData(response);
         setLoading(false);
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
     }
-  };
+  }
 
   useEffect(() => {
-    browseData();
-  }, []);
+    fetchData();
+  }, [])
+
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
 
-  const handleSearch = (e: any) => {
-    setSearchTerm(e.target.value);
-  };
-
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = data?.filter((item: TranData) =>
-    (item?.doc_id?.toString().toLowerCase() ?? "").includes(searchTerm.toString().toLowerCase()) ||
-    (item?.doc_date?.toString().toLowerCase() ?? "").includes(searchTerm.toString().toLowerCase()) ||
-    item?.file_name?.toLowerCase().includes(searchTerm.toLowerCase())
+  const filtredData = data?.filter((item: Data) =>
+    item?.buyer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item?.sur_no.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item?.file_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item?.sale_date.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())
   ).slice(indexOfFirstItem, indexOfLastItem);
 
-  const handleEdit = (data: number) => {
-    setSelectedTran(data);
-    setshowEdit(true);
-  };
-
-  const handleDelete = (item: any) => {
-    setSelectedTran(item);
-    setshowDelete(true);
-  };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
+  }
 
   return (
     <>
       <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
         <h1 className="flex justify-center items-center text-2xl font-semibold">
-          Purchase Property Details
+          Saled Property Details
         </h1>
         <div className="flex justify-end items-end gap-2 py-2">
           {/* Filter Button */}
           <div className="flex items-end justify-end">
             <button
               className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none "
-              onClick={() => {
-                setShowFilter(!showFilter);
-              }}
+              onClick={() => setShowFilter(!showFilter)}
             >
               {showFilter ? "Hide Filter" : "Show Filter"}
             </button>
@@ -101,7 +92,7 @@ const TranView = () => {
           {/* Add Entry Button */}
           <div className="flex items-end justify-end">
             <Link
-              to="/property/transaction/create"
+              to="/property/sale-entry"
               className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
             >
               <IoAddCircleOutline size={18} />
@@ -120,9 +111,8 @@ const TranView = () => {
                 </label>
                 <input
                   type="text"
+                  onChange={(e) => handleSearch(e)}
                   placeholder="Type your search query here"
-                  value={searchTerm}
-                  onChange={handleSearch}
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -134,8 +124,8 @@ const TranView = () => {
                 </label>
                 <input
                   type="date"
-                  defaultValue={from}
-                  onChange={(e) => setFrom(e.target.value)}
+                  defaultValue={fromDate}
+                  onChange={(e) => setFromDate(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -147,8 +137,8 @@ const TranView = () => {
                 </label>
                 <input
                   type="date"
-                  defaultValue={to}
-                  onChange={(e) => setTo(e.target.value)}
+                  defaultValue={toDate}
+                  onChange={(e) => setToDate(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
@@ -159,7 +149,7 @@ const TranView = () => {
               {/* Browse Button */}
               <button
                 className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-hidden focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none"
-                onClick={browseData}
+                onClick={fetchData}
               >
                 Browse Data
               </button>
@@ -171,8 +161,8 @@ const TranView = () => {
                 </span>
                 <select
                   className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
                   value={itemsPerPage}
+                  onChange={(e) => setItemsPerPage(Number(e.target.value))}
                 >
                   {[5, 10, 25, 50, 100].map((n) => (
                     <option key={n} value={n}>
@@ -195,10 +185,19 @@ const TranView = () => {
                       Doc. No.
                     </th>
                     <th scope="col" className={tablehead}>
-                      date
+                      sale date
                     </th>
                     <th scope="col" className={tablehead}>
-                      fileName
+                      file name
+                    </th>
+                    <th scope="col" className={tablehead}>
+                      buyer name
+                    </th>
+                    <th scope="col" className={tablehead}>
+                      sale area
+                    </th>
+                    <th scope="col" className={tablehead}>
+                      survey no.
                     </th>
                     <th scope="col" className={tablehead}>
                       Action
@@ -208,61 +207,49 @@ const TranView = () => {
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                   {loading ? (
                     <tr>
-                      <td
-                        colSpan={4}
-                        className="text-center py-4 text-gray-600"
-                      >
+                      <td colSpan={7} className="text-center py-4 text-gray-600">
                         Loading...
                       </td>
                     </tr>
-                  ) : (
-                    <>
-                      {currentItems.length === 0 ? (
-                        <>
-                          <tr>
-                            <td
-                              colSpan={4}
-                              className="text-center py-4 text-gray-600"
+                  ) : filtredData.length > 0 ? (
+                    filtredData.map((item: Data, index) => (
+                      <tr key={index}>
+                        <td className={tablebody}>{item.doc_id}</td>
+                        <td className={tablebody}>
+                          {new Date(item.sale_date).toLocaleDateString("en-IN")}
+                        </td>
+                        <td className={tablebody}>{item.file_name}</td>
+                        <td className={tablebody}>{item.buyer_name}</td>
+                        <td className={tablebody}>{item.sale_area}</td>
+                        <td className={tablebody}>{item.sur_no}</td>
+                        <td className={tablebody}>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-100 text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 disabled:opacity-50 disabled:pointer-events-none dark:text-green-400 dark:bg-green-800/30 dark:hover:bg-green-800/20 dark:focus:bg-green-800/20"
                             >
-                              File Not Found
-                            </td>
-                          </tr>
-                        </>
-                      ) : (
-                        <>
-                          {currentItems.map((item: TranData) => (
-                            <tr key={item.doc_id}>
-                              <td className={tablebody}>{item.doc_id}</td>
-                              <td className={tablebody}>
-                                {moment(item.doc_date).format("DD/MMM/YYYY")}
-                              </td>
-                              <td className={tablebody}>{item.file_name}</td>
-                              <td className={tablebody}>
-                                <div className="flex items-center gap-2">
-                                  <button
-                                    type="button"
-                                    className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-100 text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 disabled:opacity-50 disabled:pointer-events-none dark:text-green-400 dark:bg-green-800/30 dark:hover:bg-green-800/20 dark:focus:bg-green-800/20"
-                                    onClick={() => handleEdit(item.doc_id)}
-                                  >
-                                    <TbEdit size={20} />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
-                                    onClick={() => handleDelete(item.doc_id)}
-                                  >
-                                    <RiDeleteBin5Line size={20} />
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </>
-                      )}
-                    </>
+                              <TbEdit size={20} />
+                            </button>
+                            <button
+                              type="button"
+                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
+                            >
+                              <RiDeleteBin5Line size={20} />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={7} className="text-center py-4 text-gray-600">
+                        No records found.
+                      </td>
+                    </tr>
                   )}
                 </tbody>
               </table>
+
             </div>
           </div>
           <Paginations
@@ -273,24 +260,8 @@ const TranView = () => {
           />
         </div>
       </div>
-      {showEdit && (
-        <EditTransaction
-          show={showEdit}
-          setShow={setshowEdit}
-          fetchData={browseData}
-          data={selectedTran}
-        />
-      )}
-      {showDelete && (
-        <DeleteModal
-          show={showDelete}
-          setShow={setshowDelete}
-          fetchData={browseData}
-          data={selectedTran}
-        />
-      )}
     </>
-  );
-};
+  )
+}
 
-export default TranView;
+export default SaleProView

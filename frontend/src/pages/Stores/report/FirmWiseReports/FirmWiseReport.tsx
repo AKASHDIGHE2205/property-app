@@ -34,14 +34,14 @@ const FirmWiseReport = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (!year || !firmID) {
+    if (!year) {
       toast.error("Please fill all the required fields!");
       setLoading(false);
       return;
     }
     const body = {
       year: year,
-      firm_code: firmID
+      firm_code: firmID ? firmID : "All",
     }
 
     try {
@@ -80,7 +80,7 @@ const FirmWiseReport = () => {
               </div>
 
               <div>
-                <label htmlFor="firm" className="block mb-2 dark:text-white">Firm <span className="text-red-600 font-bold">*</span></label>
+                <label htmlFor="firm" className="block mb-2 dark:text-white">Firm</label>
                 <div className="flex rounded-lg shadow-sm">
                   <input
                     type="text"
