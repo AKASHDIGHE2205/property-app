@@ -615,12 +615,12 @@ const TranNewEntry = () => {
 
                         {/* Description Input */}
                         <td className="sm:py-3 py-2 px-2 ">
-                          <input
-                            type="text"
+                          <textarea
                             name="docDes"
                             defaultValue={item?.docDes}
                             onChange={(e) => handleDocInputChange(e, index)}
                             className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                            rows={1}
                           />
                         </td>
 

@@ -192,7 +192,7 @@ const Header = () => {
                   className="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
                   aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                   <div className="shrink-0 flex justify-center items-center bg-blue-300  hover:bg-blue-200 text-blue-800 rounded-full">
-                    <span className="w-[36px] h-[36px] bg-gray-100 dark:bg-gray-500 rounded-full overflow-hidden flex justify-center items-center">
+                    <span className="w-[36px] h-[36px] bg-gray-100 dark:bg-gray-200 rounded-full overflow-hidden flex justify-center items-center">
                       {user ? (
                         <div className="text-lg">
                           {user?.user?.f_name?.charAt(0).toUpperCase()}{user?.user?.l_name?.charAt(0).toUpperCase()}

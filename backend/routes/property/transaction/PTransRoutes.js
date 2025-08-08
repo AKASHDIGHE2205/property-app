@@ -663,7 +663,7 @@ router.post("/newSaleProperty", (req, res) => {
     const currentBalance = balanceResults[0].balance;
 
     if (sale_area > currentBalance) {
-      return res.status(400).json({ message: `Please check the current area before proceeding.` });
+      return res.status(400).json({ message: `Requested area exceeds the available sale area.` });
     }
 
 
@@ -710,7 +710,7 @@ router.post("/newSaleProperty", (req, res) => {
 router.post("/getAllSaledProp", (req, res) => {
   const { from_date, to_date } = req.body;
 
-  const sql = `SELECT b.doc_id,b.doc_date,b.file_name,a.sale_date,a.buyer_name,a.sale_area,a.sur_no
+  const sql = `SELECT a.sale_id,b.doc_id,b.doc_date,b.file_name,a.sale_date,a.buyer_name,a.sale_area,a.sur_no,a.remark,a.sale_value
                FROM saled_prop AS a
                LEFT JOIN doc_hd AS b ON a.doc_no = b.doc_id
                WHERE a.sale_date BETWEEN ? AND ?`;
@@ -723,5 +723,19 @@ router.post("/getAllSaledProp", (req, res) => {
   });
 });
 
+router.put("/updateSaledProp", (req, res) => {
+  const { sale_id, date, doc_no, sale_date, buyer_name, sale_value, sale_area, sur_no, remark } = req.body;
+  const updateSql = `UPDATE saled_prop SET
+                        sale_date = ?, buyer_name = ?, sale_value = ?, sale_area = ?, sur_no = ?, remark = ? 
+                     WHERE sale_id = ? AND doc_no = ? AND date = ?`;
+  db.query(updateSql, [sale_date, buyer_name, sale_value, sale_area, sur_no, remark, sale_id, doc_no, date], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error updating sale property" });
+    }
+    res.status(200).json({ message: "Sale property updated successfully" });
+  }
+  );
+})
 
 export default router;

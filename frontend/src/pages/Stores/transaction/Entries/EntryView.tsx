@@ -41,7 +41,7 @@ const EntryView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [editShow, setEditShow] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState([]);
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
 
   const fetchData = async () => {
     setLoading(true);
@@ -128,7 +128,7 @@ const EntryView = () => {
               setShowFilter(!showFilter);
             }}
           >
-            {!showFilter ? "Hide Filter" : "Show Filter"}
+            {showFilter ? "Hide Filter" : "Show Filter"}
           </button>
         </div>
         {/* Add Entry Button */}
@@ -204,7 +204,7 @@ const EntryView = () => {
               </span>
               <select
                 className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                onChange={(e) => handleItemsPerPage(Number(e.target.value))}
                 value={itemsPerPage}
               >
                 {[5, 10, 25, 50, 100].map((n) => (
@@ -273,7 +273,7 @@ const EntryView = () => {
                     ))}
                     {currentItems?.length === 0 && (
                       <tr>
-                        <td colSpan={13} className="text-center py-4">{currentItems?.length === 0 ? "No items found" : null}</td>
+                        <td colSpan={13} className="text-center py-4">{currentItems?.length === 0 ? "File not found" : null}</td>
                       </tr>
                     )}
                   </>)}

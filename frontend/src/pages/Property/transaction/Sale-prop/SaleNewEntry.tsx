@@ -49,12 +49,12 @@ const SaleNewEntry = () => {
 
   const fetchData = async () => {
     if (!propDate || !propId) {
-      // toast.error("Select the property");
+      //toast.error("Select the property");
       return
     }
     const body = {
-      doc_id: propId,
-      doc_date: formatDate(propDate)
+      doc_id: propId || 1,
+      doc_date: formatDate(propDate) || "",
     }
     try {
       const response = await getSaleProperty(body);
@@ -131,7 +131,7 @@ const SaleNewEntry = () => {
 
   return (
     <>
-      <div className="relative items-center w-full sm:max-w-8xl my-2 mx-2 shadow-lg h-screen">
+      <div className="relative items-center w-full sm:max-w-8xl my-2 mx-2 shadow-lg">
         <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-gray-700 justify-center">
           <form onSubmit={handleSubmit}>
             <div>
@@ -212,12 +212,8 @@ const SaleNewEntry = () => {
                 {/* Another 4-Column Group */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6 mb-8">
                   <div>
-                    <label
-                      htmlFor="purDate"
-                      className="block mb-2 dark:text-white"
-                    >
+                    <label htmlFor="purDate" className="block mb-2 dark:text-white">
                       Purchase Date
-
                     </label>
                     <input
                       type="date"
@@ -229,10 +225,7 @@ const SaleNewEntry = () => {
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="purVal"
-                      className="block mb-2 dark:text-white"
-                    >
+                    <label htmlFor="purVal" className="block mb-2 dark:text-white">
                       Pur. Value
                     </label>
                     <input
@@ -245,10 +238,7 @@ const SaleNewEntry = () => {
                     />
                   </div>
                   <div>
-                    <label
-                      htmlFor="regFees"
-                      className="block mb-2 dark:text-white"
-                    >
+                    <label htmlFor="regFees" className="block mb-2 dark:text-white">
                       Reg. Fees
                     </label>
                     <input
@@ -284,9 +274,9 @@ const SaleNewEntry = () => {
                         <th className={tablehead}>Sr No.</th>
                         <th className={tablehead}>Consignee</th>
                         <th className={tablehead}>Survey No.</th>
-                        <th className={tablehead}>total Area</th>
+                        <th className={tablehead}>total Area <span className='lowercase'>(hectors)</span></th>
                         <th className={tablehead}>Balanced Area</th>
-                        <th className={tablehead}>Sq. Mtr.</th>
+                        <th className={tablehead}>total area <span className='lowercase'>(Sq. Mtr.)</span></th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -297,7 +287,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sr_no}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-1/2 mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[5rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -305,7 +295,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.con_name}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[20rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -313,7 +303,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sur_no}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[12rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -321,7 +311,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.area}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -329,7 +319,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.balance}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -337,7 +327,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sqmtr}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                         </tr>

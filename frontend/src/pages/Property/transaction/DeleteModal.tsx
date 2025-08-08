@@ -12,7 +12,6 @@ interface Props {
 }
 
 const DeleteModal: FC<Props> = ({ show, setShow, fetchData, data }) => {
-  console.log(data);
 
   const handleDelete = async () => {
     try {

@@ -43,7 +43,6 @@ app.use(PMasterRoutes);
 app.use(PTranRoutes);
 app.use(PReportRoutes);
 
-
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

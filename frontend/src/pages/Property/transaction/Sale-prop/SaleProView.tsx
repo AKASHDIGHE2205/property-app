@@ -1,14 +1,16 @@
-import { RiDeleteBin5Line } from "react-icons/ri";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TbEdit } from "react-icons/tb";
 import { tablebody, tablehead } from "../../../../constant/BaseUrl";
-import { IoAddCircleOutline } from "react-icons/io5";
+import { IoAddCircleOutline, IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAllSaledProp } from "../../../../services/Property/transaction/pTranApis";
 import moment from "moment";
 import Paginations from "../../../../helper/Pagination";
+import EditSaleProp from "./EditSaleProp";
 
 interface Data {
+  sale_id: number;
   buyer_name: string;
   doc_id: number;
   doc_date: string;
@@ -16,8 +18,9 @@ interface Data {
   file_name: string;
   sale_area: string;
   sur_no: string;
+  remark: string;
+  sale_value: string;
 }
-
 
 const SaleProView = () => {
   const [showFilter, setShowFilter] = useState(false);
@@ -30,7 +33,8 @@ const SaleProView = () => {
   );
   const [toDate, setToDate] = useState<string>(() => moment().format("YYYY-MM-DD"));
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [selectedProp, setSelectedProp] = useState({});
+  const [showEdit, setShowEdit] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -71,6 +75,11 @@ const SaleProView = () => {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
+  }
+
+  const handleEdit = (item: any) => {
+    setSelectedProp(item);
+    setShowEdit(true);
   }
 
   return (
@@ -182,7 +191,7 @@ const SaleProView = () => {
                 <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
                   <tr>
                     <th scope="col" className={tablehead}>
-                      Doc. No.
+                      sr. no.
                     </th>
                     <th scope="col" className={tablehead}>
                       sale date
@@ -214,10 +223,9 @@ const SaleProView = () => {
                   ) : filtredData.length > 0 ? (
                     filtredData.map((item: Data, index) => (
                       <tr key={index}>
-                        <td className={tablebody}>{item.doc_id}</td>
-                        <td className={tablebody}>
-                          {new Date(item.sale_date).toLocaleDateString("en-IN")}
-                        </td>
+                        <td className={tablebody} >{item.sale_id}</td>
+                        <td className={tablebody} hidden>{item.doc_id}</td>
+                        <td className={tablebody}>{moment(item.sale_date).format("DD/MM/YYYY")}</td>
                         <td className={tablebody}>{item.file_name}</td>
                         <td className={tablebody}>{item.buyer_name}</td>
                         <td className={tablebody}>{item.sale_area}</td>
@@ -227,14 +235,15 @@ const SaleProView = () => {
                             <button
                               type="button"
                               className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-100 text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 disabled:opacity-50 disabled:pointer-events-none dark:text-green-400 dark:bg-green-800/30 dark:hover:bg-green-800/20 dark:focus:bg-green-800/20"
+                              onClick={() => handleEdit(item)}
                             >
                               <TbEdit size={20} />
                             </button>
                             <button
                               type="button"
-                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
+                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20"
                             >
-                              <RiDeleteBin5Line size={20} />
+                              <IoEyeOutline size={20} />
                             </button>
                           </div>
                         </td>
@@ -260,6 +269,7 @@ const SaleProView = () => {
           />
         </div>
       </div>
+      {showEdit && (<EditSaleProp show={showEdit} setShow={setShowEdit} fetchData={fetchData} data={selectedProp} />)}
     </>
   )
 }

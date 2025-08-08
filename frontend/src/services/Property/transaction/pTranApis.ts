@@ -229,3 +229,15 @@ export const getAllSaledProp = async (data: any) => {
     toast.error(error?.response?.data?.message || "Network Error.");
   }
 };
+
+export const updateSaledProp = async (data: any) => {
+  try {
+    const response = await axios.put(`${BaseUrl}/updateSaledProp`, data);
+    if (response.status === 200) {
+      toast.success(response.data.message);
+      return response.data;
+    }
+  } catch (error: any) {
+    toast.error(error?.response?.data?.message || "Network Error.");
+  }
+};
