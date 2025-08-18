@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { newLocation } from "../../../../services/Stores/master/MasterApis";
 import { IoMdClose } from "react-icons/io";
+import toast from "react-hot-toast";
 
 interface props {
   show: boolean
@@ -13,9 +14,11 @@ const CreateLocation: FC<props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const body = {
-      name: name
+    if (!name) {
+      toast.error('Please enter location name');
+      return;
     }
+    const body = { name: name }
     try {
       const response = await newLocation(body);
       if (response) {

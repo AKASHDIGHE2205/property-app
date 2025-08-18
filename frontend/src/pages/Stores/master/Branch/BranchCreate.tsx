@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { newBranch } from "../../../../services/Stores/master/MasterApis";
 import { IoMdClose } from "react-icons/io";
 import React from "react";
+import toast from "react-hot-toast";
 interface props {
   show: boolean
   setShow: (show: boolean) => void
@@ -13,9 +14,11 @@ const BranchCreate: FC<props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const body = {
-      name: name
+    if (!name) {
+      toast.error('Please enter branch name');
+      return;
     }
+    const body = { name: name }
     try {
       const response = await newBranch(body);
       if (response) {
@@ -27,6 +30,7 @@ const BranchCreate: FC<props> = ({ show, setShow, fetchData }) => {
       console.error("Error submitting form:", error);
     }
   }
+
   return (
     <div
       id="Branch-create-modal"

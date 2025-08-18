@@ -31,7 +31,6 @@ const Header = () => {
   }
   const user = getUserData();
 
-
   return (
     <>
       {/* <!-- ========== HEADER ========== --> */}
@@ -51,10 +50,10 @@ const Header = () => {
             {/* <!-- End Logo --> */}
           </div>
 
-          <div className="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3">
+          <div className="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3 ">
             <div className="hidden md:block">
               {/* <!-- Search Input --> */}
-              <div className="relative">
+              <div className="relative hidden">
                 <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
                   <svg
                     className="shrink-0 size-4 text-gray-400 dark:text-white/60"
@@ -189,39 +188,35 @@ const Header = () => {
                 <button
                   id="hs-dropdown-account"
                   type="button"
-                  className="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
+                  className="inline-flex justify-center items-center size-9 rounded-full border border-transparent text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:focus:ring-gray-700 transition-colors"
                   aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                  <div className="shrink-0 flex justify-center items-center bg-blue-300  hover:bg-blue-200 text-blue-800 rounded-full">
-                    <span className="w-[36px] h-[36px] bg-gray-100 dark:bg-gray-200 rounded-full overflow-hidden flex justify-center items-center">
-                      {user ? (
-                        <div className="text-lg">
-                          {user?.user?.f_name?.charAt(0).toUpperCase()}{user?.user?.l_name?.charAt(0).toUpperCase()}
-                        </div>
-                      ) : (
-                        <FaRegUser />
-                      )}
-                    </span>
+                  <div className="shrink-0 flex justify-center items-center size-9 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white rounded-full transition-all">
+                    {user ? (
+                      <span className="font-medium text-sm">
+                        {user?.user?.f_name?.charAt(0).toUpperCase()}{user?.user?.l_name?.charAt(0).toUpperCase()}
+                      </span>
+                    ) : (
+                      <FaRegUser className="size-4" />
+                    )}
                   </div>
-
                 </button>
 
-
                 <div
-                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-gray-900 dark:border dark:border-gray-700 dark:divide-gray-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-lg rounded-lg mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 before:absolute before:-top-2 before:end-4 before:w-4 before:h-4 before:bg-white before:border before:border-gray-200 before:transform before:rotate-45 before:z-0 dark:before:bg-gray-800 dark:before:border-gray-700"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="hs-dropdown-account"
                 >
-                  <div className="py-3 px-5 bg-gray-100 rounded-t-lg dark:bg-gray-700">
-                    <p className="text-sm text-gray-500 dark:text-gray-300">
+                  <div className="py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-lg dark:from-blue-600 dark:to-blue-700">
+                    <p className="text-sm text-white/90">
                       Signed in as
                     </p>
-                    <p className="text-lg font-medium bg-clip-text bg-gradient-to-l from-blue-600 to-violet-500 text-transparent dark:from-blue-400 dark:to-violet-400">
-                      {user?.user?.email}
+                    <p className="text-lg font-medium text-white truncate">
+                      {user?.user?.email || "Guest"}
                     </p>
                   </div>
-                  <div className="p-1.5 space-y-0.5">
 
+                  <div className="p-1.5 space-y-0.5">
                     {/* logout */}
                     <Link
                       to="/log-out"
@@ -236,9 +231,7 @@ const Header = () => {
           </div>
         </nav>
       </header>
-      {/* <!-- ========== END HEADER ========== --> */}
 
-      {/* <!-- ========== MAIN CONTENT ========== --> */}
       {/* <!-- Breadcrumb --> */}
       <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-gray-900 dark:border-gray-700">
         <div className="flex items-center py-2">

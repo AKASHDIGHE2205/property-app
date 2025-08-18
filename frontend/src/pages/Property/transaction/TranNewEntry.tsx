@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { getActiveConsignee, getActiveDocuments, getActiveLoc, newPropertyTransaction } from "../../../services/Property/transaction/pTranApis";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import moment from "moment";
 
 export interface Survey {
   consignee: string;
@@ -34,8 +35,8 @@ export interface ConsigneeData {
 }
 
 const TranNewEntry = () => {
-  const [inputs, setInputs] = useState({
-    docDate: "",
+  const [inputs, setInputs] = useState(() => ({
+    docDate: moment().format("YYYY-MM-DD") || "",
     fileName: "",
     location: "",
     consignor: "",
@@ -47,7 +48,7 @@ const TranNewEntry = () => {
     regFees: 0,
     fraFees: 0,
     remark: "",
-  });
+  }));
   const [locData, setLocData] = useState([]);
   const [docData, setDocData] = useState([]);
   const [consigneeData, setConsigneeData] = useState([]);
@@ -351,7 +352,7 @@ const TranNewEntry = () => {
               </div>
 
               {/**survey no table here */}
-              <div className="border rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+              <div className="border dark:border-gray-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
                     <tr>
@@ -580,7 +581,7 @@ const TranNewEntry = () => {
               </div>
 
               {/* Document Table */}
-              <div className="border rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+              <div className="border dark:border-gray-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
                     <tr>

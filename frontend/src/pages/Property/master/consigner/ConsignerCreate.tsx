@@ -1,6 +1,7 @@
 import { FC, useState } from "react"
 import { newConsigner } from "../../../../services/Property/master/PmasterApis"
 import { IoMdClose } from "react-icons/io"
+import toast from "react-hot-toast"
 
 interface Props {
   show: boolean
@@ -12,6 +13,10 @@ const ConsignerCreate: FC<Props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name) {
+      toast.error("Consignor name is required.")
+      return;
+    }
     const body = {
       name: name
     }

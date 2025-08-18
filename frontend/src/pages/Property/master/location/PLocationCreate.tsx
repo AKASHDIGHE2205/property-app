@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { newPLocation } from "../../../../services/Property/master/PmasterApis";
+import toast from "react-hot-toast";
 
 interface Props {
   show: boolean
@@ -13,6 +14,10 @@ const PLocationCreate: FC<Props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name) {
+      toast.error("Location name is required.");
+      return;
+    }
     const body = {
       name: name
     }

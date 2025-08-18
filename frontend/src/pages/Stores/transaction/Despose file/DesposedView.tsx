@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Link } from "react-router-dom";
-import { tablebody, tablehead } from "../../../../constant/BaseUrl";
 import { useEffect, useState } from "react";
 import moment from "moment";
 import Paginations from "../../../../helper/Pagination";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
+import { FiSearch, FiDownload, FiArrowLeft } from "react-icons/fi";
 
 interface Entry {
   doc_code: string;
@@ -49,8 +49,8 @@ const DesposedView = () => {
     setCurrentPage(pageNumber);
   };
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
   const currentItems = data?.filter((item: Entry) =>
     (item?.entry_code?.toString().toLowerCase() ?? "").includes(searchTerm.toString().toLowerCase()) ||
@@ -61,7 +61,8 @@ const DesposedView = () => {
     (item?.remark?.toLowerCase() ?? "").includes(searchTerm.toLowerCase()) ||
     (item?.desc?.toLowerCase() ?? "").includes(searchTerm.toLowerCase()) ||
     (item?.date?.toString().toLowerCase() ?? "").includes(searchTerm.toString().toLowerCase())
-  ).slice(indexOfFirstItem, indexOfLastItem);
+  )
+  // .slice(indexOfFirstItem, indexOfLastItem);
 
   const handleItemsPerPage = (item: any) => {
     setItemsPerPage(item);
@@ -126,112 +127,187 @@ const DesposedView = () => {
   };
 
   return (
-    <div className="h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
-      <h1 className="flex justify-center items-center text-2xl font-semibold ">Desposed Files</h1>
-      <div className="sticky right-0">
-        <div className="max-w-sm space-y-3">
-          <input
-            type="text"
-            className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100"
-            placeholder="Type your search query here"
-            defaultValue={searchTerm}
-            onChange={(e) => handleSearch(e.target.value)}
-          />
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
+      <div className="max-w-8xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Header Section */}
+        <div className="p-4 md:p-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Disposed Files
+          </h1>
         </div>
-        <div className="m-2 flex justify-between">
-          <div className="flex flex-row items-center">
-            <div>Select</div>
-            <div className="m-1">
-              <select
-                className="py-3 pe-4 block bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-transparent dark:text-gray-400 dark:focus:ring-gray-600"
-                onChange={(e: any) => handleItemsPerPage(e.target.value)}>
-                <option value={5}>5</option>
-                <option value={10}>10</option>
-                <option value={25}>25</option>
-                <option value={50}>50</option>
-                <option value={100}>100</option>
-              </select>
+        <hr />
+        {/* Search and Controls Section */}
+        <div className="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            {/* Search Input */}
+            <div className="w-full sm:w-auto">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FiSearch className="text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  className="block w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  placeholder="Search disposed files..."
+                  defaultValue={searchTerm}
+                  onChange={(e) => handleSearch(e.target.value)}
+                />
+              </div>
             </div>
-            <div>rows</div>
-          </div>
-          <div className="flex flex-row items-center">
-            <Link
-              to={"/transaction/despose"}
-              className="py-3 px-4 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 focus:outline-hidden focus:bg-gray-700 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none ">
-              Go Back
-            </Link>
+
+            {/* Rows Selector and Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
+              <div className="flex items-center gap-2 hidden">
+                <span className="text-sm text-gray-700 dark:text-gray-300">Show</span>
+                <select
+                  className="px-3 py-3 block w-full rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  onChange={(e: any) => handleItemsPerPage(e.target.value)}
+                >
+                  {[5, 10, 25, 50, 100].map((n) => (
+                    <option key={n} value={n}>{n}</option>
+                  ))}
+                </select>
+                <span className="text-sm text-gray-700 dark:text-gray-300">rows</span>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={generateCSV}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all shadow-md hover:shadow-lg"
+                >
+                  <FiDownload className="text-white" />
+                  Download CSV
+                </button>
+                <Link
+                  to="/transaction/despose"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm"
+                >
+                  <FiArrowLeft className="text-gray-600 dark:text-gray-300" />
+                  Go Back
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex-grow overflow-auto">
-        <div className="border dark:border-gray-700  rounded-md p-2">
-          <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-            <table className="min justify-between">
-              <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+
+        {/* Table Section */}
+        <div className="p-4 md:p-6">
+          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-700 sticky top-0">
                 <tr>
-                  <th scope="col" className={tablehead}>Doc No.</th>
-                  <th scope="col" className={tablehead}>Doc Date</th>
-                  <th scope="col" className={tablehead}>File Type</th>
-                  <th scope="col" className={tablehead}>Year</th>
-                  <th scope="col" className={tablehead}>Firm Name</th>
-                  <th scope="col" className={tablehead}>Branch Name</th>
-                  <th scope="col" className={tablehead}>Location Name</th>
-                  <th scope="col" className={tablehead}>Section Name</th>
-                  <th scope="col" className={tablehead} >Description</th>
-                  <th scope="col" className={tablehead} >Remark</th>
-                  <th scope="col" className={tablehead}>Rack No.</th>
-                  <th scope="col" className={tablehead}>Slot No.</th>
-                  <th scope="col" className={tablehead}>Sub Slot No.</th>
-                  <th scope="col" className={tablehead} hidden>Action</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Doc No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Doc Date
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    File Type
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Year
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Firm Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Branch Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Location
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Section
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Description
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Remark
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Rack No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Slot No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Sub Slot
+                  </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700  ">
-                {(<>
-                  {currentItems?.map((item: Entry) => (
-                    <tr key={item?.doc_code} className="hover:bg-gray-100 dark:hover:bg-gray-800 text-sm uppercase">
-                      <td className={`${tablebody} py-4`} hidden>{item?.doc_code}</td>
-                      <td className={`${tablebody} py-4`}>{item?.entry_code}</td>
-                      <td className={`${tablebody} py-4`}>{moment(item?.date).format("DD/MM/YYYY")}</td>
-                      <td className={`${tablebody} py-4`}>{item?.type_name}</td>
-                      <td className={`${tablebody} py-4`}>{item?.year}</td>
-                      <td className={`${tablebody} py-4`}>{item?.firm_name}</td>
-                      <td className={`${tablebody} py-4`}>{item?.branch_name}</td>
-                      <td className={`${tablebody} py-4`}>{item?.loc_name}</td>
-                      <td className={`${tablebody} py-4`}>{item?.sec_name}</td>
-                      <td className={`${tablebody} overflow-x-auto max-w-[180px] whitespace-nowrap custom-scrollbar text-xs`} >{item?.desc}</td>
-                      <td className={`${tablebody} overflow-x-auto max-w-[180px] whitespace-nowrap custom-scrollbar text-xs`} >{item?.remark}</td>
-                      <td className={`${tablebody} py-4`}>{item?.cub_code}</td>
-                      <td className={`${tablebody} py-4`}>{item?.s_code}</td>
-                      <td className={`${tablebody} py-4`}>{item?.su_code}</td>
-                      <td className={`${tablebody} py-4`}>
-                        <button type="button" className="hidden py-3 px-3 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20"
-                        >edit
-                        </button>
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                {currentItems?.length === 0 ? (
+                  <tr>
+                    <td colSpan={13} className="px-6 py-4 text-center">
+                      <div className="flex flex-col items-center justify-center py-8">
+                        <p className="text-gray-600 dark:text-gray-400 text-lg">No disposed files found</p>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  currentItems?.map((item: Entry) => (
+                    <tr key={item?.doc_code} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200" hidden>
+                        {item?.doc_code}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                        {item?.entry_code}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {moment(item?.date).format("DD/MM/YYYY")}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item?.type_name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item?.year}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.firm_name}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.branch_name}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.loc_name}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.sec_name}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.desc}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                        {item?.remark}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item?.cub_code}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item?.s_code}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item?.su_code}
                       </td>
                     </tr>
-                  ))}
-                  {currentItems?.length === 0 && (
-                    <tr>
-                      <td colSpan={13} className="text-center py-4">{currentItems?.length === 0 ? "No items found" : null}</td>
-                    </tr>
-                  )}
-                </>)}
+                  ))
+                )}
               </tbody>
             </table>
           </div>
-          <div className="flex justify-end my-2 mx-2">
-            <button
-              type="button"
-              className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 focus:outline-hidden disabled:opacity-50 disabled:pointer-events-none"
-              onClick={generateCSV}
-            >
-              Dowload CSV
-            </button>
+
+          {/* Pagination */}
+          <div className="mt-6 hidden">
+            <Paginations
+              currentPage={currentPage}
+              itemPerPage={itemsPerPage}
+              data={data}
+              handlePageChange={handlePageChange}
+            />
           </div>
         </div>
-        <Paginations currentPage={currentPage} itemPerPage={itemsPerPage} data={data} handlePageChange={handlePageChange} />
-      </div>
-      <div>
       </div>
     </div>
   )

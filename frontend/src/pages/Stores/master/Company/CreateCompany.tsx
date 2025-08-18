@@ -2,6 +2,7 @@
 import { FC, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { newFirm } from "../../../../services/Stores/master/MasterApis";
+import toast from "react-hot-toast";
 
 interface props {
   show: boolean
@@ -13,6 +14,10 @@ const CreateCompany: FC<props> = ({ show, setShow, fetchData }) => {
   const [name, setName] = useState('');
 
   const handleSubmit = async () => {
+    if (!name) {
+      toast.error('Please enter company name');
+      return;
+    }
     const body = { name };
     try {
       const response = await newFirm(body);

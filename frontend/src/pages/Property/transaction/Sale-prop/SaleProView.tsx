@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TbEdit } from "react-icons/tb";
-import { tablebody, tablehead } from "../../../../constant/BaseUrl";
 import { IoAddCircleOutline, IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { getAllSaledProp } from "../../../../services/Property/transaction/pTran
 import moment from "moment";
 import Paginations from "../../../../helper/Pagination";
 import EditSaleProp from "./EditSaleProp";
+import { FiFilter, FiSearch, FiCalendar, FiRefreshCw } from "react-icons/fi";
 
 interface Data {
   sale_id: number;
@@ -83,195 +83,235 @@ const SaleProView = () => {
   }
 
   return (
-    <>
-      <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
-        <h1 className="flex justify-center items-center text-2xl font-semibold">
-          Saled Property Details
-        </h1>
-        <div className="flex justify-end items-end gap-2 py-2">
-          {/* Filter Button */}
-          <div className="flex items-end justify-end">
-            <button
-              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none "
-              onClick={() => setShowFilter(!showFilter)}
-            >
-              {showFilter ? "Hide Filter" : "Show Filter"}
-            </button>
-          </div>
-          {/* Add Entry Button */}
-          <div className="flex items-end justify-end">
-            <Link
-              to="/property/sale-entry"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
-            >
-              <IoAddCircleOutline size={18} />
-              Add Entry
-            </Link>
-          </div>
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Header Section */}
+        <div className=" p-4 md:p-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Saled Property Details
+          </h1>
         </div>
+        {/* Action Buttons */}
+        <div className="flex sm:flex-row justify-between items-start sm:items-center p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 gap-4">
+          {/* Filter Toggle */}
+          <button
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm"
+            onClick={() => setShowFilter(!showFilter)}
+          >
+            <FiFilter className="text-blue-600 dark:text-blue-400" />
+            {showFilter ? "Hide Filter" : "Show Filter"}
+          </button>
+
+          {/* Add Entry Button */}
+          <Link
+            to="/property/sale-entry"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg"
+          >
+            <IoAddCircleOutline size={18} />
+            Add Entry
+          </Link>
+        </div>
+
+        {/* Filter Section */}
         {showFilter && (
-          <div className="sticky right-0 w-full p-4 mb-2 bg-white dark:bg-gray-900 rounded-lg shadow">
-            {/* Row 1: Search, From Date, To Date */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
-              {/* Search */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+          <div className="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 ">
+              {/* Search Input */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Search
                 </label>
-                <input
-                  type="text"
-                  onChange={(e) => handleSearch(e)}
-                  placeholder="Type your search query here"
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiSearch className="text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    onChange={(e) => handleSearch(e)}
+                    placeholder="Search properties..."
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
 
-              {/* From Date */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+              {/* Date Range */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   From Date
                 </label>
-                <input
-                  type="date"
-                  defaultValue={fromDate}
-                  onChange={(e) => setFromDate(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiCalendar className="text-gray-400" />
+                  </div>
+                  <input
+                    type="date"
+                    defaultValue={fromDate}
+                    onChange={(e) => setFromDate(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
 
-              {/* To Date */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   To Date
                 </label>
-                <input
-                  type="date"
-                  defaultValue={toDate}
-                  onChange={(e) => setToDate(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiCalendar className="text-gray-400" />
+                  </div>
+                  <input
+                    type="date"
+                    defaultValue={toDate}
+                    onChange={(e) => setToDate(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Row 2: Browse Button and Items Per Page Selector */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              {/* Browse Button */}
-              <button
-                className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-hidden focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none"
-                onClick={fetchData}
-              >
-                Browse Data
-              </button>
-
-              {/* Select Items Per Page */}
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Select
-                </span>
+              {/* Rows Selector */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Rows per page
+                </label>
                 <select
-                  className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="block w-full px-2 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   value={itemsPerPage}
                   onChange={(e) => setItemsPerPage(Number(e.target.value))}
                 >
                   {[5, 10, 25, 50, 100].map((n) => (
                     <option key={n} value={n}>
-                      {n}
+                      Show {n}
                     </option>
                   ))}
                 </select>
-                <span className="text-sm text-gray-700 dark:text-gray-300">Rows</span>
               </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex justify-end">
+              <button
+                onClick={fetchData}
+                className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                <FiRefreshCw />
+                Refresh Data
+              </button>
             </div>
           </div>
         )}
-        <div className="flex-grow overflow-auto">
-          <div className="border border-gray-300 rounded-md">
-            <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-                <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
-                  <tr>
-                    <th scope="col" className={tablehead}>
-                      sr. no.
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      sale date
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      file name
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      buyer name
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      sale area
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      survey no.
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {loading ? (
-                    <tr>
-                      <td colSpan={7} className="text-center py-4 text-gray-600">
-                        Loading...
-                      </td>
-                    </tr>
-                  ) : filtredData.length > 0 ? (
-                    filtredData.map((item: Data, index) => (
-                      <tr key={index}>
-                        <td className={tablebody} >{item.sale_id}</td>
-                        <td className={tablebody} hidden>{item.doc_id}</td>
-                        <td className={tablebody}>{moment(item.sale_date).format("DD/MM/YYYY")}</td>
-                        <td className={tablebody}>{item.file_name}</td>
-                        <td className={tablebody}>{item.buyer_name}</td>
-                        <td className={tablebody}>{item.sale_area}</td>
-                        <td className={tablebody}>{item.sur_no}</td>
-                        <td className={tablebody}>
-                          <div className="flex items-center gap-2">
-                            <button
-                              type="button"
-                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-100 text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 disabled:opacity-50 disabled:pointer-events-none dark:text-green-400 dark:bg-green-800/30 dark:hover:bg-green-800/20 dark:focus:bg-green-800/20"
-                              onClick={() => handleEdit(item)}
-                            >
-                              <TbEdit size={20} />
-                            </button>
-                            <button
-                              type="button"
-                              className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-600 hover:bg-blue-200 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20"
-                            >
-                              <IoEyeOutline size={20} />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={7} className="text-center py-4 text-gray-600">
-                        No records found.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
 
-            </div>
+        {/* Table Section */}
+        <div className="p-4 md:p-6">
+          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-700">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Sr. No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Sale Date
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    File Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Buyer Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Sale Area
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Survey No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                {loading ? (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-4 text-center">
+                      <div className="flex justify-center items-center space-x-2">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                        <span className="text-gray-600 dark:text-gray-400">Loading sale properties...</span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : filtredData.length > 0 ? (
+                  filtredData.map((item: Data, index) => (
+                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                        {item.sale_id}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {moment(item.sale_date).format("DD MMM YYYY")}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                          {item.file_name}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item.buyer_name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item.sale_area}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item.sur_no}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex justify-end space-x-2">
+                          <button
+                            onClick={() => handleEdit(item)}
+                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+                          >
+                            <TbEdit className="mr-1" />
+                            Edit
+                          </button>
+                          <button
+                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition hidden"
+                          >
+                            <IoEyeOutline className="mr-1" />
+                            View
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-2 text-center">
+                      <div className="flex flex-col items-center justify-center py-6">
+                        <p className="text-gray-600 dark:text-gray-400 text-lg">No sale properties found</p>
+                        <p className="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your filters or add a new entry</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
-          <Paginations
-            currentPage={currentPage}
-            itemPerPage={itemsPerPage}
-            data={data}
-            handlePageChange={handlePageChange}
-          />
+
+          {/* Pagination */}
+          <div className="mt-6">
+            <Paginations
+              currentPage={currentPage}
+              itemPerPage={itemsPerPage}
+              data={data}
+              handlePageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
+
+      {/* Edit Modal */}
       {showEdit && (<EditSaleProp show={showEdit} setShow={setShowEdit} fetchData={fetchData} data={selectedProp} />)}
-    </>
+    </div>
   )
 }
 
-export default SaleProView
+export default SaleProView;

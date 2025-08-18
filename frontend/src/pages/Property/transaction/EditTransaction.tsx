@@ -260,7 +260,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
           <div className="w-full max-w-6xl bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
             <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
               <h3 id="edit-tran-modal-label" className="font-bold text-gray-800 dark:text-white">
-                Select Consignee
+                Edit Purchase Transaction
               </h3>
               <button
                 type="button"
@@ -376,11 +376,11 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                             <td className="sm:py-3 py-2 px-2 ">{index + 1}</td>
                             <td className="py-2 px-2">
                               <select
-                                className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                                className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                                 name="consignee"
                                 value={item?.consignee}
                                 onChange={(e) => handleSurInputChange(e, index)}
-
+                                disabled
                               >
                                 <option value="">Select Consignee</option>
                                 {consigneeData?.map((item: ConsigneeData) => (
@@ -400,7 +400,8 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   name="surveyNo"
                                   value={item?.surveyNo}
                                   onChange={(e) => handleSurInputChange(e, index)}
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                                  disabled
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                                   placeholder="Enter Survey No"
                                 />
                               </div>
@@ -414,8 +415,9 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   id="area"
                                   name="area"
                                   value={item?.area}
+                                  disabled
                                   onChange={(e) => handleSurInputChange(e, index)}
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
                                   placeholder="Enter Area"
                                 />
                               </div>
@@ -429,8 +431,9 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   id="sqmtr"
                                   name="sqmtr"
                                   value={item?.sqmtr}
+                                  disabled
                                   onChange={(e) => handleSurInputChange(e, index)}
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
                                   placeholder="Enter type"
                                 />
                               </div>

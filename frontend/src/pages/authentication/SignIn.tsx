@@ -6,6 +6,7 @@ import { login } from "../../feature/auth/authSlice";
 import { IoEyeOff, IoEye } from "react-icons/io5";
 import * as yup from 'yup';
 import { useFormik } from "formik";
+import loginImage from "../../assets/login-image1.jpg";
 
 const SignIn = () => {
   const [showPass, setShowPass] = useState(false);
@@ -19,7 +20,7 @@ const SignIn = () => {
       .email('Email format is invalid'),
     password: yup.string()
       .required('Password is required')
-      .min(6, 'Password must have at least 6 charachter')
+      .min(6, 'Password must have at least 6 characters')
   });
 
   const formik = useFormik({
@@ -52,32 +53,51 @@ const SignIn = () => {
   };
 
   return (
-    <div className="border m-2 rounded-lg dark:border-gray-600" data-aos="zoom-out">
-      <div className="h-screen  w-full max-w-md mx-auto p-6 ">
-        <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs dark:bg-gray-900 dark:border-gray-700">
-          <div className="p-4 sm:p-7">
-            <div className="text-center">
-              <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-6xl">
+        <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-2xl">
+          {/* Image Section */}
+          <div className="hidden md:block md:w-1/2 bg-gradient-to-br from-blue-500 to-blue-700 relative">
+            <img
+              src={loginImage}
+              alt="Login visual"
+              className="w-full h-full object-cover opacity-90 mix-blend-overlay"
+            />
+            <div className="absolute inset-0 flex flex-col justify-center p-12 text-white">
+              <h2 className="text-4xl font-bold mb-4">Welcome Back!</h2>
+              <p className="text-xl mb-8">Sign in to access your personalized dashboard and continue your journey with us.</p>
+              <div className="flex items-center hidden">
+                <div className="w-12 h-1 bg-blue-300 mr-4"></div>
+                <span className="text-blue-200">Join thousands of happy users</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Form Section */}
+          <div className="w-full md:w-1/2 bg-white dark:bg-gray-800 p-8 sm:p-12">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+                Sign in to your account
+              </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                Don't have an account yet?
+                Don't have an account yet?{" "}
                 <Link
-                  className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500 ml-1"
-                  to='/sign-up'
+                  className="font-medium hover:underline text-[#0019f8] hover:text-[#0600c0] dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                  to="/sign-up"
                 >
                   Sign up here
                 </Link>
               </p>
             </div>
 
-            <div className="mt-5">
+            <div className="mt-8">
               <button
                 type="button"
-                className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800"
+                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm "
+                disabled
               >
                 <svg
-                  className="w-4 h-auto"
-                  width="46"
-                  height="47"
+                  className="w-5 h-5"
                   viewBox="0 0 46 47"
                   fill="none"
                 >
@@ -98,103 +118,104 @@ const SignIn = () => {
                     fill="#EB4335"
                   />
                 </svg>
-                Sign in with Google
+                <span>Sign in with Google</span>
               </button>
 
-              <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-gray-500 dark:before:border-gray-600 dark:after:border-gray-600">
-                Or
+              <div className="my-6 flex items-center">
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                <span className="mx-4 text-sm text-gray-500 dark:text-gray-400">OR</span>
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
               </div>
 
-              <form onSubmit={formik.handleSubmit}>
-                <div className="grid gap-y-4">
-                  <div>
-                    <label htmlFor="email" className="block text-sm mb-2 dark:text-white">
-                      Email <span className="text-red-600 text-xl">*</span>
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formik.values.email}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
+              <form onSubmit={formik.handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="email" className=" text-black dark:text-white mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
                           ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                          focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                          dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                        aria-describedby="email-error"
-                      />
-                    </div>
-                    {formik.touched.email && formik.errors.email && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.email}</p>
-                    )}
-                  </div>
+                    placeholder="Email..."
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.email}</p>
+                  )}
+                </div>
 
-                  <div>
-                    <div className="flex flex-wrap justify-between items-center gap-2">
-                      <label htmlFor="password" className="block text-sm mb-2 dark:text-white">
-                        Password <span className="text-red-600 text-xl">*</span>
-                      </label>
-                      <button
-                        type="button"
-                        className="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500"
-                      >
-                        Forgot password?
-                      </button>
-                    </div>
-                    <div className="relative">
-                      <input
-                        type={showPass ? "text" : "password"}
-                        id="password"
-                        name="password"
-                        value={formik.values.password}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <label htmlFor="password" className="text-black dark:text-white">
+                      Password
+                    </label>
+                    <button
+                      type="button"
+                      className="text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300"
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type={showPass ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
                           ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                          focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                          dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                      />
-                      <div className="absolute inset-y-0 end-0 flex items-center pe-3">
-                        <button
-                          type="button"
-                          onClick={handleShowPass}
-                          className="text-sm text-blue-700 dark:text-gray-300 hover:underline focus:outline-hidden"
-                        >
-                          {showPass ? <IoEyeOff size={20} /> : <IoEye size={20} />}
-                        </button>
-                      </div>
-                    </div>
-                    {formik.touched.password && formik.errors.password && (
-                      <p className="mt-1 text-sm text-red-600">{formik.errors.password}</p>
-                    )}
+                      placeholder="••••••••"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleShowPass}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      {showPass ? <IoEyeOff size={20} color="#0800ff" /> : <IoEye size={20} color="#0800ff" />}
+                    </button>
                   </div>
-
-                  <div className="flex items-center">
-                    <div className="flex">
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                        className="shrink-0 mt-0.5 border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                      />
-                    </div>
-                    <div className="ms-3">
-                      <label htmlFor="remember-me" className="text-sm dark:text-white">
-                        Remember me
-                      </label>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                    disabled={loading}
-                  >
-                    {loading ? 'Signing in...' : 'Sign in'}
-                  </button>
+                  {formik.touched.password && formik.errors.password && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.password}</p>
+                  )}
                 </div>
+
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
+                  />
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                    Remember me
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {loading ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Signing in...
+                    </>
+                  ) : 'Sign in'}
+                </button>
               </form>
             </div>
           </div>
@@ -203,4 +224,5 @@ const SignIn = () => {
     </div>
   );
 };
+
 export default SignIn;

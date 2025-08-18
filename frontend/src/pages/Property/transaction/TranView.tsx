@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// import { tablebody, tablehead } from "../../../constant/BaseUrl";
 import { IoAddCircleOutline } from "react-icons/io5";
-import { tablebody, tablehead } from "../../../constant/BaseUrl";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import { getAllTRansactions1 } from "../../../services/Property/transaction/pTranApis";
@@ -10,6 +10,7 @@ import moment from "moment";
 import EditTransaction from "./EditTransaction";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import DeleteModal from "./DeleteModal";
+import { FiCalendar, FiFilter, FiRefreshCw, FiSearch } from "react-icons/fi";
 
 interface TranData {
   doc_id: number;
@@ -81,215 +82,217 @@ const TranView = () => {
   };
 
   return (
-    <>
-      <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
-        <h1 className="flex justify-center items-center text-2xl font-semibold">
-          Purchase Property Details
-        </h1>
-        <div className="flex justify-end items-end gap-2 py-2">
-          {/* Filter Button */}
-          <div className="flex items-end justify-end">
-            <button
-              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none "
-              onClick={() => {
-                setShowFilter(!showFilter);
-              }}
-            >
-              {showFilter ? "Hide Filter" : "Show Filter"}
-            </button>
-          </div>
-          {/* Add Entry Button */}
-          <div className="flex items-end justify-end">
-            <Link
-              to="/property/transaction/create"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
-            >
-              <IoAddCircleOutline size={18} />
-              Add Entry
-            </Link>
-          </div>
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
+      <div className="max-w-6xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Header Section */}
+        <div className="p-4 md:p-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Purchase Property Details
+          </h1>
         </div>
+
+        {/* Action Buttons */}
+        <div className="flex sm:flex-row justify-between items-start sm:items-center p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 gap-4">
+          {/* Filter Toggle */}
+          <button
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm"
+            onClick={() => setShowFilter(!showFilter)}>
+            <FiFilter className="text-blue-600 dark:text-blue-400" />
+            {showFilter ? "Hide Filter" : "Show Filter"}
+          </button>
+
+          {/* Add Entry Button */}
+          <Link
+            to="/property/transaction/create"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg"
+          >
+            <IoAddCircleOutline size={18} />
+            Add Entry
+          </Link>
+        </div>
+
+        {/* Filter Section */}
         {showFilter && (
-          <div className="sticky right-0 w-full p-4 mb-2 bg-white dark:bg-gray-900 rounded-lg shadow">
-            {/* Row 1: Search, From Date, To Date */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-4">
-              {/* Search */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+          <div className="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              {/* Search Input */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Search
                 </label>
-                <input
-                  type="text"
-                  placeholder="Type your search query here"
-                  value={searchTerm}
-                  onChange={handleSearch}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiSearch className="text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search transactions..."
+                    value={searchTerm}
+                    onChange={handleSearch}
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
 
-              {/* From Date */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+              {/* Date Range */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   From Date
                 </label>
-                <input
-                  type="date"
-                  defaultValue={from}
-                  onChange={(e) => setFrom(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiCalendar className="text-gray-400" />
+                  </div>
+                  <input
+                    type="date"
+                    defaultValue={from}
+                    onChange={(e) => setFrom(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
 
-              {/* To Date */}
-              <div>
-                <label className="text-sm text-gray-700 dark:text-gray-300">
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   To Date
                 </label>
-                <input
-                  type="date"
-                  defaultValue={to}
-                  onChange={(e) => setTo(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiCalendar className="text-gray-400" />
+                  </div>
+                  <input
+                    type="date"
+                    defaultValue={to}
+                    onChange={(e) => setTo(e.target.value)}
+                    className="block w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  />
+                </div>
               </div>
-            </div>
 
-            {/* Row 2: Browse Button and Items Per Page Selector */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              {/* Browse Button */}
-              <button
-                className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-hidden focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none"
-                onClick={browseData}
-              >
-                Browse Data
-              </button>
-
-              {/* Select Items Per Page */}
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Select
-                </span>
+              {/* Rows Selector */}
+              <div className="space-y-1">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Rows per page
+                </label>
                 <select
-                  className="w-[69px] px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="block w-full px-2 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   onChange={(e) => setItemsPerPage(Number(e.target.value))}
                   value={itemsPerPage}
                 >
                   {[5, 10, 25, 50, 100].map((n) => (
                     <option key={n} value={n}>
-                      {n}
+                      Show {n}
                     </option>
                   ))}
                 </select>
-                <span className="text-sm text-gray-700 dark:text-gray-300">Rows</span>
               </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex justify-end">
+              <button
+                onClick={browseData}
+                className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                <FiRefreshCw />
+                Refresh Data
+              </button>
             </div>
           </div>
         )}
-        <div className="flex-grow overflow-auto">
-          <div className="border border-gray-300 rounded-md">
-            <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-                <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+
+        {/* Table Section */}
+        <div className="p-4 md:p-6">
+          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-700">
+                <tr>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Doc. No.
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    File Name
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                {loading ? (
                   <tr>
-                    <th scope="col" className={tablehead}>
-                      Doc. No.
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      date
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      fileName
-                    </th>
-                    <th scope="col" className={tablehead}>
-                      Action
-                    </th>
+                    <td colSpan={4} className="px-6 py-4 text-center">
+                      <div className="flex justify-center items-center space-x-2">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                        <span className="text-gray-600 dark:text-gray-400">Loading transactions...</span>
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {loading ? (
-                    <tr>
-                      <td
-                        colSpan={4}
-                        className="text-center py-4 text-gray-600"
-                      >
-                        Loading...
+                ) : currentItems.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-4 text-center">
+                      <div className="flex flex-col items-center justify-center py-8">
+                        <p className="text-gray-600 dark:text-gray-400 text-lg">No transactions found</p>
+                        <p className="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your filters or add a new entry</p>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  currentItems.map((item: TranData) => (
+                    <tr key={item.doc_id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                        {item.doc_id}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        {moment(item.doc_date).format("DD MMM YYYY")}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                        {item.file_name}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex justify-end space-x-2">
+                          <button
+                            onClick={() => handleEdit(item.doc_id)}
+                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition"
+                          >
+                            <TbEdit className="mr-1" />
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(item.doc_id)}
+                            className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition hidden"
+                          >
+                            <RiDeleteBin5Line className="mr-1" />
+                            Delete
+                          </button>
+                        </div>
                       </td>
                     </tr>
-                  ) : (
-                    <>
-                      {currentItems.length === 0 ? (
-                        <>
-                          <tr>
-                            <td
-                              colSpan={4}
-                              className="text-center py-4 text-gray-600"
-                            >
-                              File Not Found
-                            </td>
-                          </tr>
-                        </>
-                      ) : (
-                        <>
-                          {currentItems.map((item: TranData) => (
-                            <tr key={item.doc_id}>
-                              <td className={tablebody}>{item.doc_id}</td>
-                              <td className={tablebody}>
-                                {moment(item.doc_date).format("DD/MMM/YYYY")}
-                              </td>
-                              <td className={tablebody}>{item.file_name}</td>
-                              <td className={tablebody}>
-                                <div className="flex items-center gap-2">
-                                  <button
-                                    type="button"
-                                    className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-100 text-green-800 hover:bg-green-200 focus:outline-none focus:bg-green-200 disabled:opacity-50 disabled:pointer-events-none dark:text-green-400 dark:bg-green-800/30 dark:hover:bg-green-800/20 dark:focus:bg-green-800/20"
-                                    onClick={() => handleEdit(item.doc_id)}
-                                  >
-                                    <TbEdit size={20} />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    className="px-2 py-2 items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 focus:outline-none focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
-                                    onClick={() => handleDelete(item.doc_id)}
-                                  >
-                                    <RiDeleteBin5Line size={20} />
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                        </>
-                      )}
-                    </>
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  ))
+                )}
+              </tbody>
+            </table>
           </div>
-          <Paginations
-            currentPage={currentPage}
-            itemPerPage={itemsPerPage}
-            data={data}
-            handlePageChange={handlePageChange}
-          />
+
+          {/* Pagination */}
+          <div className="mt-6">
+            <Paginations
+              currentPage={currentPage}
+              itemPerPage={itemsPerPage}
+              data={data}
+              handlePageChange={handlePageChange}
+            />
+          </div>
         </div>
       </div>
-      {showEdit && (
-        <EditTransaction
-          show={showEdit}
-          setShow={setshowEdit}
-          fetchData={browseData}
-          data={selectedTran}
-        />
-      )}
-      {showDelete && (
-        <DeleteModal
-          show={showDelete}
-          setShow={setshowDelete}
-          fetchData={browseData}
-          data={selectedTran}
-        />
-      )}
-    </>
+
+      {/* Modals */}
+      {showEdit && (<EditTransaction show={showEdit} setShow={setshowEdit} fetchData={browseData} data={selectedTran} />)}
+      {showDelete && (<DeleteModal show={showDelete} setShow={setshowDelete} fetchData={browseData} data={selectedTran} />)}
+    </div>
   );
 };
 

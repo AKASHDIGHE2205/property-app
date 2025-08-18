@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { newCatg } from "../../../../services/Stores/master/MasterApis";
+import toast from "react-hot-toast";
 
 interface props {
   show: boolean
@@ -12,9 +13,11 @@ const CreateCatg: FC<props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const body = {
-      name: name
+    if (!name) {
+      toast.error('Please enter category name');
+      return;
     }
+    const body = { name: name }
     try {
       const response = await newCatg(body);
       if (response) {
@@ -26,6 +29,7 @@ const CreateCatg: FC<props> = ({ show, setShow, fetchData }) => {
       console.error("Error submitting form:", error);
     }
   }
+
   return (
     <div
       id="catg-create-modal"

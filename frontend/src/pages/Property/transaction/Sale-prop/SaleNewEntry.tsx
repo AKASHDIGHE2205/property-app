@@ -9,6 +9,7 @@ import { formatDate } from '../../../../helper/DateFormate';
 import { handleSaleProperty } from '../../../../feature/Preperties/ptransaction/PTransactionSlice';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { FiX, FiSave } from 'react-icons/fi';
 
 interface Data {
   doc_id: number;
@@ -32,7 +33,6 @@ interface Data {
 }
 
 const SaleNewEntry = () => {
-
   const [showProp, setShowProp] = useState(false);
   const [data, setData] = useState<Data | null>(null);
   const [inputs, setInputs] = useState({
@@ -131,13 +131,14 @@ const SaleNewEntry = () => {
 
   return (
     <>
-      <div className="relative items-center w-full sm:max-w-8xl my-2 mx-2 shadow-lg">
-        <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-gray-700 justify-center">
+      <div className="relative items-center w-full sm:max-w-6xl shadow-lg">
+        <div className="flex flex-col border rounded-xl p-2 dark:border-gray-700 justify-center">
           <form onSubmit={handleSubmit}>
             <div>
               <div className='border  border-gray-200 dark:border-gray-600 p-2 rounded-lg mb-2'>
-                {/* <h1 className="justify-center items-center flex text-xl font-semibold mb-2">Property Sale Entry</h1> */}
-                {/* 3-Column Input Row */}
+                <h1 className="justify-center items-center flex text-xl font-semibold mb-2">Property Sale Entry</h1>
+                {/* 3-Column Input Row  */}
+
                 <div className="mb-4 grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6">
                   <div className="sm:col-span-4">
                     <label htmlFor="fileName" className="block mb-2 dark:text-white">
@@ -429,24 +430,22 @@ const SaleNewEntry = () => {
               </div>
             </div>
             {/* Submit Cancel Buttons Row */}
-            <div className="flex justify-center items-center gap-2 my-2">
-              <div>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-green-600 hover:bg-green-700 border border-green-700 rounded-lg text-white"
-                >
-                  Submit
-                </button>
-              </div>
-              <div>
-                <button
-                  type="button"
-                  className="px-4 py-2 bg-gray-600 hover:bg-gray-700 border border-gray-700 rounded-lg text-white"
-                  onClick={handleCancel}
-                >
-                  Cancel
-                </button>
-              </div>
+            <div className="mt-6 flex justify-center space-x-4">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              >
+                <FiX className="mr-2" />
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+              >
+                <FiSave className="mr-2" />
+                Submit
+              </button>
             </div>
           </form>
         </div>

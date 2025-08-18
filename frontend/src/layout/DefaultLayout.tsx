@@ -19,7 +19,7 @@ const DefaultLayout = () => {
 
         {/* <!-- Main Content --> */}
         <main className=" bg-gray-50 dark:bg-neutral-900">
-          <div className="p-2 bg-white text-black dark:bg-gray-900 dark:border-neutral-700 dark:text-white overflow-x-auto mx-auto max-w-screen flex justify-center items-center ">
+          <div className="bg-white text-black dark:bg-gray-900 dark:border-neutral-700 dark:text-white overflow-x-auto mx-auto max-w-screen flex justify-center items-center ">
             <Outlet />
           </div>
         </main>

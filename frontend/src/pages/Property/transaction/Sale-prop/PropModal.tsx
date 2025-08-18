@@ -83,7 +83,7 @@ const PropModal: FC<Props> = ({ show, setShow }) => {
               <thead className="sticky top-0 bg-gray-50 dark:bg-gray-900">
                 <tr>
                   <th className="px-2 py-3 text-start text-xs font-medium text-gray-500 uppercase">Code</th>
-                  <th className="px-2 py-3 text-start text-xs font-medium text-gray-500 uppercase">Name</th>
+                  <th className="px-2 py-3 text-start text-xs font-medium text-gray-500 uppercase">Property Name</th>
                   <th className="px-2 py-3 text-end text-xs font-medium text-gray-500 uppercase">Action</th>
                 </tr>
               </thead>

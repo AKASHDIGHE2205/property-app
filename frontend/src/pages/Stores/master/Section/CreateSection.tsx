@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { newSection } from "../../../../services/Stores/master/MasterApis";
 import { IoMdClose } from "react-icons/io";
+import toast from "react-hot-toast";
 
 interface props {
   show: boolean
@@ -12,6 +13,10 @@ const CreateSection: FC<props> = ({ show, setShow, fetchData }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!name) {
+      toast.error('Please enter a name');
+      return;
+    }
     const body = {
       name: name
     }
@@ -37,7 +42,7 @@ const CreateSection: FC<props> = ({ show, setShow, fetchData }) => {
         <div className="w-full max-w-lg bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
           <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
             <h3 id="section-create-modal-label" className="font-bold text-gray-800 dark:text-white">
-              Add Location
+              Add Section
             </h3>
             <button
               type="button"

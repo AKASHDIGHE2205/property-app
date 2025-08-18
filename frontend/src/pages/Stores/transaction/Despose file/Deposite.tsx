@@ -45,61 +45,82 @@ const Despose = () => {
   }
 
   return (
-    <>
-      <div className="relative items-center w-full sm:max-w-2xl my-2 mx-2 border rounded-xl dark:border-gray-700 h-screen">
-        <div className="flex flex-col p-4 sm:p-6 lg:p-5  justify-center">
-          <h1 className="mb-4 text-2xl font-semibold flex justify-center">Desposed Files</h1>
-          <div className="sticky right-0 ">
-            <form onSubmit={handleSubmit}>
-              <div className="mb-4">
-                <label htmlFor="member" className="block mb-2 dark:text-white">Year <span className="text-red-600 font-bold">*</span></label>
-                <div className="relative">
-                  <div className="flex rounded-lg shadow-sm">
-                    <input type="text"
-                      value={year}
-                      className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
-                      placeholder="Enter Year..."
-                      onChange={(e) => setYear(e.target.value)} />
-                  </div>
-                </div>
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
+      <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Header Section */}
+        <div className="p-4 md:p-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Disposed Files
+          </h1>
+        </div>
+        <hr />
+        {/* Form Section */}
+        <div className="p-4 sm:p-6 lg:p-5">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Year Input */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Year <span className="text-red-600 font-bold">*</span>
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={year}
+                  className="block w-full px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  placeholder="Enter Year (YYYY-YY)..."
+                  onChange={(e) => setYear(e.target.value)}
+                  required
+                />
               </div>
-              <div className="mb-4">
-                <label htmlFor="member" className="block mb-2 dark:text-white">Firm <span className="text-red-600 font-bold">*</span></label>
-                <div className="relative">
-                  <div className="flex rounded-lg shadow-sm">
-                    <input
-                      type="text"
-                      id="firm"
-                      name="firm"
-                      value={firmName}
-                      className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
-                      placeholder="Select firm" readOnly />
-                    <button type="button" className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
-                      onClick={handleShow}>
-                      ☰
-                    </button>
-                  </div>
-                </div>
+            </div>
+
+            {/* Firm Input */}
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                Firm <span className="text-red-600 font-bold">*</span>
+              </label>
+              <div className="flex rounded-lg shadow-sm">
+                <input
+                  type="text"
+                  id="firm"
+                  name="firm"
+                  value={firmName}
+                  className="block w-full px-3 py-3 rounded-l-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  placeholder="Select firm..."
+                  readOnly
+                />
+                <button
+                  type="button"
+                  className="px-4 inline-flex items-center justify-center rounded-r-lg border border-sky-400  dark:bg-gray-800 text-sky-600 dark:text-sky-400  dark:hover:bg-gray-700 transition-colors font-bold"
+                  onClick={handleShow}
+                >
+                  ☰
+                </button>
               </div>
-              <div className="mb-4 flex justify-center gap-x-4">
-                <div>
-                  <button type="submit" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-green-600 text-white hover:bg-green-700 focus:outline-hidden focus:bg-green-700 disabled:opacity-50 disabled:pointer-events-none">Submit</button>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none"
-                    onClick={handleCancel}>
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex justify-center gap-4 pt-4">
+              <button
+                type="submit"
+                className="px-6 py-3 inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700 transition-all shadow-md hover:shadow-lg font-medium"
+              >
+                Submit
+              </button>
+              <button
+                type="button"
+                className="px-6 py-3 inline-flex items-center justify-center rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-colors shadow-sm hover:shadow-md font-medium"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+
       <FirmMidal show={showFirm} setShow={setShowFirm} />
-    </>
+    </div>
   )
 }
 

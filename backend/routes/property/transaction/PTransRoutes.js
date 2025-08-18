@@ -31,7 +31,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get('/getActiveConsignor', (req, res) => {
-  const sql = `SELECT * FROM st_consignor WHERE status = 'A'`;
+  const sql = `SELECT * 
+               FROM st_consignor 
+               WHERE status = 'A'
+               ORDER BY name ASC`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -41,7 +44,10 @@ router.get('/getActiveConsignor', (req, res) => {
   });
 });
 router.get('/getActiveConsignee', (req, res) => {
-  const sql = `SELECT * FROM st_consignee WHERE status = 'A'`;
+  const sql = `SELECT * 
+               FROM st_consignee 
+               WHERE status = 'A'
+               ORDER BY name ASC`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -51,7 +57,10 @@ router.get('/getActiveConsignee', (req, res) => {
   });
 });
 router.get('/getActivePLocation', (req, res) => {
-  const sql = `SELECT * FROM st_ploc WHERE status = 'A'`;
+  const sql = `SELECT * 
+               FROM st_ploc 
+               WHERE status = 'A'
+               ORDER BY name ASC`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -61,7 +70,10 @@ router.get('/getActivePLocation', (req, res) => {
   });
 });
 router.get('/getActiveDocument', (req, res) => {
-  const sql = `SELECT * FROM st_doc WHERE status = 'A'`;
+  const sql = `SELECT * 
+               FROM st_doc 
+               WHERE status = 'A'
+               ORDER BY name ASC`;
 
   db.query(sql, (err, results) => {
     if (err) {
@@ -531,7 +543,7 @@ router.put("/updatePTran", async (req, res) => {
       await query(survSql, [item.consignee, item.surveyNo, item.area, item.sqmtr, doc_id, doc_date]);
     }
 
-    res.status(200).json({ message: "All records updated successfully!" });
+    res.status(200).json({ message: "Property Details updated successfully!" });
 
   } catch (err) {
     console.error("Update failed:", err);
@@ -638,7 +650,7 @@ router.post("/getSaleProperty", (req, res) => {
   });
 });
 
-router.post("/newSaleProperty", (req, res) => {
+router.post("/newSaleProperty_old", (req, res) => {
   const { doc_id, doc_date, buyer_name, sale_date, sale_value, sale_area, sale_survey, remark } = req.body;
 
   if (!doc_id || !doc_date || !buyer_name || !sale_date || !sale_value || !sale_area || !sale_survey) {
@@ -662,8 +674,10 @@ router.post("/newSaleProperty", (req, res) => {
 
     const currentBalance = balanceResults[0].balance;
 
+
+
     if (sale_area > currentBalance) {
-      return res.status(400).json({ message: `Requested area exceeds the available sale area.` });
+      return res.status(400).json({ message: `Requested area exceeds the available sale area is ${currentBalance}. & sale area is ${sale_area}` });
     }
 
 
@@ -700,6 +714,74 @@ router.post("/newSaleProperty", (req, res) => {
             }
 
             res.status(201).json({ message: "Sale property entry successfully" });
+          }
+        );
+      }
+    );
+  });
+});
+
+router.post("/newSaleProperty", (req, res) => {
+  const { doc_id, doc_date, buyer_name, sale_date, sale_value, sale_area, sale_survey, remark } = req.body;
+
+  if (!doc_id || !doc_date || !buyer_name || !sale_date || !sale_value || !sale_area || !sale_survey) {
+    return res.status(400).json({ message: "All required fields must be provided" });
+  }
+
+  const balanceQuery = `
+    SELECT balance FROM doc_survey
+    WHERE doc_id = ? AND doc_date = ? AND sur_no = ?
+  `;
+
+  db.query(balanceQuery, [doc_id, doc_date, sale_survey], (balanceErr, balanceResults) => {
+    if (balanceErr) {
+      console.error("Balance Query Error:", balanceErr);
+      return res.status(500).json({ message: "Failed to retrieve balance" });
+    }
+
+    if (balanceResults.length === 0) {
+      return res.status(404).json({ message: "No property record found for the given survey number." });
+    }
+
+    const currentBalance = balanceResults[0].balance;
+
+    if (parseFloat(sale_area) > parseFloat(currentBalance)) {
+      return res.status(400).json({ message: `Requested area (${sale_area}) exceeds the available balance area (${currentBalance})` });
+    }
+
+    // Step 2: Insert into saled_prop
+    const insertSql = `
+      INSERT INTO saled_prop 
+      (doc_no, date, sale_date, buyer_name, sale_value, sale_area, sur_no, remark)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+      insertSql,
+      [doc_id, doc_date, sale_date, buyer_name, sale_value, sale_area, sale_survey, remark],
+      (insertErr, insertResults) => {
+        if (insertErr) {
+          console.error("Insert Error:", insertErr);
+          return res.status(500).json({ message: "Error inserting sale property" });
+        }
+
+        // Step 3: Update balance
+        const updateSql = `
+          UPDATE doc_survey
+          SET balance = balance - ?
+          WHERE doc_id = ? AND doc_date = ? AND sur_no = ?
+        `;
+
+        db.query(
+          updateSql,
+          [sale_area, doc_id, doc_date, sale_survey],
+          (updateErr, updateResults) => {
+            if (updateErr) {
+              console.error("Balance Update Error:", updateErr);
+              return res.status(500).json({ message: "Sale inserted, but failed to update balance" });
+            }
+
+            res.status(201).json({ message: "Sale property entry successfully created" });
           }
         );
       }

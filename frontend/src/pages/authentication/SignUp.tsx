@@ -12,7 +12,6 @@ const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
-
   const validationSchema = yup.object({
     fname: yup.string()
       .required('First name is required')
@@ -28,7 +27,7 @@ const SignUp = () => {
       .matches(/^[0-9]{10}$/, 'Must be exactly 10 digits'),
     password: yup.string()
       .required('Password is required')
-      .min(8, 'Password must be at least 6 characters')
+      .min(8, 'Password must be at least 8 characters')
       .matches(
         /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).+$/,
         'Password must contain at least one letter, one number, and one special character'
@@ -79,256 +78,300 @@ const SignUp = () => {
   };
 
   return (
-    <div className="border m-2 rounded-lg dark:border-gray-600">
-      <div className="relative bg-linear-to-bl from-blue-100 via-transparent dark:from-blue-950 dark:via-transparent">
-        <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-          <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
-            <div data-aos="fade-left" >
-              <p className="inline-block text-sm font-medium bg-clip-text bg-gradient-to-l from-blue-600 to-violet-500 dark:from-blue-400 dark:to-violet-400">
-                Welcome to the Store App
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
+          {/* Left Side - Branding and Info */}
+          <div className="hidden md:flex flex-col justify-center p-12 bg-gradient-to-br from-blue-600 to-indigo-800 text-white relative">
+            <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diagonal-striped-brick.png')]"></div>
+            <div className="relative z-10">
+              <h2 className="text-4xl font-bold mb-6">Welcome to StoreApp</h2>
+              <p className="text-xl mb-8 opacity-90">
+                Join our community and enjoy seamless document, file, and book management.
               </p>
 
-              <div className="mt-4 md:mb-12 max-w-2xl">
-                <h1 className="mb-4 font-semibold text-gray-800 text-4xl lg:text-5xl dark:text-gray-200">
-                  Join Us Today!
-                </h1>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Sign up now and streamline your document, file, and book management experience!
-                </p>
-              </div>
-
-              <blockquote className="hidden md:block relative max-w-sm">
-                <svg className="absolute top-0 start-0 transform -translate-x-6 -translate-y-8 size-16 text-gray-200 dark:text-gray-800" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M7.39762 10.3C7.39762 11.0733 7.14888 11.7 6.6514 12.18C6.15392 12.6333 5.52552 12.86 4.76621 12.86C3.84979 12.86 3.09047 12.5533 2.48825 11.94C1.91222 11.3266 1.62421 10.4467 1.62421 9.29999C1.62421 8.07332 1.96459 6.87332 2.64535 5.69999C3.35231 4.49999 4.33418 3.55332 5.59098 2.85999L6.4943 4.25999C5.81354 4.73999 5.26369 5.27332 4.84476 5.85999C4.45201 6.44666 4.19017 7.12666 4.05926 7.89999C4.29491 7.79332 4.56983 7.73999 4.88403 7.73999C5.61716 7.73999 6.21938 7.97999 6.69067 8.45999C7.16197 8.93999 7.39762 9.55333 7.39762 10.3ZM14.6242 10.3C14.6242 11.0733 14.3755 11.7 13.878 12.18C13.3805 12.6333 12.7521 12.86 11.9928 12.86C11.0764 12.86 10.3171 12.5533 9.71484 11.94C9.13881 11.3266 8.85079 10.4467 8.85079 9.29999C8.85079 8.07332 9.19117 6.87332 9.87194 5.69999C10.5789 4.49999 11.5608 3.55332 12.8176 2.85999L13.7209 4.25999C13.0401 4.73999 12.4903 5.27332 12.0713 5.85999C11.6786 6.44666 11.4168 7.12666 11.2858 7.89999C11.5215 7.79332 11.7964 7.73999 12.1106 7.73999C12.8437 7.73999 13.446 7.97999 13.9173 8.45999C14.3886 8.93999 14.6242 9.55333 14.6242 10.3Z" fill="currentColor" />
-                </svg>
-
-                <div className="relative z-10">
-                  <p className="text-xl italic text-gray-800 dark:text-white">
-                    Amazing people to work with. Very fast and professional partner.
-                  </p>
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-500 rounded-full p-2">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <p className="text-lg">Secure cloud storage</p>
                 </div>
 
-                <footer className="mt-3">
-                  <div className="flex items-center gap-x-4">
-                    <div className="shrink-0">
-                      <img className="size-8 rounded-full" src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80" alt="Avatar" />
-                    </div>
-                    <div className="grow">
-                      <div className="font-semibold text-gray-800 dark:text-gray-200">Josh Grazioso</div>
-                      <div className="text-xs text-gray-500 dark:text-gray-500">Director Payments & Risk | Airbnb</div>
-                    </div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-500 rounded-full p-2">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
                   </div>
-                </footer>
-              </blockquote>
+                  <p className="text-lg">Easy file organization</p>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-500 rounded-full p-2">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                  <p className="text-lg">Collaboration tools</p>
+                </div>
+              </div>
+
+              <div className="mt-12 bg-white/10 backdrop-blur-sm p-6 rounded-xl">
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <img hidden className="h-12 w-12 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial" />
+                  </div>
+                  <div className="ml-4">
+                    <p className="text-sm italic">"This app has completely transformed how our team manages documents. Highly recommended!"</p>
+                    <p className="mt-1 font-medium">Akash Dighe</p>
+                    <p className="text-xs opacity-80">Software Developer</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Registration Form */}
+          <div className="p-8 sm:p-12">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+                Create your account
+              </h1>
+              <p className="mt-2 text-gray-600 dark:text-gray-400">
+                Already have an account?{' '}
+                <Link
+                  to="/sign-in"
+                  className="font-medium hover:underline text-[#0019f8] hover:text-[#0600c0] dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                >
+                  Sign in here
+                </Link>
+              </p>
             </div>
 
-            <div data-aos="fade-right">
-              <form onSubmit={formik.handleSubmit}>
-                <div className="lg:max-w-lg lg:mx-auto lg:me-0 ms-auto">
-                  <div className="p-4 sm:p-7 flex flex-col bg-white rounded-2xl shadow-lg dark:bg-gray-900">
-                    <div className="text-center">
-                      <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Sign up here</h1>
-                      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Already have an account?
-                        <Link className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500 ml-1" to="/sign-in">
-                          Sign in here
-                        </Link>
-                      </p>
-                    </div>
+            <div className="mt-8">
+              <button
+                type="button"
+                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
+                disabled
+              >
+                <svg className="w-5 h-5" viewBox="0 0 46 47" fill="none">
+                  <path
+                    d="M46 24.0287C46 22.09 45.8533 20.68 45.5013 19.2112H23.4694V27.9356H36.4069C36.1429 30.1094 34.7347 33.37 31.5957 35.5731L31.5663 35.8669L38.5191 41.2719L38.9885 41.3306C43.4477 37.2181 46 31.1669 46 24.0287Z"
+                    fill="#4285F4"
+                  />
+                  <path
+                    d="M23.4694 47C29.8061 47 35.1161 44.9144 39.0179 41.3012L31.625 35.5437C29.6301 36.9244 26.9898 37.8937 23.4987 37.8937C17.2793 37.8937 12.0281 33.7812 10.1505 28.1412L9.88649 28.1706L2.61097 33.7812L2.52296 34.0456C6.36608 41.7125 14.287 47 23.4694 47Z"
+                    fill="#34A853"
+                  />
+                  <path
+                    d="M10.1212 28.1413C9.62245 26.6725 9.32908 25.1156 9.32908 23.5C9.32908 21.8844 9.62245 20.3275 10.0918 18.8588V18.5356L2.75765 12.8369L2.52296 12.9544C0.909439 16.1269 0 19.7106 0 23.5C0 27.2894 0.909439 30.8731 2.49362 34.0456L10.1212 28.1413Z"
+                    fill="#FBBC05"
+                  />
+                  <path
+                    d="M23.4694 9.07688C27.8699 9.07688 30.8622 10.9863 32.5344 12.5725L39.1645 6.11C35.0867 2.32063 29.8061 0 23.4694 0C14.287 0 6.36607 5.2875 2.49362 12.9544L10.0918 18.8588C11.9987 13.1894 17.25 9.07688 23.4694 9.07688Z"
+                    fill="#EB4335"
+                  />
+                </svg>
+                <span>Sign up with Google</span>
+              </button>
 
-                    <div className="mt-5">
-                      <button type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-300 bg-white text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:bg-gray-800">
-                        {/* Google icon SVG */}
-                        Sign up with Google
-                      </button>
+              <div className="my-6 flex items-center">
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                <span className="mx-4 text-sm text-gray-500 dark:text-gray-400">OR</span>
+                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+              </div>
 
-                      <div className="py-3 flex items-center text-xs text-gray-400 uppercase before:flex-1 before:border-t before:border-gray-300 before:me-6 after:flex-1 after:border-t after:border-gray-300 after:ms-6 dark:text-gray-500 dark:before:border-gray-700 dark:after:border-gray-700">Or</div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        {/* First Name */}
-                        <div>
-                          <div className="relative">
-                            <label htmlFor="fname" className="block text-sm mb-2 dark:text-white">
-                              First name <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              id="fname"
-                              name="fname"
-                              value={formik.values.fname}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
+              <form onSubmit={formik.handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  {/* First Name */}
+                  <div>
+                    <label htmlFor="fname" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      First name
+                    </label>
+                    <input
+                      type="text"
+                      id="fname"
+                      name="fname"
+                      value={formik.values.fname}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
                                  ${formik.touched.fname && formik.errors.fname ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                            />
-                            {formik.touched.fname && formik.errors.fname && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.fname}</p>
-                            )}
-                          </div>
-                        </div>
+                      placeholder="First name"
+                    />
+                    {formik.touched.fname && formik.errors.fname && (
+                      <p className="mt-1 text-sm text-red-600">{formik.errors.fname}</p>
+                    )}
+                  </div>
 
-                        {/* Last Name */}
-                        <div>
-                          <div className="relative">
-                            <label htmlFor="lname" className="block text-sm mb-2 dark:text-white">
-                              Last name <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              id="lname"
-                              name="lname"
-                              value={formik.values.lname}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
+                  {/* Last Name */}
+                  <div>
+                    <label htmlFor="lname" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      Last name
+                    </label>
+                    <input
+                      type="text"
+                      id="lname"
+                      name="lname"
+                      value={formik.values.lname}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
                                 border ${formik.touched.lname && formik.errors.lname ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                            />
-                            {formik.touched.lname && formik.errors.lname && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.lname}</p>
-                            )}
-                          </div>
-                        </div>
+                      placeholder="Last name"
+                    />
+                    {formik.touched.lname && formik.errors.lname && (
+                      <p className="mt-1 text-sm text-red-600">{formik.errors.lname}</p>
+                    )}
+                  </div>
+                </div>
 
-                        {/* Email */}
-                        <div>
-                          <div className="relative">
-                            <label htmlFor="email" className="block text-sm mb-2 dark:text-white">
-                              Email <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <input
-                              type="email"
-                              id="email"
-                              name="email"
-                              value={formik.values.email}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
+                {/* Email */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
                                 border ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                            />
-                            {formik.touched.email && formik.errors.email && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.email}</p>
-                            )}
-                          </div>
-                        </div>
+                    placeholder="Email address"
+                  />
+                  {formik.touched.email && formik.errors.email && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.email}</p>
+                  )}
+                </div>
 
-                        {/* Mobile */}
-                        <div>
-                          <div className="relative">
-                            <label htmlFor="mobile" className="block text-sm mb-2 dark:text-white">
-                              Mobile number <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <input
-                              type="text"
-                              id="mobile"
-                              name="mobile"
-                              value={formik.values.mobile}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
+                {/* Mobile */}
+                <div>
+                  <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Mobile number
+                  </label>
+                  <input
+                    type="text"
+                    id="mobile"
+                    name="mobile"
+                    value={formik.values.mobile}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
                                 border ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                            />
-                            {formik.touched.mobile && formik.errors.mobile && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.mobile}</p>
-                            )}
-                          </div>
-                        </div>
+                    placeholder="Mobile number"
+                  />
+                  {formik.touched.mobile && formik.errors.mobile && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.mobile}</p>
+                  )}
+                </div>
 
-                        {/* Password */}
-                        <div className="relative col-span-full">
-                          <div className="relative">
-                            <label htmlFor="password" className="block text-sm mb-2 dark:text-white">
-                              Password <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <div className="relative">
-                              <input
-                                type={showPass ? "text" : "password"}
-                                id="password"
-                                name="password"
-                                value={formik.values.password}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                autoComplete="off"
-                                className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
+                {/* Password */}
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      type={showPass ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
                                   border ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                   focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                   dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                              />
-                              <button
-                                type="button"
-                                onClick={handleShowPass}
-                                className="absolute inset-y-0 right-3 flex items-center text-blue-600"
-                              >
-                                {showPass ? <IoEyeOff size={20} /> : <IoEye size={20} />}
-                              </button>
-                            </div>
-                            {formik.touched.password && formik.errors.password && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.password}</p>
-                            )}
-                          </div>
-                        </div>
+                      placeholder="••••••••"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleShowPass}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                    >
+                      {showPass ? <IoEyeOff size={20} color="#0800ff" /> : <IoEye size={20} color="#0800ff" />}
+                    </button>
+                  </div>
+                  {formik.touched.password && formik.errors.password && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.password}</p>
+                  )}
+                </div>
 
-                        {/* Confirm Password */}
-                        <div className="col-span-full">
-                          <div className="relative">
-                            <label htmlFor="cpassword" className="block text-sm mb-2 dark:text-white">
-                              Confirm password <span className="text-lg text-red-600">*</span>
-                            </label>
-                            <input
-                              type={showPass ? "text" : "password"}
-                              id="cpassword"
-                              name="cpassword"
-                              value={formik.values.cpassword}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                              autoComplete="off"
-                              className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
+                {/* Confirm Password */}
+                <div>
+                  <label htmlFor="cpassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    Confirm Password
+                  </label>
+                  <input
+                    type={showPass ? "text" : "password"}
+                    id="cpassword"
+                    name="cpassword"
+                    value={formik.values.cpassword}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
                                  ${formik.touched.cpassword && formik.errors.cpassword ?
-                                  'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                        'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
-                            />
-                            {formik.touched.cpassword && formik.errors.cpassword && (
-                              <p className="mt-1 text-xs text-red-600">{formik.errors.cpassword}</p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
+                    placeholder="••••••••"
+                  />
+                  {formik.touched.cpassword && formik.errors.cpassword && (
+                    <p className="mt-1 text-sm text-red-600">{formik.errors.cpassword}</p>
+                  )}
+                </div>
 
-                      <div className="mt-5 flex items-center">
-                        <div className="flex">
-                          <input
-                            id="terms"
-                            name="terms"
-                            type="checkbox"
-                            className="shrink-0 mt-0.5 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                          />
-                        </div>
-                        <div className="ms-3">
-                          <label htmlFor="terms" className="text-sm dark:text-white">
-                            I accept the <a className="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500" href="#">Terms and Conditions</a>
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="mt-5">
-                        <button
-                          type="submit"
-                          className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                          disabled={loading}
-                        >
-                          {loading ? 'Registering...' : 'Register'}
-                        </button>
-                      </div>
-                    </div>
+                {/* Terms and Conditions */}
+                <div className="flex items-start">
+                  <div className="flex items-center h-5">
+                    <input
+                      id="terms"
+                      name="terms"
+                      type="checkbox"
+                      className="shrink-0 mt-0.5 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                    />
                   </div>
+                  <div className="ml-3 text-sm">
+                    <label htmlFor="terms" className="font-medium text-gray-700 dark:text-gray-300">
+                      I agree to the{' '}
+                      <a href="#" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+                        Terms and Conditions
+                      </a>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className={`w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Creating account...
+                      </>
+                    ) : 'Create account'}
+                  </button>
                 </div>
               </form>
             </div>
@@ -336,7 +379,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;

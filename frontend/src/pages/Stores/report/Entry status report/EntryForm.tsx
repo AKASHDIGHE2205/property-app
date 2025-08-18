@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useState } from "react";
-import { tablebody, tablehead } from "../../../../constant/BaseUrl";
 import { getEntryStatus } from "../../../../services/Stores/report/reportApis";
+import { FiSearch, FiFile, FiDownload } from "react-icons/fi";
 
 
 const EntryForm = () => {
@@ -70,81 +70,94 @@ const EntryForm = () => {
   };
 
   return (
-    <div className="h-screen w-full m-3 border p-2 rounded-lg" >
-      <div className="flex justify-between items-center my-2">
-        <div>
-          <p>Record Entry Status</p>
-        </div>
-        <div >
-          <p className="text-sm">Report on: {formattedDate}</p>
+    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
+      <div className="max-w-7xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
+        {/* Header Section */}
+        <div className="p-6 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">Record Entry Status</h2>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Report generated on: {formattedDate}</p>
+          </div>
 
+          {/* Search Input */}
+          <div className="w-full sm:w-64">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiSearch className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                className="pl-10 pr-4 py-2 block w-full rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:text-gray-200"
+                placeholder="Search records..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="sticky right-0">
-        <div className="max-w-sm space-y-3 my-2">
-          <input
-            type="text"
-            className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100"
-            placeholder="Type your search query here"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="flex-grow overflow-auto">
-        <div className="border border-gray-300 rounded-md">
-          <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-              <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+
+        {/* Table Section */}
+        <div className="p-6">
+          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-100 dark:bg-gray-700">
                 <tr>
-                  <th scope="col" className={tablehead}>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                     Name
                   </th>
-                  <th scope="col" className={tablehead}>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
                     Count
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {loading ? (
                   <tr>
-                    <td colSpan={4} className="text-center py-4 text-gray-600">Loading...</td>
+                    <td colSpan={2} className="px-6 py-4 text-center">
+                      <div className="flex justify-center items-center space-x-2">
+                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+                        <span className="text-gray-600 dark:text-gray-400">Loading record status...</span>
+                      </div>
+                    </td>
+                  </tr>
+                ) : currentItems.length === 0 ? (
+                  <tr>
+                    <td colSpan={2} className="px-6 py-4 text-center">
+                      <div className="flex flex-col items-center justify-center py-8">
+                        <FiFile className="text-gray-400 text-4xl mb-2" />
+                        <p className="text-gray-600 dark:text-gray-400 text-lg">No records found</p>
+                        <p className="text-gray-500 dark:text-gray-500 text-sm">Try adjusting your search query</p>
+                      </div>
+                    </td>
                   </tr>
                 ) : (
-                  <>
-                    {currentItems.length === 0 ?
-                      (<>
-                        <tr>
-                          <td colSpan={4} className="text-center py-4 text-gray-600">File Not Found</td>
-                        </tr>
-                      </>) :
-                      (<>
-                        {currentItems.map((item: any) => (
-                          <tr key={item.firm_code} className={item.firm_name === 'Total' ? 'text-lg font-bold' : ''}>
-                            <td className={tablebody}>{item.firm_name}</td>
-                            <td className={tablebody}>{item.record_count}</td>
-                          </tr>
-                        ))}
-                      </>
-                      )}
-                  </>
+                  currentItems.map((item: any) => (
+                    <tr key={item.firm_code} className={`hover:bg-gray-50 dark:hover:bg-gray-700/50 ${item.firm_name === 'Total' ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
+                      <td className={`px-6 py-4 whitespace-nowrap ${item.firm_name === 'Total' ? 'font-bold text-lg' : 'text-sm'}`}>
+                        {item.firm_name}
+                      </td>
+                      <td className={`px-6 py-4 whitespace-nowrap ${item.firm_name === 'Total' ? 'font-bold text-lg' : 'text-sm'}`}>
+                        {item.record_count}
+                      </td>
+                    </tr>
+                  ))
                 )}
               </tbody>
             </table>
           </div>
         </div>
-      </div>
-      <div>
-      </div>
-      <div className="flex justify-end my-2 mx-2">
-        <button
-          type="button"
-          className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 focus:outline-hidden disabled:opacity-50 sabled:pointer-events-none"
-          onClick={generateCSV}
-        >
-          Download CSV
-        </button>
 
+        {/* Action Section */}
+        <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end">
+          <button
+            type="button"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 transition-all shadow-md hover:shadow-lg"
+            onClick={generateCSV}
+          >
+            <FiDownload className="h-4 w-4" />
+            Download CSV
+          </button>
+        </div>
       </div>
     </div>
   )

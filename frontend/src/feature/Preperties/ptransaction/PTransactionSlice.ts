@@ -11,6 +11,7 @@ const initialState = {
   propDate: "",
   propName: "",
 };
+
 export const PTransactionSlice = createSlice({
   name: "PTransaction",
   initialState,
