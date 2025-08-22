@@ -2,7 +2,6 @@ import { FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import Logo from '../assets/malpani3.png';
 import CryptoJS from "crypto-js";
-import { TfiAlignRight } from "react-icons/tfi";
 import { FaRegUser } from "react-icons/fa";
 
 const Header = () => {
@@ -35,12 +34,13 @@ const Header = () => {
     <>
       {/* <!-- ========== HEADER ========== --> */}
       <header className="sticky top-0 left-0 right-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-[48] w-full
-                       bg-white border-b text-sm py-2.5 lg:ps-[260px] dark:bg-gray-900 dark:border-gray-700">
+                       bg-white border-b text-sm py-2.5 lg:ps-[260px] dark:bg-slate-900 dark:border-slate-700">
         <nav className="px-2 sm:px- flex basis-full items-center w-full mx-auto">
           <div className="me-5 lg:me-0 lg:hidden">
             {/* <!-- Logo --> */}
             <Link
-              className="flex-none text-black rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
+
+              className="hidden flex-none text-black rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
               to="/"
             >
               <div className="flex -mt-1 items-center gap-x-1">
@@ -48,6 +48,19 @@ const Header = () => {
               </div>
             </Link>
             {/* <!-- End Logo --> */}
+            <button
+              type="button"
+              className="size-10 flex justify-center items-center rounded-lg md:hidden border border-slate-200 text-slate-600 hover:text-slate-800 hover:bg-slate-100 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none dark:border-slate-700 dark:text-slate-300 dark:hover:text-slate-100 dark:hover:bg-slate-800 dark:focus:ring-slate-600 dark:focus:ring-offset-slate-900"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="hs-application-sidebar"
+              aria-label="Toggle navigation"
+              data-hs-overlay="#hs-application-sidebar"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+              </svg>
+            </button>
           </div>
 
           <div className="w-full flex items-center justify-end ms-auto md:justify-between gap-x-1 md:gap-x-3 ">
@@ -56,7 +69,7 @@ const Header = () => {
               <div className="relative hidden">
                 <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
                   <svg
-                    className="shrink-0 size-4 text-gray-400 dark:text-white/60"
+                    className="shrink-0 size-4 text-slate-400 dark:text-white/60"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -74,12 +87,12 @@ const Header = () => {
                 <input
                   type="text"
                   readOnly
-                  className="py-2 ps-10 pe-16 block w-full bg-slate-100 border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder:text-gray-400 dark:focus:ring-gray-600"
+                  className="py-2 ps-10 pe-16 block w-full bg-slate-100 border-slate-200 rounded-lg text-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder:text-slate-400 dark:focus:ring-slate-600"
                   placeholder="Search"
                 />
-                <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-gray-400">
+                <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none z-20 pe-3 text-slate-400">
                   <svg
-                    className="shrink-0 size-3 text-gray-400 dark:text-white/60"
+                    className="shrink-0 size-3 text-slate-400 dark:text-white/60"
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
                     height="24"
@@ -94,7 +107,7 @@ const Header = () => {
                   </svg>
                   <span className="mx-1">
                     <svg
-                      className="shrink-0 size-3 text-gray-400 dark:text-white/60"
+                      className="shrink-0 size-3 text-slate-400 dark:text-white/60"
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -119,7 +132,7 @@ const Header = () => {
 
               <button
                 type="button"
-                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-slate-800 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-slate-700 dark:focus:bg-slate-700"
               >
                 <svg
                   className="shrink-0 size-4"
@@ -141,7 +154,7 @@ const Header = () => {
 
               <button
                 type="button"
-                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                className="size-[38px] relative inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-slate-800 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-slate-700 dark:focus:bg-slate-700"
               >
                 <svg
                   className="shrink-0 size-4"
@@ -160,14 +173,14 @@ const Header = () => {
                 <span className="sr-only">Activity</span>
               </button>
 
-              <button type="button" className="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-gray-800 rounded-full bg-gray-100 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-gray-200 dark:hover:bg-gray-900 dark:focus:bg-gray-900" data-hs-theme-click-value="dark">
+              <button type="button" className="hs-dark-mode-active:hidden block hs-dark-mode font-medium text-slate-800 rounded-full bg-slate-100 hover:bg-slate-200 focus:outline-none focus:bg-slate-200 dark:text-slate-200 dark:hover:bg-slate-900 dark:focus:bg-slate-900" data-hs-theme-click-value="dark">
                 <span className="group inline-flex shrink-0 justify-center items-center size-9">
                   <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                   </svg>
                 </span>
               </button>
-              <button type="button" className="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-gray-800 rounded-full hover:bg-gray-200 focus:outline-none focus:bg-gray-200 dark:text-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:bg-gray-900" data-hs-theme-click-value="light">
+              <button type="button" className="hs-dark-mode-active:block hidden hs-dark-mode font-medium text-slate-800 rounded-full hover:bg-slate-200 focus:outline-none focus:bg-slate-200 dark:text-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:focus:bg-slate-900" data-hs-theme-click-value="light">
                 <span className="group inline-flex shrink-0 justify-center items-center size-9">
                   <svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="4"></circle>
@@ -188,7 +201,7 @@ const Header = () => {
                 <button
                   id="hs-dropdown-account"
                   type="button"
-                  className="inline-flex justify-center items-center size-9 rounded-full border border-transparent text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:focus:ring-gray-700 transition-colors"
+                  className="inline-flex justify-center items-center size-9 rounded-full border border-transparent text-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:focus:ring-slate-700 transition-colors"
                   aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                   <div className="shrink-0 flex justify-center items-center size-9 bg-gradient-to-br from-blue-400 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white rounded-full transition-all">
                     {user ? (
@@ -202,7 +215,7 @@ const Header = () => {
                 </button>
 
                 <div
-                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-lg rounded-lg mt-2 dark:bg-gray-800 dark:border dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700 before:absolute before:-top-2 before:end-4 before:w-4 before:h-4 before:bg-white before:border before:border-gray-200 before:transform before:rotate-45 before:z-0 dark:before:bg-gray-800 dark:before:border-gray-700"
+                  className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-lg rounded-lg mt-2 dark:bg-slate-800 dark:border dark:border-slate-700 divide-y divide-slate-100 dark:divide-slate-700 before:absolute before:-top-2 before:end-4 before:w-4 before:h-4 before:bg-white before:border before:border-slate-200 before:transform before:rotate-45 before:z-0 dark:before:bg-slate-800 dark:before:border-slate-700"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="hs-dropdown-account"
@@ -220,7 +233,7 @@ const Header = () => {
                     {/* logout */}
                     <Link
                       to="/log-out"
-                      className="flex items-center gap-x-3.5 py-2 px-3 font-semibold rounded-lg text-red-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-800 dark:hover:text-red-500 dark:focus:bg-gray-700 dark:focus:text-gray-300">
+                      className="flex items-center gap-x-3.5 py-2 px-3 font-semibold rounded-lg text-red-800 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 dark:text-red-400 dark:hover:bg-slate-800 dark:hover:text-red-500 dark:focus:bg-slate-700 dark:focus:text-slate-300">
                       <FiLogOut className="text-lg" />Logout
                     </Link>
                   </div>
@@ -231,30 +244,6 @@ const Header = () => {
           </div>
         </nav>
       </header>
-
-      {/* <!-- Breadcrumb --> */}
-      <div className="sticky top-0 inset-x-0 z-20 bg-white border-y px-4 sm:px-6 lg:px-8 lg:hidden dark:bg-gray-900 dark:border-gray-700">
-        <div className="flex items-center py-2">
-          {/* <!-- Navigation Toggle --> */}
-          <button
-            type="button"
-            className="size-8 flex justify-center items-center gap-x-2 border border-gray-200 text-gray-800 hover:text-gray-500 rounded-lg focus:outline-none focus:text-gray-500 disabled:opacity-50 disabled:pointer-events-none dark:border-gray-700 dark:text-gray-200 dark:hover:text-gray-500 dark:focus:text-gray-500"
-            aria-haspopup="dialog"
-            aria-expanded="false"
-            aria-controls="hs-application-sidebar"
-            aria-label="Toggle navigation"
-            data-hs-overlay="#hs-application-sidebar"
-          >
-            <span className="text-lg font-extrabold dark:text-white text-black"><TfiAlignRight size={20} /></span>
-
-
-          </button>
-          {/* <!-- End Navigation Toggle --> */}
-
-          {/* <!-- Breadcrumb --> */}
-        </div>
-      </div>
-      {/* <!-- End Breadcrumb --> */}
     </>
   )
 }

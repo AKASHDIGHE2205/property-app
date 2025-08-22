@@ -98,13 +98,13 @@ const TranView = () => {
 
   return (
     <>
-      <div className="min-h-screen w-full border dark:border-gray-500 p-2 rounded-lg">
+      <div className="min-h-screen w-full border dark:border-slate-500 p-2 rounded-lg">
         <h1 className="flex justify-center items-center text-2xl font-semibold">Transaction Details</h1>
         <div className="flex justify-end items-end gap-2 py-2">
           {/* Filter Button */}
           <div className="flex items-end justify-end">
             <button
-              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none hidden"
+              className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-slate-500 text-white hover:bg-slate-600 focus:outline-hidden focus:bg-slate-600 disabled:opacity-50 disabled:pointer-events-none hidden"
               onClick={() => { setShowFilter(!showFilter) }}
             >
               {!showFilter ? "Hide Filter" : "Show Filter"}
@@ -124,43 +124,43 @@ const TranView = () => {
         </div>
         {showFilter && (<div className="sticky right-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
           <div className="">
-            <label className="text-sm text-gray-700 dark:text-gray-300">Search</label>
+            <label className="text-sm text-slate-700 dark:text-slate-300">Search</label>
             <input
               type="text"
               placeholder="Type your search query here"
               value={searchTerm}
               onChange={handleSearch}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {/* From Date */}
           <div>
-            <label className="text-sm text-gray-700 dark:text-gray-300">From Date</label>
+            <label className="text-sm text-slate-700 dark:text-slate-300">From Date</label>
             <input
               type="date"
               defaultValue={from}
               onChange={(e) => setFrom(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {/* To Date */}
           <div>
-            <label className="text-sm text-gray-700 dark:text-gray-300">To Date</label>
+            <label className="text-sm text-slate-700 dark:text-slate-300">To Date</label>
             <input
               type="date"
               defaultValue={to}
               onChange={(e) => setTo(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           {/* Items Per Page */}
           <div>
-            <label className="text-sm text-gray-700 dark:text-gray-300">Rows per page</label>
+            <label className="text-sm text-slate-700 dark:text-slate-300">Rows per page</label>
             <select
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               onChange={(e) => setItemsPerPage(Number(e.target.value))}
               value={itemsPerPage}
             >
@@ -173,10 +173,10 @@ const TranView = () => {
 
 
         <div className="flex-grow overflow-auto">
-          <div className="border border-gray-300 rounded-md">
+          <div className="border border-slate-300 rounded-md">
             <div className="overflow-y-auto overflow-x-auto max-h-[30rem]">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-                <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+              <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 p-2">
+                <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                   <tr>
                     <th scope="col" className={tablehead}>
                       Doc. No.
@@ -192,17 +192,17 @@ const TranView = () => {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                   {loading ? (
                     <tr>
-                      <td colSpan={4} className="text-center py-4 text-gray-600">Loading...</td>
+                      <td colSpan={4} className="text-center py-4 text-slate-600">Loading...</td>
                     </tr>
                   ) : (
                     <>
                       {currentItems.length === 0 ?
                         (<>
                           <tr>
-                            <td colSpan={4} className="text-center py-4 text-gray-600">File Not Found</td>
+                            <td colSpan={4} className="text-center py-4 text-slate-600">File Not Found</td>
                           </tr>
                         </>) :
                         (<>

@@ -8,7 +8,7 @@ const DefaultLayout = () => {
   return (
     <div className="flex h-screen">
       {/* <!-- Sidebar --> */}
-      <div className="lg:w-64 bg-gray-800 text-white flex h-screen overflow-hidden">
+      <div className="lg:w-64 bg-slate-800 text-white flex h-screen overflow-hidden">
         <Sidebar />
       </div>
       <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden ">
@@ -18,8 +18,8 @@ const DefaultLayout = () => {
         </div>
 
         {/* <!-- Main Content --> */}
-        <main className=" bg-gray-50 dark:bg-neutral-900">
-          <div className="bg-white text-black dark:bg-gray-900 dark:border-neutral-700 dark:text-white overflow-x-auto mx-auto max-w-screen flex justify-center items-center ">
+        <main className=" bg-slate-50 dark:bg-neutral-900">
+          <div className="bg-white text-black dark:bg-slate-900 dark:border-neutral-700 dark:text-white overflow-x-auto mx-auto max-w-screen flex justify-center items-center ">
             <Outlet />
           </div>
         </main>

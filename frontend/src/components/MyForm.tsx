@@ -27,17 +27,17 @@ const MyForm = () => {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
       <form
         onSubmit={handleSubmit}
         noValidate
         className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-slate-800">Sign Up</h2>
 
         {/* Name */}
         <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700 font-medium mb-1">
+          <label htmlFor="name" className="block text-slate-700 font-medium mb-1">
             Name
           </label>
           <input
@@ -47,7 +47,7 @@ const MyForm = () => {
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.name && touched.name ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+            className={`w-full px-4 py-2 rounded-lg border ${errors.name && touched.name ? 'border-red-500' : 'border-slate-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
           />
           {touched.name && errors.name && (
             <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -56,7 +56,7 @@ const MyForm = () => {
 
         {/* Email */}
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-medium mb-1">
+          <label htmlFor="email" className="block text-slate-700 font-medium mb-1">
             Email
           </label>
           <input
@@ -66,7 +66,7 @@ const MyForm = () => {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.email && touched.email ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+            className={`w-full px-4 py-2 rounded-lg border ${errors.email && touched.email ? 'border-red-500' : 'border-slate-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
           />
           {touched.email && errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email}</p>
@@ -75,7 +75,7 @@ const MyForm = () => {
 
         {/* Password */}
         <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 font-medium mb-1">
+          <label htmlFor="password" className="block text-slate-700 font-medium mb-1">
             Password
           </label>
           <input
@@ -85,7 +85,7 @@ const MyForm = () => {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`w-full px-4 py-2 rounded-lg border ${errors.password && touched.password ? 'border-red-500' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
+            className={`w-full px-4 py-2 rounded-lg border ${errors.password && touched.password ? 'border-red-500' : 'border-slate-300'} focus:outline-none focus:ring-2 focus:ring-blue-400`}
           />
           {touched.password && errors.password && (
             <p className="text-red-500 text-sm mt-1">{errors.password}</p>

@@ -78,9 +78,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 bg-white dark:bg-slate-900 rounded-3xl shadow-2xl overflow-hidden">
           {/* Left Side - Branding and Info */}
           <div className="hidden md:flex flex-col justify-center p-12 bg-gradient-to-br from-blue-600 to-indigo-800 text-white relative">
             <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diagonal-striped-brick.png')]"></div>
@@ -137,10 +137,10 @@ const SignUp = () => {
           {/* Right Side - Registration Form */}
           <div className="p-8 sm:p-12">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
                 Create your account
               </h1>
-              <p className="mt-2 text-gray-600 dark:text-gray-400">
+              <p className="mt-2 text-slate-600 dark:text-slate-400">
                 Already have an account?{' '}
                 <Link
                   to="/sign-in"
@@ -154,7 +154,7 @@ const SignUp = () => {
             <div className="mt-8">
               <button
                 type="button"
-                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors shadow-sm"
+                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm"
                 disabled
               >
                 <svg className="w-5 h-5" viewBox="0 0 46 47" fill="none">
@@ -179,16 +179,16 @@ const SignUp = () => {
               </button>
 
               <div className="my-6 flex items-center">
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-                <span className="mx-4 text-sm text-gray-500 dark:text-gray-400">OR</span>
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                <div className="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
+                <span className="mx-4 text-sm text-slate-500 dark:text-slate-400">OR</span>
+                <div className="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
               </div>
 
               <form onSubmit={formik.handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* First Name */}
                   <div>
-                    <label htmlFor="fname" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="fname" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       First name
                     </label>
                     <input
@@ -198,8 +198,8 @@ const SignUp = () => {
                       value={formik.values.fname}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
-                                 ${formik.touched.fname && formik.errors.fname ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                      className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400 border
+                                 ${formik.touched.fname && formik.errors.fname ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                       placeholder="First name"
@@ -211,7 +211,7 @@ const SignUp = () => {
 
                   {/* Last Name */}
                   <div>
-                    <label htmlFor="lname" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="lname" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                       Last name
                     </label>
                     <input
@@ -221,8 +221,8 @@ const SignUp = () => {
                       value={formik.values.lname}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
-                                border ${formik.touched.lname && formik.errors.lname ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                      className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400
+                                border ${formik.touched.lname && formik.errors.lname ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                       placeholder="Last name"
@@ -235,7 +235,7 @@ const SignUp = () => {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Email address
                   </label>
                   <input
@@ -245,8 +245,8 @@ const SignUp = () => {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
-                                border ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                    className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400
+                                border ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="Email address"
@@ -258,7 +258,7 @@ const SignUp = () => {
 
                 {/* Mobile */}
                 <div>
-                  <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="mobile" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Mobile number
                   </label>
                   <input
@@ -268,8 +268,8 @@ const SignUp = () => {
                     value={formik.values.mobile}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
-                                border ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                    className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400
+                                border ${formik.touched.mobile && formik.errors.mobile ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="Mobile number"
@@ -281,7 +281,7 @@ const SignUp = () => {
 
                 {/* Password */}
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Password
                   </label>
                   <div className="relative">
@@ -292,8 +292,8 @@ const SignUp = () => {
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400
-                                  border ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                      className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400
+                                  border ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                   focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                   dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                       placeholder="••••••••"
@@ -301,7 +301,7 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={handleShowPass}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
                     >
                       {showPass ? <IoEyeOff size={20} color="#0800ff" /> : <IoEye size={20} color="#0800ff" />}
                     </button>
@@ -313,7 +313,7 @@ const SignUp = () => {
 
                 {/* Confirm Password */}
                 <div>
-                  <label htmlFor="cpassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="cpassword" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                     Confirm Password
                   </label>
                   <input
@@ -323,9 +323,9 @@ const SignUp = () => {
                     value={formik.values.cpassword}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
+                    className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400 border
                                  ${formik.touched.cpassword && formik.errors.cpassword ?
-                        'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                        'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                                 focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                                 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="••••••••"
@@ -342,11 +342,11 @@ const SignUp = () => {
                       id="terms"
                       name="terms"
                       type="checkbox"
-                      className="shrink-0 mt-0.5 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                      className="shrink-0 mt-0.5 border-slate-300 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-slate-900 dark:border-slate-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-slate-800"
                     />
                   </div>
                   <div className="ml-3 text-sm">
-                    <label htmlFor="terms" className="font-medium text-gray-700 dark:text-gray-300">
+                    <label htmlFor="terms" className="font-medium text-slate-700 dark:text-slate-300">
                       I agree to the{' '}
                       <a href="#" className="text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
                         Terms and Conditions

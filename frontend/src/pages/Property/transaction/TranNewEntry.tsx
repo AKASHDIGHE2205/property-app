@@ -231,7 +231,7 @@ const TranNewEntry = () => {
   return (
     <>
       <div className="relative items-center w-full sm:max-w-5xl my-2 mx-2 shadow-lg">
-        <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-gray-700 justify-center">
+        <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-slate-700 justify-center">
           <h1 className="justify-center items-center flex text-xl font-semibold">Transaction Entry</h1>
           <form>
             <div className="mt-6 grid gap-4 lg:gap-6">
@@ -246,7 +246,7 @@ const TranNewEntry = () => {
                     type="text"
                     name="docno"
                     id="docno"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     readOnly
                   />
                 </div>
@@ -263,7 +263,7 @@ const TranNewEntry = () => {
                     id="docDate"
                     value={inputs?.docDate}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     placeholder="Enter File No"
                   />
                 </div>
@@ -280,7 +280,7 @@ const TranNewEntry = () => {
                     name="fileName"
                     value={inputs?.fileName}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     placeholder="Select file name"
                   />
                 </div>
@@ -293,7 +293,7 @@ const TranNewEntry = () => {
                     Location <span className="text-red-600 font-bold">*</span>
                   </label>
                   <select
-                    className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg py-3 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     id="location"
                     name="location"
                     value={inputs?.location}
@@ -317,7 +317,7 @@ const TranNewEntry = () => {
                     name="consignor"
                     defaultValue={inputs.consignor}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     rows={1}
                   />
                 </div>
@@ -332,7 +332,7 @@ const TranNewEntry = () => {
                     hidden
                     id="consignee"
                     name="consignee"
-                    className="hs-select rounded-lg py-3 px-4  w-[15rem] sm:w-full mt-2 bg-slate-100 border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 focus:outline-none "
+                    className="hs-select rounded-lg py-3 px-4  w-[15rem] sm:w-full mt-2 bg-slate-100 border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 focus:outline-none "
                   >
                     <option value="">Choose</option>
                     {consigneeData?.map((item: ConsigneeData) => (
@@ -343,7 +343,7 @@ const TranNewEntry = () => {
                   <textarea
                     id="consignee"
                     name="consignee"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     rows={1}
                   />
                   <div>
@@ -352,9 +352,9 @@ const TranNewEntry = () => {
               </div>
 
               {/**survey no table here */}
-              <div className="border dark:border-gray-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+              <div className="border dark:border-slate-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+                <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                  <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                     <tr>
                       <th className={tablehead}>Sr No.</th>
                       <th className={tablehead}>Consignee</th>
@@ -363,13 +363,13 @@ const TranNewEntry = () => {
                       <th className={tablehead}>Sq. Mtr.</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                     {surRows?.map((item: Survey, index: number) => (
                       <tr key={index}>
                         <td className="sm:py-3 py-2 px-2 ">{index + 1}</td>
                         <td className="py-2 px-2">
                           <select
-                            className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                            className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             name="consignee"
                             value={item?.consignee}
                             onChange={(e) => handleSurInputChange(e, index)}
@@ -389,7 +389,7 @@ const TranNewEntry = () => {
                               name="surveyNo"
                               value={item?.surveyNo}
                               onChange={(e) => handleSurInputChange(e, index)}
-                              className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                               placeholder="Enter Survey No"
                             />
                           </div>
@@ -404,7 +404,7 @@ const TranNewEntry = () => {
                               name="area"
                               value={item?.area}
                               onChange={(e) => handleSurInputChange(e, index)}
-                              className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                              className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                               placeholder="Enter Area"
                             />
                           </div>
@@ -419,7 +419,7 @@ const TranNewEntry = () => {
                               name="sqmtr"
                               value={item?.sqmtr}
                               onChange={(e) => handleSurInputChange(e, index)}
-                              className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                              className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                               placeholder="Enter type"
                             />
                           </div>
@@ -462,7 +462,7 @@ const TranNewEntry = () => {
                     id="category"
                     value={inputs?.category}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                   >
                     <option value="">Select Category</option>
                     <option value="jr">Junior</option>
@@ -478,7 +478,7 @@ const TranNewEntry = () => {
                     id="type"
                     value={inputs?.type}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                   >
                     <option value="">Select Type</option>
                     <option value="AG">Agri</option>
@@ -495,7 +495,7 @@ const TranNewEntry = () => {
                     name="cstNo"
                     value={inputs?.cstNo}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                     placeholder="Enter CST No."
                   />
                 </div>
@@ -513,7 +513,7 @@ const TranNewEntry = () => {
                     name="purDate"
                     value={inputs?.purDate}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -533,7 +533,7 @@ const TranNewEntry = () => {
                     name="purVal"
                     value={inputs?.purVal}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                   />
                 </div>
                 <div>
@@ -548,8 +548,8 @@ const TranNewEntry = () => {
                     id="regFees"
                     name="regFees"
                     value={inputs?.regFees}
-                    onChange={handleInputChange} className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
-                    dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                    onChange={handleInputChange} className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
+                    dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                   />
                 </div>
                 <div>
@@ -562,7 +562,7 @@ const TranNewEntry = () => {
                     name="fraFees"
                     value={inputs?.fraFees}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                   />
                 </div>
                 <div>
@@ -574,16 +574,16 @@ const TranNewEntry = () => {
                     name="remark"
                     value={inputs?.remark}
                     onChange={handleInputChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     rows={1}
                   />
                 </div>
               </div>
 
               {/* Document Table */}
-              <div className="border dark:border-gray-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+              <div className="border dark:border-slate-600 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+                <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                  <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                     <tr>
                       <th className={tablehead}>Sr No.</th>
                       <th className={tablehead}>Doc Name</th>
@@ -591,7 +591,7 @@ const TranNewEntry = () => {
                       <th className={tablehead}>Attachment</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                     {rows?.map((item: Document, index: number) => (
                       <tr key={index}>
                         <td className="sm:py-3 py-2 px-2 ">{index + 1}</td>
@@ -603,7 +603,7 @@ const TranNewEntry = () => {
                             name="docName"
                             value={item?.docName}
                             onChange={(e) => handleDocInputChange(e, index)}
-                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           >
                             <option value="">Select Document</option>
                             {docData?.map((item: DocData) => {
@@ -620,7 +620,7 @@ const TranNewEntry = () => {
                             name="docDes"
                             defaultValue={item?.docDes}
                             onChange={(e) => handleDocInputChange(e, index)}
-                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             rows={1}
                           />
                         </td>
@@ -637,7 +637,7 @@ const TranNewEntry = () => {
                               updated[index].docAttach = file;
                               setRows(updated);
                             }}
-                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                            className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           />
                           <p className="text-xs text-[#ff0606] mt-1">
                             Accepted formats: <strong>PDF</strong> and <strong>image files</strong> (JPG, PNG, etc.)
@@ -684,7 +684,7 @@ const TranNewEntry = () => {
           <div>
             <button
               type="button"
-              className="px-4 py-2 bg-gray-600 hover:bg-gray-700 border border-gray-700 rounded-lg text-white"
+              className="px-4 py-2 bg-slate-600 hover:bg-slate-700 border border-slate-700 rounded-lg text-white"
               onClick={handleCancel}
             >
               Cancel

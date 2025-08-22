@@ -101,19 +101,19 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
   return (
     <div
       id="edit-saleProp-modal"
-      className={`fixed top-0 left-0 z-[80] w-full h-full overflow-x-hidden bg-gray-400 bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+      className={`fixed top-0 left-0 z-[80] w-full h-full overflow-x-hidden bg-slate-400 bg-opacity-50 backdrop-blur-sm transition-opacity duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       role="dialog" aria-labelledby="edit-saleProp-modal-label">
 
       <div className="flex justify-center items-center min-h-screen m-2">
-        <div className="w-full max-w-xl bg-white dark:bg-gray-900 rounded-xl shadow-sm overflow-hidden">
+        <div className="w-full max-w-xl bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden">
 
-          <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+          <div className="flex justify-between items-center py-3 px-4 border-b dark:border-slate-700">
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white">
               Edit Saled Property
             </h3>
             <button
               onClick={() => setShow(false)}
-              className="text-gray-600 hover:text-gray-800 dark:text-gray-100 dark:hover:text-white p-2 rounded-full bg-gray-100 dark:bg-gray-700"
+              className="text-slate-600 hover:text-slate-800 dark:text-slate-100 dark:hover:text-white p-2 rounded-full bg-slate-100 dark:bg-slate-700"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -135,7 +135,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         id="docNo"
                         name="docNo"
                         value={inputs.docNo && `${inputs.docNo} - ${inputs.fileName} `}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-600 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -152,7 +152,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         id="docDate"
                         name="docDate"
                         value={inputs.docDate}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-600 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -172,7 +172,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="saleDate"
                         value={inputs.saleDate}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="buyerName"
                         value={inputs.buyerName}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -208,7 +208,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="saleValue"
                         value={inputs.saleValue}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -225,7 +225,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="saleArea"
                         value={inputs.saleArea}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-600 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -245,7 +245,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="surveyNo"
                         value={inputs.surveyNo}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-600 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-200 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -262,7 +262,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="remark"
                         value={inputs.remark}
                         onChange={(e) => handleInputChange(e)}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -271,7 +271,7 @@ const EditSaleProp: FC<Props> = ({ show, setShow, fetchData, data }) => {
               <div className="flex justify-center gap-2 ">
                 <button
                   type="button"
-                  className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-300 bg-gray-200 text-gray-800 shadow-2xs hover:bg-gray-300 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                  className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-slate-300 bg-slate-200 text-slate-800 shadow-2xs hover:bg-slate-300 focus:outline-hidden focus:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-700 dark:border-slate-700 dark:text-white dark:hover:bg-slate-700 dark:focus:bg-slate-700"
                   onClick={handleCancel}>
                   Cancel
                 </button>

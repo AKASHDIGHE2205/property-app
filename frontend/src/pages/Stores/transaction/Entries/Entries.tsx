@@ -109,7 +109,7 @@ const Entries = () => {
   return (
     <>
       <div className="relative items-center w-full sm:max-w-2xl my-2 mx-2 shadow-lg">
-        <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-gray-700 justify-center">
+        <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-slate-700 justify-center">
           <h1 className="justify-center items-center flex text-xl font-semibold">Entry Form</h1>
           <form onSubmit={handleSubmit}>
             <div className="mt-6 grid gap-4 lg:gap-6">
@@ -120,7 +120,7 @@ const Entries = () => {
                     type="date"
                     name="date"
                     id="date"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     value={input.date}
                     onChange={handleChange}
                   />
@@ -132,7 +132,7 @@ const Entries = () => {
                     type="text"
                     name="entry_code"
                     id="entry_code"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     value={input.entry_code}
                     placeholder="Enter File No"
                     onChange={handleChange}
@@ -150,9 +150,9 @@ const Entries = () => {
                       id="firm"
                       name="firm"
                       value={firmName}
-                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       placeholder="Select firm name" readOnly />
-                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
+                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800"
                       onClick={() => setShowFirm(true)}>
                       ☰
                     </button>
@@ -169,9 +169,9 @@ const Entries = () => {
                       id="branch"
                       name="branch"
                       value={branchName}
-                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       placeholder="Select Branch name" readOnly />
-                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
+                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800"
                       onClick={() => setShowBranch(true)}>
                       ☰
                     </button>
@@ -188,10 +188,10 @@ const Entries = () => {
                       id="loc"
                       name="loc"
                       value={locationName}
-                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       placeholder="select location"
                       readOnly />
-                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
+                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800 "
                       onClick={() => setShowLocation(true)}>
                       ☰
                     </button>
@@ -211,7 +211,7 @@ const Entries = () => {
                         name="year"
                         value={input.year}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         placeholder="Type in format(YYYY-YYYY)" />
 
                     </div>
@@ -227,7 +227,7 @@ const Entries = () => {
                         name="rackNO"
                         value={input.rackNO}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         placeholder="Enter Rack No." />
                     </div>
                   </div>
@@ -241,7 +241,7 @@ const Entries = () => {
                     type="text"
                     name="slotNo"
                     id="slotNo"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     placeholder="Enter Slot No."
                     value={input.slotNo}
                     onChange={handleChange}
@@ -254,7 +254,7 @@ const Entries = () => {
                     type="text"
                     name="subSlotNo"
                     id="subSlotNo"
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     placeholder="Enter Sub Slot No."
                     value={input.subSlotNo}
                     onChange={handleChange}
@@ -271,9 +271,9 @@ const Entries = () => {
                       id="section"
                       name="section"
                       value={secName}
-                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
+                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
                       placeholder="Select section" readOnly />
-                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
+                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800 "
                       onClick={() => setShowSeaction(true)}>
                       ☰
                     </button>
@@ -290,9 +290,9 @@ const Entries = () => {
                       id="catg"
                       name="catg"
                       value={catgName}
-                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
+                      className="rounded-l-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
                       placeholder="Select category" readOnly />
-                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800 "
+                    <button type="button" className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.875rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800 "
                       onClick={() => setShowCategory(true)}>
                       ☰
                     </button>
@@ -309,7 +309,7 @@ const Entries = () => {
                     id="desc"
                     value={input.desc}
                     onChange={handleChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
                     placeholder="Enter description" />
                 </div>
 
@@ -321,7 +321,7 @@ const Entries = () => {
                     id="remark"
                     value={input.remark}
                     onChange={handleChange}
-                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
+                    className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
                     placeholder="Enter remark" />
                 </div>
               </div>
@@ -334,7 +334,7 @@ const Entries = () => {
                 <div>
                   <button
                     type="button"
-                    className="sm:py-3 py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none"
+                    className="sm:py-3 py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-slate-500 text-white hover:bg-slate-600 focus:outline-hidden focus:bg-slate-600 disabled:opacity-50 disabled:pointer-events-none"
                     onClick={handleCancel}>
                     Cancel
                   </button>

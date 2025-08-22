@@ -45,8 +45,8 @@ const Despose = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
-      <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+    <div className="min-h-screen w-full bg-slate-50 dark:bg-slate-900 p-4 md:p-6">
+      <div className="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700">
         {/* Header Section */}
         <div className="p-4 md:p-6">
           <h1 className="text-2xl md:text-3xl font-bold text-center">
@@ -59,14 +59,14 @@ const Despose = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Year Input */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Year <span className="text-red-600 font-bold">*</span>
               </label>
               <div className="relative">
                 <input
                   type="text"
                   value={year}
-                  className="block w-full px-3 py-3 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  className="block w-full px-3 py-3 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   placeholder="Enter Year (YYYY-YY)..."
                   onChange={(e) => setYear(e.target.value)}
                   required
@@ -76,7 +76,7 @@ const Despose = () => {
 
             {/* Firm Input */}
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Firm <span className="text-red-600 font-bold">*</span>
               </label>
               <div className="flex rounded-lg shadow-sm">
@@ -85,13 +85,13 @@ const Despose = () => {
                   id="firm"
                   name="firm"
                   value={firmName}
-                  className="block w-full px-3 py-3 rounded-l-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  className="block w-full px-3 py-3 rounded-l-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   placeholder="Select firm..."
                   readOnly
                 />
                 <button
                   type="button"
-                  className="px-4 inline-flex items-center justify-center rounded-r-lg border border-sky-400  dark:bg-gray-800 text-sky-600 dark:text-sky-400  dark:hover:bg-gray-700 transition-colors font-bold"
+                  className="px-4 inline-flex items-center justify-center rounded-r-lg border border-sky-400  dark:bg-slate-800 text-sky-600 dark:text-sky-400  dark:hover:bg-slate-700 transition-colors font-bold"
                   onClick={handleShow}
                 >
                   ☰
@@ -109,7 +109,7 @@ const Despose = () => {
               </button>
               <button
                 type="button"
-                className="px-6 py-3 inline-flex items-center justify-center rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-colors shadow-sm hover:shadow-md font-medium"
+                className="px-6 py-3 inline-flex items-center justify-center rounded-lg bg-slate-500 text-white hover:bg-slate-600 transition-colors shadow-sm hover:shadow-md font-medium"
                 onClick={handleCancel}
               >
                 Cancel

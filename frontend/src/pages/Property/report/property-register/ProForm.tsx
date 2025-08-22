@@ -132,7 +132,7 @@ const ProForm = () => {
       {/**Form View */}
       <div>
         <div className="relative items-center w-full sm:max-w-3xl my-2 mx-2 shadow-lg">
-          <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-gray-700 justify-center">
+          <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-5 dark:border-slate-700 justify-center">
             <h1 className="justify-center items-center flex text-xl font-semibold">
               Property Register
             </h1>
@@ -151,7 +151,7 @@ const ProForm = () => {
                       id="from_date"
                       value={inputs.from_date}
                       onChange={handleChnage}
-                      className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg py-3 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     />
                   </div>
                   <div>
@@ -167,7 +167,7 @@ const ProForm = () => {
                       id="to_date"
                       value={inputs.to_date}
                       onChange={handleChnage}
-                      className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg py-3 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       placeholder="Enter File No"
                     />
                   </div>
@@ -189,13 +189,13 @@ const ProForm = () => {
                           id="location"
                           name="location"
                           value={locName}
-                          className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                          className="rounded-l-lg py-3 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="Select location"
                           readOnly
                         />
                         <button
                           type="button"
-                          className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
+                          className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800"
                           onClick={() => setLocShow(true)}
                         >
                           ☰
@@ -217,13 +217,13 @@ const ProForm = () => {
                           id="consignee"
                           name="consignee"
                           value={consigneeName}
-                          className="rounded-l-lg py-3 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                          className="rounded-l-lg py-3 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                           placeholder="select Consignee"
                           readOnly
                         />
                         <button
                           type="button"
-                          className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
+                          className="w-[2.875rem] h-[2.875rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800"
                           onClick={() => setConsShow(true)}
                         >
                           ☰
@@ -244,7 +244,7 @@ const ProForm = () => {
                       id="category"
                       value={inputs.category}
                       onChange={handleChnage}
-                      className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500">
+                      className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500">
                       <option value="all">All</option>
                       <option value="jr">Junior</option>
                       <option value="sr">Senior</option>
@@ -257,7 +257,7 @@ const ProForm = () => {
                       id="type"
                       value={inputs.type}
                       onChange={handleChnage}
-                      className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500">
+                      className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500">
                       <option value="all">All</option>
                       <option value="AG">Agri</option>
                       <option value="NA">Non-Agri</option>
@@ -278,7 +278,7 @@ const ProForm = () => {
                     <button
                       type="button"
                       onClick={handleCancel}
-                      className="px-4 py-2 bg-gray-600 hover:bg-gray-700 border border-gray-700 rounded-lg text-white">
+                      className="px-4 py-2 bg-slate-600 hover:bg-slate-700 border border-slate-700 rounded-lg text-white">
                       Cancel
                     </button>
                   </div>
@@ -293,10 +293,10 @@ const ProForm = () => {
       {/**Table View */}
       {show && (
         <>
-          <div className="border border-gray-300 rounded-md">
+          <div className="border border-slate-300 rounded-md">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-                <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+              <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 p-2">
+                <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                   <tr>
                     <th scope="col" className={tablehead}>Sr. No.</th>
                     <th scope="col" className={tablehead}>File No</th>
@@ -312,7 +312,7 @@ const ProForm = () => {
                     <th scope="col" className={tablehead}>Remark</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                   {loading ? (
                     <tr>
                       <td colSpan={12} className="text-center py-4">

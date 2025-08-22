@@ -22,7 +22,7 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white rounded-lg p-4 max-w-3xl w-full relative shadow-lg">
             <button
-              className="absolute top-2 right-2 text-gray-600 hover:text-red-600"
+              className="absolute top-2 right-2 text-slate-600 hover:text-red-600"
               onClick={() => setShowImageModal(false)}
             >
               <IoMdClose size={24} />
@@ -30,7 +30,7 @@ const ShowImage: FC<Props> = ({ showImageModal, setShowImageModal, selectedImage
 
             {loading && (
               <div className="flex items-center justify-center h-[80vh]">
-                <ImSpinner2 className="animate-spin text-gray-500" size={40} />
+                <ImSpinner2 className="animate-spin text-slate-500" size={40} />
               </div>
             )}
 

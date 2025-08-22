@@ -72,10 +72,10 @@ const ProRegLocServ = () => {
   return (
     <div className="h-screen w-full m-3 border p-2 rounded-lg">
       <div className="flex flex-col">
-        <div className="border border-gray-300 rounded-md">
+        <div className="border border-slate-300 rounded-md">
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700 p-2">
-              <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700 p-2">
+              <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                 <tr>
                   <th className={tablehead}>File No</th>
                   <th className={tablehead}>Consignee</th>
@@ -85,7 +85,7 @@ const ProRegLocServ = () => {
                   <th className={tablehead}>Sq. Mtr.</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                 {loading ? (
                   <tr>
                     <td colSpan={6} className="text-center py-4">Loading...</td>

@@ -127,8 +127,8 @@ const DesposedView = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 p-4 md:p-6">
-      <div className="max-w-8xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
+    <div className="min-h-screen w-full bg-slate-50 dark:bg-slate-900 p-4 md:p-6">
+      <div className="max-w-8xl mx-auto bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700">
         {/* Header Section */}
         <div className="p-4 md:p-6">
           <h1 className="text-2xl md:text-3xl font-bold text-center">
@@ -137,17 +137,17 @@ const DesposedView = () => {
         </div>
         <hr />
         {/* Search and Controls Section */}
-        <div className="p-4 md:p-6 border-b border-gray-200 dark:border-gray-700">
+        <div className="p-4 md:p-6 border-b border-slate-200 dark:border-slate-700">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             {/* Search Input */}
             <div className="w-full sm:w-auto">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FiSearch className="text-gray-400" />
+                  <FiSearch className="text-slate-400" />
                 </div>
                 <input
                   type="text"
-                  className="block w-full pl-10 pr-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  className="block w-full pl-10 pr-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   placeholder="Search disposed files..."
                   defaultValue={searchTerm}
                   onChange={(e) => handleSearch(e.target.value)}
@@ -158,16 +158,16 @@ const DesposedView = () => {
             {/* Rows Selector and Action Buttons */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
               <div className="flex items-center gap-2 hidden">
-                <span className="text-sm text-gray-700 dark:text-gray-300">Show</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300">Show</span>
                 <select
-                  className="px-3 py-3 block w-full rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
+                  className="px-3 py-3 block w-full rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition bg-white"
                   onChange={(e: any) => handleItemsPerPage(e.target.value)}
                 >
                   {[5, 10, 25, 50, 100].map((n) => (
                     <option key={n} value={n}>{n}</option>
                   ))}
                 </select>
-                <span className="text-sm text-gray-700 dark:text-gray-300">rows</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300">rows</span>
               </div>
 
               <div className="flex gap-2">
@@ -180,9 +180,9 @@ const DesposedView = () => {
                 </button>
                 <Link
                   to="/transaction/despose"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm"
                 >
-                  <FiArrowLeft className="text-gray-600 dark:text-gray-300" />
+                  <FiArrowLeft className="text-slate-600 dark:text-slate-300" />
                   Go Back
                 </Link>
               </div>
@@ -192,103 +192,103 @@ const DesposedView = () => {
 
         {/* Table Section */}
         <div className="p-4 md:p-6">
-          <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
-            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-              <thead className="bg-gray-100 dark:bg-gray-700 sticky top-0">
+          <div className="overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+            <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+              <thead className="bg-slate-100 dark:bg-slate-700 sticky top-0">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Doc No.
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Doc Date
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     File Type
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Year
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Firm Name
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Branch Name
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Location
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Section
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Description
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Remark
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Rack No.
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Slot No.
                   </th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
                     Sub Slot
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
                 {currentItems?.length === 0 ? (
                   <tr>
                     <td colSpan={13} className="px-6 py-4 text-center">
                       <div className="flex flex-col items-center justify-center py-8">
-                        <p className="text-gray-600 dark:text-gray-400 text-lg">No disposed files found</p>
+                        <p className="text-slate-600 dark:text-slate-400 text-lg">No disposed files found</p>
                       </div>
                     </td>
                   </tr>
                 ) : (
                   currentItems?.map((item: Entry) => (
-                    <tr key={item?.doc_code} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200" hidden>
+                    <tr key={item?.doc_code} className="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200" hidden>
                         {item?.doc_code}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-slate-200">
                         {item?.entry_code}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">
                         {moment(item?.date).format("DD/MM/YYYY")}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-slate-200">
                         {item?.type_name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-slate-200">
                         {item?.year}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.firm_name}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.branch_name}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.loc_name}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.sec_name}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.desc}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-gray-200 max-w-[180px] overflow-x-auto custom-scrollbar">
+                      <td className="px-6 py-4 text-sm text-slate-900 dark:text-slate-200 max-w-[180px] overflow-x-auto custom-scrollbar">
                         {item?.remark}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-slate-200">
                         {item?.cub_code}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-slate-200">
                         {item?.s_code}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-900 dark:text-slate-200">
                         {item?.su_code}
                       </td>
                     </tr>

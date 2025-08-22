@@ -53,7 +53,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-6xl">
         <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-2xl">
           {/* Image Section */}
@@ -74,12 +74,12 @@ const SignIn = () => {
           </div>
 
           {/* Form Section */}
-          <div className="w-full md:w-1/2 bg-white dark:bg-gray-800 p-8 sm:p-12">
+          <div className="w-full md:w-1/2 bg-white dark:bg-slate-800 p-8 sm:p-12">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">
+              <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">
                 Sign in to your account
               </h1>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
                 Don't have an account yet?{" "}
                 <Link
                   className="font-medium hover:underline text-[#0019f8] hover:text-[#0600c0] dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
@@ -93,7 +93,7 @@ const SignIn = () => {
             <div className="mt-8">
               <button
                 type="button"
-                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors shadow-sm "
+                className="w-full flex justify-center items-center gap-3 py-3 px-4 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-700 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm "
                 disabled
               >
                 <svg
@@ -122,9 +122,9 @@ const SignIn = () => {
               </button>
 
               <div className="my-6 flex items-center">
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
-                <span className="mx-4 text-sm text-gray-500 dark:text-gray-400">OR</span>
-                <div className="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+                <div className="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
+                <span className="mx-4 text-sm text-slate-500 dark:text-slate-400">OR</span>
+                <div className="flex-grow border-t border-slate-300 dark:border-slate-600"></div>
               </div>
 
               <form onSubmit={formik.handleSubmit} className="space-y-6">
@@ -139,8 +139,8 @@ const SignIn = () => {
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
-                          ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                    className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400 border
+                          ${formik.touched.email && formik.errors.email ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                          focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                          dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                     placeholder="Email..."
@@ -170,8 +170,8 @@ const SignIn = () => {
                       value={formik.values.password}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      className={`bg-slate-100 dark:bg-gray-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-gray-400 border
-                          ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-gray-300 dark:border-gray-700'}
+                      className={`bg-slate-100 dark:bg-slate-800 p-3 sm:p-4 h-12 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none dark:text-slate-400 border
+                          ${formik.touched.password && formik.errors.password ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'}
                          focus:outline-none focus:ring-0 focus:ring-blue-500 focus:border-blue-500
                          dark:focus:ring-blue-500 dark:focus:border-blue-500`}
                       placeholder="••••••••"
@@ -179,7 +179,7 @@ const SignIn = () => {
                     <button
                       type="button"
                       onClick={handleShowPass}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
                     >
                       {showPass ? <IoEyeOff size={20} color="#0800ff" /> : <IoEye size={20} color="#0800ff" />}
                     </button>
@@ -194,9 +194,9 @@ const SignIn = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700"
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 dark:border-slate-600 rounded dark:bg-slate-700"
                   />
-                  <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                  <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-700 dark:text-slate-300">
                     Remember me
                   </label>
                 </div>

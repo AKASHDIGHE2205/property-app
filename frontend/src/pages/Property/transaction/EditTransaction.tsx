@@ -107,7 +107,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
             category: response?.catg || "",
             type: response?.type || "",
             cstNo: response?.cst_no || 0,
-            purDate: response?.pur_date?.slice(0, 10) || "",
+            purDate: formatDate(response?.pur_date) || "",
             purVal: response?.pur_val || 0,
             regFees: response?.reg_fees || 0,
             fraFees: response?.fra_fees || 0,
@@ -252,25 +252,25 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
     <>
       <div
         id="edit-tran-modal"
-        className={`fixed top-0 left-0 z-[80] w-full h-full overflow-x-hidden bg-gray-500 bg-opacity-50 transition-opacity duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed top-0 left-0 z-[80] w-full h-full overflow-x-hidden bg-slate-500 bg-opacity-50 transition-opacity duration-300 ease-in-out ${show ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         role="dialog"
         aria-labelledby="edit-tran-modal-label"
       >
         <div className="flex justify-center items-center min-h-screen m-2">
-          <div className="w-full max-w-6xl bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
-            <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
-              <h3 id="edit-tran-modal-label" className="font-bold text-gray-800 dark:text-white">
+          <div className="w-full max-w-6xl bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden">
+            <div className="flex justify-between items-center py-3 px-4 border-b dark:border-slate-700">
+              <h3 id="edit-tran-modal-label" className="font-bold text-slate-800 dark:text-white">
                 Edit Purchase Transaction
               </h3>
               <button
                 type="button"
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700"
+                className="p-2 rounded-full bg-slate-200 dark:bg-slate-700"
                 onClick={() => setShow(false)}
               >
                 <IoMdClose color="black" />
               </button>
             </div>
-            <div className="px-4 max-h-[90vh] overflow-y-auto border border-gray-200 m-2 p-2 rounded-lg">
+            <div className="px-4 max-h-[90vh] overflow-y-auto border border-slate-200 dark:border-slate-700 m-2 p-2 rounded-lg">
               <form>
                 <div className="mt-6 grid gap-4 lg:gap-6">
 
@@ -278,14 +278,14 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
                     <div>
                       <label htmlFor="date" className="block mb-2 dark:text-white">
-                        Doc. No:
+                        Doc. No
                       </label>
                       <input
                         type="text"
                         name="docno"
                         id="docno"
                         value={inputs?.doc_id}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -294,14 +294,14 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         htmlFor="docDate"
                         className="block mb-2 dark:text-white"
                       >
-                        Doc Date: <span className="font-bold text-red-600">*</span>
+                        Doc Date
                       </label>
                       <input
                         type="date"
                         name="docDate"
                         id="docDate"
                         value={inputs?.docDate}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         readOnly
                       />
                     </div>
@@ -318,7 +318,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="fileName"
                         value={inputs?.fileName}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         placeholder="Select file name"
                       />
                     </div>
@@ -331,7 +331,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         Location <span className="text-red-600 font-bold">*</span>
                       </label>
                       <select
-                        className="rounded-lg py-3 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg py-3 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                         id="location"
                         name="location"
                         value={inputs?.location}
@@ -352,16 +352,15 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="consignor"
                         value={inputs?.consignor}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
-                        rows={1}
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
 
                   {/**survey no table here */}
-                  <div className="border rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                      <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+                  <div className="border dark:border-slate-700 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+                    <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                      <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                         <tr>
                           <th className={tablehead}>Sr No.</th>
                           <th className={tablehead}>Consignee</th>
@@ -370,13 +369,13 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                           <th className={tablehead}>Sq. Mtr.</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                      <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                         {surRows.map((item: Survey, index: number) => (
                           <tr key={index}>
                             <td className="sm:py-3 py-2 px-2 ">{index + 1}</td>
                             <td className="py-2 px-2">
                               <select
-                                className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
+                                className="rounded-lg py-3 px-4 block w-[15rem]  mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                                 name="consignee"
                                 value={item?.consignee}
                                 onChange={(e) => handleSurInputChange(e, index)}
@@ -401,7 +400,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   value={item?.surveyNo}
                                   onChange={(e) => handleSurInputChange(e, index)}
                                   disabled
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[15rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                                   placeholder="Enter Survey No"
                                 />
                               </div>
@@ -417,7 +416,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   value={item?.area}
                                   disabled
                                   onChange={(e) => handleSurInputChange(e, index)}
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
                                   placeholder="Enter Area"
                                 />
                               </div>
@@ -433,7 +432,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                   value={item?.sqmtr}
                                   disabled
                                   onChange={(e) => handleSurInputChange(e, index)}
-                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
+                                  className="rounded-lg sm:py-3 py-2 px-4 block w-[10rem] mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
                                   placeholder="Enter type"
                                 />
                               </div>
@@ -460,7 +459,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         id="category"
                         value={inputs?.category}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       >
                         <option value="">Select Category</option>
                         <option value="jr">Junior</option>
@@ -476,7 +475,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         id="type"
                         value={inputs?.type}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       >
                         <option value="">Select Type</option>
                         <option value="AG">Agri</option>
@@ -493,7 +492,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="cstNo"
                         value={inputs?.cstNo}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                         placeholder="Enter CST No."
                       />
                     </div>
@@ -511,7 +510,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="purDate"
                         value={inputs?.purDate}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
@@ -531,7 +530,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="purVal"
                         value={inputs?.purVal}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                       />
                     </div>
                     <div>
@@ -547,8 +546,8 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="regFees"
                         value={inputs?.regFees}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
-                      dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
+                      dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                       />
                     </div>
                     <div>
@@ -561,7 +560,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="fraFees"
                         value={inputs?.fraFees}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                       />
                     </div>
                     <div>
@@ -573,16 +572,15 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                         name="remark"
                         value={inputs?.remark}
                         onChange={handleChange}
-                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
-                        rows={1}
+                        className="rounded-lg sm:py-3 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                       />
                     </div>
                   </div>
 
                   {/* Document Table */}
-                  <div className="border rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                      <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+                  <div className="border dark:border-slate-700 rounded-md w-full max-w-5xl mx-auto overflow-x-auto">
+                    <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                      <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                         <tr>
                           <th className={tablehead}>Sr No.</th>
                           <th className={tablehead}>Doc Name</th>
@@ -590,7 +588,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                           <th className={tablehead}>Attachment</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                      <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                         {rows.map((item: Document, index: number) => (
                           <tr key={index}>
                             <td className="sm:py-3 py-2 px-2 ">{index + 1}</td>
@@ -601,7 +599,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                 name="docName"
                                 value={item?.docName}
                                 onChange={(e) => handleDocInputChange(e, index)}
-                                className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                                className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                               >
                                 <option value="">Select Document</option>
                                 {docData?.map((item: DocData) => {
@@ -619,7 +617,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                                 name="docDes"
                                 value={item?.docDes}
                                 onChange={(e) => handleDocInputChange(e, index)}
-                                className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                                className="rounded-lg py-3 px-4 block w-[15rem] sm:w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                               />
                             </td>
 
@@ -664,7 +662,7 @@ const EditTransaction: FC<Props> = ({ show, setShow, fetchData, data }) => {
                   <button
                     type="button"
                     onClick={handleCancel}
-                    className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-gray-500 text-white hover:bg-gray-600 focus:outline-hidden focus:bg-gray-600 disabled:opacity-50 disabled:pointer-events-none"
+                    className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-slate-500 text-white hover:bg-slate-600 focus:outline-hidden focus:bg-slate-600 disabled:opacity-50 disabled:pointer-events-none"
                   >
                     Close
                   </button>

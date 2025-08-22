@@ -131,13 +131,12 @@ const SaleNewEntry = () => {
 
   return (
     <>
-      <div className="relative items-center w-full sm:max-w-6xl shadow-lg">
-        <div className="flex flex-col border rounded-xl p-2 dark:border-gray-700 justify-center">
+      <div className="relative items-center w-full h-screen sm:max-w-6xl shadow-lg">
+        <div className="flex flex-col p-2 m-2 justify-center">
           <form onSubmit={handleSubmit}>
             <div>
-              <div className='border  border-gray-200 dark:border-gray-600 p-2 rounded-lg mb-2'>
+              <div className='border  border-slate-200 dark:border-slate-600 p-2 rounded-lg mb-2'>
                 <h1 className="justify-center items-center flex text-xl font-semibold mb-2">Property Sale Entry</h1>
-                {/* 3-Column Input Row  */}
 
                 <div className="mb-4 grid grid-cols-1 sm:grid-cols-12 gap-4 lg:gap-6">
                   <div className="sm:col-span-4">
@@ -151,13 +150,13 @@ const SaleNewEntry = () => {
                           id="fileName"
                           name="fileName"
                           value={propId && `${propId} - ${propName}`}
-                          className="rounded-l-lg sm:py-2 py-2 px-4 block w-full border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                          className="rounded-l-lg sm:py-2 py-2 px-4 block w-full border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                           placeholder="Select fileName name"
                           readOnly
                         />
                         <button
                           type="button"
-                          className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.5rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-gray-800"
+                          className="sm:w-[2.875rem] w-[2.6rem] sm:h-[2.5rem] h-[2.6rem] shrink-0 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-e-md border border-sky-400 focus:outline-none disabled:opacity-50 text-sky-500 dark:bg-slate-800"
                           onClick={() => setShowProp(true)}
                         >
                           ☰
@@ -165,7 +164,6 @@ const SaleNewEntry = () => {
                       </div>
                     </div>
                   </div>
-
                   <div className="sm:col-span-2">
                     <label htmlFor="docDate" className="block mb-2 dark:text-white">
                       Doc Date
@@ -176,10 +174,9 @@ const SaleNewEntry = () => {
                       id="docDate"
                       value={data?.doc_date ? data.doc_date.slice(0, 10) : ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                     />
                   </div>
-
                   <div className="sm:col-span-4">
                     <label htmlFor="consignor" className="block mb-2 dark:text-white">
                       Consignor
@@ -190,10 +187,9 @@ const SaleNewEntry = () => {
                       value={data?.consignor || ""}
                       readOnly
                       rows={1}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 cursor-not-allowed"
                     />
                   </div>
-
                   <div className="sm:col-span-2">
                     <label htmlFor="cstNo" className="block mb-2 dark:text-white">
                       C.S.T. No.
@@ -204,13 +200,13 @@ const SaleNewEntry = () => {
                       name="cstNo"
                       value={data?.cst_no || ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200 text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right
+                      cursor-not-allowed"
                       placeholder="Enter CST No."
                     />
                   </div>
                 </div>
 
-                {/* Another 4-Column Group */}
                 <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6 mb-8">
                   <div>
                     <label htmlFor="purDate" className="block mb-2 dark:text-white">
@@ -222,7 +218,8 @@ const SaleNewEntry = () => {
                       name="purDate"
                       value={data?.pur_date ? data.pur_date.slice(0, 10) : ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500
+                      cursor-not-allowed"
                     />
                   </div>
                   <div>
@@ -235,7 +232,8 @@ const SaleNewEntry = () => {
                       name="purVal"
                       value={data?.pur_val || ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right
+                      cursor-not-allowed"
                     />
                   </div>
                   <div>
@@ -248,8 +246,8 @@ const SaleNewEntry = () => {
                       name="regFees"
                       value={data?.reg_fees || ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
-                        dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
+                        dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right cursor-not-allowed"
                     />
                   </div>
                   <div>
@@ -262,15 +260,16 @@ const SaleNewEntry = () => {
                       name="fraFees"
                       value={data?.fra_fees || ""}
                       readOnly
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right
+                      cursor-not-allowed"
                     />
                   </div>
                 </div>
 
                 {/**survey no table here */}
-                <div className="rounded-md w-full max-w-8xl mx-auto overflow-x-auto border border-gray-100 dark:border-gray-800">
-                  <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead className="bg-gray-100 dark:bg-gray-800 sticky top-0">
+                <div className="rounded-md w-full max-w-8xl mx-auto overflow-x-auto border border-slate-100 dark:border-slate-800">
+                  <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                    <thead className="bg-slate-100 dark:bg-slate-800 sticky top-0">
                       <tr>
                         <th className={tablehead}>Sr No.</th>
                         <th className={tablehead}>Consignee</th>
@@ -280,7 +279,7 @@ const SaleNewEntry = () => {
                         <th className={tablehead}>total area <span className='lowercase'>(Sq. Mtr.)</span></th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
                       {data?.survey?.map((item, index) => (
                         <tr key={index}>
                           <td className="sm:py-2 py-2 px-2 items-center">
@@ -288,7 +287,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sr_no}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[5rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[5rem] mt-2 border-slate-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -296,7 +295,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.con_name}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[20rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[20rem] mt-2 border-slate-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -304,7 +303,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sur_no}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[12rem] mt-2 border-gray-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[12rem] mt-2 border-slate-200 text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -312,7 +311,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.area}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-slate-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -320,7 +319,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.balance}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-slate-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                           <td className="py-2 px-2 items-center">
@@ -328,7 +327,7 @@ const SaleNewEntry = () => {
                               type="text"
                               value={item.sqmtr}
                               readOnly
-                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-gray-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                              className="rounded-lg sm:py-2 py-2 px-4 block w-[7rem] mt-2 border-slate-200 text-right text-xs border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                             />
                           </td>
                         </tr>
@@ -338,12 +337,12 @@ const SaleNewEntry = () => {
                 </div>
               </div>
 
-              <div className='border border-gray-200 dark:border-gray-700 p-2 rounded-lg'>
+              <div className='border border-slate-200 dark:border-slate-700 p-2 rounded-lg'>
                 <h1 className='justify-center items-center flex text-xl font-semibold mb-3 '>Property Sale Proceeding Form
 
                 </h1>
                 {/* Another 4-Column Group */}
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6 mb-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mb-4">
                   <div>
                     <label htmlFor="saleDate" className="block mb-2 dark:text-white">
                       Sale Date<span className="text-red-600 font-bold">*</span>
@@ -354,7 +353,7 @@ const SaleNewEntry = () => {
                       name="saleDate"
                       defaultValue={inputs.saleDate}
                       onChange={(e) => handleInputChange(e)}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500"
                     />
                   </div>
                   <div>
@@ -368,8 +367,8 @@ const SaleNewEntry = () => {
                       defaultValue={inputs.buyerName}
                       onChange={(e) => handleInputChange(e)}
                       placeholder='Enter Buyer Name'
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
-                        dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 
+                        dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 "
                     />
                   </div>
                   <div>
@@ -382,9 +381,12 @@ const SaleNewEntry = () => {
                       name="saleValue"
                       defaultValue={inputs.saleValue}
                       onChange={(e) => handleInputChange(e)}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                     />
                   </div>
+
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
                   <div>
                     <label htmlFor="saleArea" className="block mb-2 dark:text-white">
                       Sale Area <span className="text-red-600 font-bold">*</span>
@@ -395,11 +397,9 @@ const SaleNewEntry = () => {
                       name="saleArea"
                       defaultValue={inputs.saleArea}
                       onChange={(e) => handleInputChange(e)}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                     />
                   </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6">
                   <div>
                     <label htmlFor="saleSurvey" className="block mb-2 dark:text-white">
                       Survey No. <span className="text-red-600 font-bold">*</span>
@@ -410,7 +410,7 @@ const SaleNewEntry = () => {
                       name="saleSurvey"
                       defaultValue={inputs.saleSurvey}
                       onChange={(e) => handleInputChange(e)}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                     />
                   </div>
                   <div>
@@ -422,7 +422,7 @@ const SaleNewEntry = () => {
                       name="remark"
                       defaultValue={inputs.remark}
                       onChange={(e: any) => handleInputChange(e)}
-                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-gray-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-100 dark:placeholder-gray-500 dark:focus:ring-gray-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
+                      className="rounded-lg sm:py-2 py-2 px-4 block w-full mt-2 border-slate-200  text-sm border focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-100 dark:placeholder-slate-500 dark:focus:ring-slate-600 bg-slate-100 uppercase focus:outline-none focus:ring-0 dark:focus:border-blue-500 text-right"
                       rows={1}
                     />
                   </div>
@@ -434,7 +434,7 @@ const SaleNewEntry = () => {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 shadow-sm text-sm font-medium rounded-md text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-600 hover:bg-slate-50 dark:hover:bg-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 <FiX className="mr-2" />
                 Cancel
